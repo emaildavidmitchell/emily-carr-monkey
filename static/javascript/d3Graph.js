@@ -91,7 +91,7 @@ function update() {
 
 		enter.append("svg:image")
 			.attr("xlink:href",  function(d) { 
-				return "img/articles/" + d.name + "/profile.png";
+				return "/static/img/articles/" + d.name + "/profile.png";
 			})
 			.attr("x", function(d,i) {
 				return d.x-d.r;
@@ -323,7 +323,7 @@ function highlight(clickedNode,d) {
 
     $('#mediabox').empty();
 	if (imgs[d.name].length > 0) {
-        $('#mediabox').prepend('<img id="media" src="/img/articles/' + d.name + '/' + imgs[d.name][0] + '" />');
+        $('#mediabox').prepend('<img id="media" src="/static/img/articles/' + d.name + '/' + imgs[d.name][0] + '" />');
         imagePos = 0;
     }
 
@@ -522,11 +522,10 @@ function change_tooltip(id) {
 			text = activeData.desc;
 			break;
 		case "attr":
-			text = activeData.links.reduce((function(acc, obj) { return acc + "\n" + obj.l.value}), "");
-			console.log(activeData.links);
+			text = activeData.links.reduce((function(acc, obj) { return acc + "\n" + obj.value}), "");
 			break;
 		case "type":
-			text = activeData.type.reduce((function(acc, obj) { return acc + "\n" + obj.t.value }),"");
+			text = activeData.type.reduce((function(acc, obj) { return acc + "\n" + obj.value }),"");
 			break;
 	}
 
@@ -539,6 +538,6 @@ function next_image() {
     $('#mediabox').empty();
     if (imgs[activeData.name].length > 0) {
         imagePos = (imagePos+1)%imgs[activeData.name].length;
-        $('#mediabox').prepend('<img id="media" src="/img/articles/' + activeData.name + '/' + imgs[activeData.name][imagePos] + '" />');
+        $('#mediabox').prepend('<img id="media" src="/static/img/articles/' + activeData.name + '/' + imgs[activeData.name][imagePos] + '" />');
     }
 }

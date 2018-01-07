@@ -1,4 +1,7 @@
 function add_node(node_set, edge_set, node_data, visibility="visible", parent={}) {
+	if (!node_data.desc)
+		node_data.desc = "   ";
+
 
 	var node = {name: node_data.label,
 		expanded: false,
@@ -17,14 +20,13 @@ function add_node(node_set, edge_set, node_data, visibility="visible", parent={}
 }
 
 function expand_node(node_set,edge_set,node_id,update) {
-
 	var queued = [];
 	var node = node_set[node_id];
 	node.expanded = true;
 	node.extended = true;
 	for (var i = 0; i < node.links.length && i < 10; i++) {
-		var name = node.links[i].l.value;
-		var rel = node.links[i].p.value;
+		var name = node.links[i].label;
+		var rel = node.links[i].relation;
 		if (queued.indexOf(name) === -1) {
 			queued.push(name);
 			if (exists(node_set,name)) {
@@ -36,6 +38,7 @@ function expand_node(node_set,edge_set,node_id,update) {
 			}
 			else {
 				$.post("/network/expand", {search: name}, function (child_data,status) {
+					child_data = JSON.parse(child_data);
 					var child_node = add_node(node_set,edge_set,child_data,"visible", node);
 					node.children.push(child_node);
 					add_edge(edge_set, node, child_node, rel);

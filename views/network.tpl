@@ -17,13 +17,8 @@
 			<script src="https://d3js.org/d3.v4.min.js"></script>
 			<script src="/static/javascript/network_script.js"></script>
 			<script>
-				/*var node_data = { label = "{{ node_data.label }}",
-
-
-							
-				};*/
-				console.log(node_data);
-				//var imgs = <%- JSON.stringify(imgs) %>;
+				var node_data = {{ node_data }};
+				var imgs = {{ imgs }};
 				var node_set = [];
 				var edge_set = [];
 				add_node(node_set, edge_set, node_data, false, 0);
