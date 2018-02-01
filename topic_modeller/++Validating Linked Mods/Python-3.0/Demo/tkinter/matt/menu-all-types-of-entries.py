@@ -1,4 +1,4 @@
-from Tkinter import *
+from tkinter import *
 
 # some vocabulary to keep from getting confused. This terminology
 # is something I cooked up for this file, but follows the man pages
@@ -50,7 +50,7 @@ anchovies = 0
 def print_anchovies():
     global anchovies
     anchovies = not anchovies
-    print("anchovies?", anchovies)
+    print(("anchovies?", anchovies))
 
 def makeCommandMenu():
     # make menu button

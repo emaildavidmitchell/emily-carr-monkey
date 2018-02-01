@@ -43,7 +43,7 @@ def getregentry():
 
 ### Decoding Map
 
-decoding_map = codecs.make_identity_dict(range(256))
+decoding_map = codecs.make_identity_dict(list(range(256)))
 decoding_map.update({
     0x0080: 0x00c7,     #  LATIN CAPITAL LETTER C WITH CEDILLA
     0x0081: 0x00fc,     #  LATIN SMALL LETTER U WITH DIAERESIS
@@ -318,7 +318,7 @@ decoding_table = (
     '\xe8'     #  0x008a -> LATIN SMALL LETTER E WITH GRAVE
     '\xef'     #  0x008b -> LATIN SMALL LETTER I WITH DIAERESIS
     '\xee'     #  0x008c -> LATIN SMALL LETTER I WITH CIRCUMFLEX
-    '\u0131'   #  0x008d -> LATIN SMALL LETTER DOTLESS I
+    '\\u0131'   #  0x008d -> LATIN SMALL LETTER DOTLESS I
     '\xc4'     #  0x008e -> LATIN CAPITAL LETTER A WITH DIAERESIS
     '\xc5'     #  0x008f -> LATIN CAPITAL LETTER A WITH RING ABOVE
     '\xc9'     #  0x0090 -> LATIN CAPITAL LETTER E WITH ACUTE
@@ -329,22 +329,22 @@ decoding_table = (
     '\xf2'     #  0x0095 -> LATIN SMALL LETTER O WITH GRAVE
     '\xfb'     #  0x0096 -> LATIN SMALL LETTER U WITH CIRCUMFLEX
     '\xf9'     #  0x0097 -> LATIN SMALL LETTER U WITH GRAVE
-    '\u0130'   #  0x0098 -> LATIN CAPITAL LETTER I WITH DOT ABOVE
+    '\\u0130'   #  0x0098 -> LATIN CAPITAL LETTER I WITH DOT ABOVE
     '\xd6'     #  0x0099 -> LATIN CAPITAL LETTER O WITH DIAERESIS
     '\xdc'     #  0x009a -> LATIN CAPITAL LETTER U WITH DIAERESIS
     '\xf8'     #  0x009b -> LATIN SMALL LETTER O WITH STROKE
     '\xa3'     #  0x009c -> POUND SIGN
     '\xd8'     #  0x009d -> LATIN CAPITAL LETTER O WITH STROKE
-    '\u015e'   #  0x009e -> LATIN CAPITAL LETTER S WITH CEDILLA
-    '\u015f'   #  0x009f -> LATIN SMALL LETTER S WITH CEDILLA
+    '\\u015e'   #  0x009e -> LATIN CAPITAL LETTER S WITH CEDILLA
+    '\\u015f'   #  0x009f -> LATIN SMALL LETTER S WITH CEDILLA
     '\xe1'     #  0x00a0 -> LATIN SMALL LETTER A WITH ACUTE
     '\xed'     #  0x00a1 -> LATIN SMALL LETTER I WITH ACUTE
     '\xf3'     #  0x00a2 -> LATIN SMALL LETTER O WITH ACUTE
     '\xfa'     #  0x00a3 -> LATIN SMALL LETTER U WITH ACUTE
     '\xf1'     #  0x00a4 -> LATIN SMALL LETTER N WITH TILDE
     '\xd1'     #  0x00a5 -> LATIN CAPITAL LETTER N WITH TILDE
-    '\u011e'   #  0x00a6 -> LATIN CAPITAL LETTER G WITH BREVE
-    '\u011f'   #  0x00a7 -> LATIN SMALL LETTER G WITH BREVE
+    '\\u011e'   #  0x00a6 -> LATIN CAPITAL LETTER G WITH BREVE
+    '\\u011f'   #  0x00a7 -> LATIN SMALL LETTER G WITH BREVE
     '\xbf'     #  0x00a8 -> INVERTED QUESTION MARK
     '\xae'     #  0x00a9 -> REGISTERED SIGN
     '\xac'     #  0x00aa -> NOT SIGN
@@ -353,54 +353,54 @@ decoding_table = (
     '\xa1'     #  0x00ad -> INVERTED EXCLAMATION MARK
     '\xab'     #  0x00ae -> LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
     '\xbb'     #  0x00af -> RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
-    '\u2591'   #  0x00b0 -> LIGHT SHADE
-    '\u2592'   #  0x00b1 -> MEDIUM SHADE
-    '\u2593'   #  0x00b2 -> DARK SHADE
-    '\u2502'   #  0x00b3 -> BOX DRAWINGS LIGHT VERTICAL
-    '\u2524'   #  0x00b4 -> BOX DRAWINGS LIGHT VERTICAL AND LEFT
+    '\\u2591'   #  0x00b0 -> LIGHT SHADE
+    '\\u2592'   #  0x00b1 -> MEDIUM SHADE
+    '\\u2593'   #  0x00b2 -> DARK SHADE
+    '\\u2502'   #  0x00b3 -> BOX DRAWINGS LIGHT VERTICAL
+    '\\u2524'   #  0x00b4 -> BOX DRAWINGS LIGHT VERTICAL AND LEFT
     '\xc1'     #  0x00b5 -> LATIN CAPITAL LETTER A WITH ACUTE
     '\xc2'     #  0x00b6 -> LATIN CAPITAL LETTER A WITH CIRCUMFLEX
     '\xc0'     #  0x00b7 -> LATIN CAPITAL LETTER A WITH GRAVE
     '\xa9'     #  0x00b8 -> COPYRIGHT SIGN
-    '\u2563'   #  0x00b9 -> BOX DRAWINGS DOUBLE VERTICAL AND LEFT
-    '\u2551'   #  0x00ba -> BOX DRAWINGS DOUBLE VERTICAL
-    '\u2557'   #  0x00bb -> BOX DRAWINGS DOUBLE DOWN AND LEFT
-    '\u255d'   #  0x00bc -> BOX DRAWINGS DOUBLE UP AND LEFT
+    '\\u2563'   #  0x00b9 -> BOX DRAWINGS DOUBLE VERTICAL AND LEFT
+    '\\u2551'   #  0x00ba -> BOX DRAWINGS DOUBLE VERTICAL
+    '\\u2557'   #  0x00bb -> BOX DRAWINGS DOUBLE DOWN AND LEFT
+    '\\u255d'   #  0x00bc -> BOX DRAWINGS DOUBLE UP AND LEFT
     '\xa2'     #  0x00bd -> CENT SIGN
     '\xa5'     #  0x00be -> YEN SIGN
-    '\u2510'   #  0x00bf -> BOX DRAWINGS LIGHT DOWN AND LEFT
-    '\u2514'   #  0x00c0 -> BOX DRAWINGS LIGHT UP AND RIGHT
-    '\u2534'   #  0x00c1 -> BOX DRAWINGS LIGHT UP AND HORIZONTAL
-    '\u252c'   #  0x00c2 -> BOX DRAWINGS LIGHT DOWN AND HORIZONTAL
-    '\u251c'   #  0x00c3 -> BOX DRAWINGS LIGHT VERTICAL AND RIGHT
-    '\u2500'   #  0x00c4 -> BOX DRAWINGS LIGHT HORIZONTAL
-    '\u253c'   #  0x00c5 -> BOX DRAWINGS LIGHT VERTICAL AND HORIZONTAL
+    '\\u2510'   #  0x00bf -> BOX DRAWINGS LIGHT DOWN AND LEFT
+    '\\u2514'   #  0x00c0 -> BOX DRAWINGS LIGHT UP AND RIGHT
+    '\\u2534'   #  0x00c1 -> BOX DRAWINGS LIGHT UP AND HORIZONTAL
+    '\\u252c'   #  0x00c2 -> BOX DRAWINGS LIGHT DOWN AND HORIZONTAL
+    '\\u251c'   #  0x00c3 -> BOX DRAWINGS LIGHT VERTICAL AND RIGHT
+    '\\u2500'   #  0x00c4 -> BOX DRAWINGS LIGHT HORIZONTAL
+    '\\u253c'   #  0x00c5 -> BOX DRAWINGS LIGHT VERTICAL AND HORIZONTAL
     '\xe3'     #  0x00c6 -> LATIN SMALL LETTER A WITH TILDE
     '\xc3'     #  0x00c7 -> LATIN CAPITAL LETTER A WITH TILDE
-    '\u255a'   #  0x00c8 -> BOX DRAWINGS DOUBLE UP AND RIGHT
-    '\u2554'   #  0x00c9 -> BOX DRAWINGS DOUBLE DOWN AND RIGHT
-    '\u2569'   #  0x00ca -> BOX DRAWINGS DOUBLE UP AND HORIZONTAL
-    '\u2566'   #  0x00cb -> BOX DRAWINGS DOUBLE DOWN AND HORIZONTAL
-    '\u2560'   #  0x00cc -> BOX DRAWINGS DOUBLE VERTICAL AND RIGHT
-    '\u2550'   #  0x00cd -> BOX DRAWINGS DOUBLE HORIZONTAL
-    '\u256c'   #  0x00ce -> BOX DRAWINGS DOUBLE VERTICAL AND HORIZONTAL
+    '\\u255a'   #  0x00c8 -> BOX DRAWINGS DOUBLE UP AND RIGHT
+    '\\u2554'   #  0x00c9 -> BOX DRAWINGS DOUBLE DOWN AND RIGHT
+    '\\u2569'   #  0x00ca -> BOX DRAWINGS DOUBLE UP AND HORIZONTAL
+    '\\u2566'   #  0x00cb -> BOX DRAWINGS DOUBLE DOWN AND HORIZONTAL
+    '\\u2560'   #  0x00cc -> BOX DRAWINGS DOUBLE VERTICAL AND RIGHT
+    '\\u2550'   #  0x00cd -> BOX DRAWINGS DOUBLE HORIZONTAL
+    '\\u256c'   #  0x00ce -> BOX DRAWINGS DOUBLE VERTICAL AND HORIZONTAL
     '\xa4'     #  0x00cf -> CURRENCY SIGN
     '\xba'     #  0x00d0 -> MASCULINE ORDINAL INDICATOR
     '\xaa'     #  0x00d1 -> FEMININE ORDINAL INDICATOR
     '\xca'     #  0x00d2 -> LATIN CAPITAL LETTER E WITH CIRCUMFLEX
     '\xcb'     #  0x00d3 -> LATIN CAPITAL LETTER E WITH DIAERESIS
     '\xc8'     #  0x00d4 -> LATIN CAPITAL LETTER E WITH GRAVE
-    '\ufffe'   #  0x00d5 -> UNDEFINED
+    '\\ufffe'   #  0x00d5 -> UNDEFINED
     '\xcd'     #  0x00d6 -> LATIN CAPITAL LETTER I WITH ACUTE
     '\xce'     #  0x00d7 -> LATIN CAPITAL LETTER I WITH CIRCUMFLEX
     '\xcf'     #  0x00d8 -> LATIN CAPITAL LETTER I WITH DIAERESIS
-    '\u2518'   #  0x00d9 -> BOX DRAWINGS LIGHT UP AND LEFT
-    '\u250c'   #  0x00da -> BOX DRAWINGS LIGHT DOWN AND RIGHT
-    '\u2588'   #  0x00db -> FULL BLOCK
-    '\u2584'   #  0x00dc -> LOWER HALF BLOCK
+    '\\u2518'   #  0x00d9 -> BOX DRAWINGS LIGHT UP AND LEFT
+    '\\u250c'   #  0x00da -> BOX DRAWINGS LIGHT DOWN AND RIGHT
+    '\\u2588'   #  0x00db -> FULL BLOCK
+    '\\u2584'   #  0x00dc -> LOWER HALF BLOCK
     '\xa6'     #  0x00dd -> BROKEN BAR
     '\xcc'     #  0x00de -> LATIN CAPITAL LETTER I WITH GRAVE
-    '\u2580'   #  0x00df -> UPPER HALF BLOCK
+    '\\u2580'   #  0x00df -> UPPER HALF BLOCK
     '\xd3'     #  0x00e0 -> LATIN CAPITAL LETTER O WITH ACUTE
     '\xdf'     #  0x00e1 -> LATIN SMALL LETTER SHARP S
     '\xd4'     #  0x00e2 -> LATIN CAPITAL LETTER O WITH CIRCUMFLEX
@@ -408,7 +408,7 @@ decoding_table = (
     '\xf5'     #  0x00e4 -> LATIN SMALL LETTER O WITH TILDE
     '\xd5'     #  0x00e5 -> LATIN CAPITAL LETTER O WITH TILDE
     '\xb5'     #  0x00e6 -> MICRO SIGN
-    '\ufffe'   #  0x00e7 -> UNDEFINED
+    '\\ufffe'   #  0x00e7 -> UNDEFINED
     '\xd7'     #  0x00e8 -> MULTIPLICATION SIGN
     '\xda'     #  0x00e9 -> LATIN CAPITAL LETTER U WITH ACUTE
     '\xdb'     #  0x00ea -> LATIN CAPITAL LETTER U WITH CIRCUMFLEX
@@ -419,7 +419,7 @@ decoding_table = (
     '\xb4'     #  0x00ef -> ACUTE ACCENT
     '\xad'     #  0x00f0 -> SOFT HYPHEN
     '\xb1'     #  0x00f1 -> PLUS-MINUS SIGN
-    '\ufffe'   #  0x00f2 -> UNDEFINED
+    '\\ufffe'   #  0x00f2 -> UNDEFINED
     '\xbe'     #  0x00f3 -> VULGAR FRACTION THREE QUARTERS
     '\xb6'     #  0x00f4 -> PILCROW SIGN
     '\xa7'     #  0x00f5 -> SECTION SIGN
@@ -431,7 +431,7 @@ decoding_table = (
     '\xb9'     #  0x00fb -> SUPERSCRIPT ONE
     '\xb3'     #  0x00fc -> SUPERSCRIPT THREE
     '\xb2'     #  0x00fd -> SUPERSCRIPT TWO
-    '\u25a0'   #  0x00fe -> BLACK SQUARE
+    '\\u25a0'   #  0x00fe -> BLACK SQUARE
     '\xa0'     #  0x00ff -> NO-BREAK SPACE
 )
 

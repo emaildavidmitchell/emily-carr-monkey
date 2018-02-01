@@ -258,7 +258,7 @@ class InteractiveConsole(InteractiveInterpreter):
         implementation.
 
         """
-        return input(prompt)
+        return eval(input(prompt))
 
 
 

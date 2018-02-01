@@ -205,75 +205,75 @@ decoding_table = (
     '\xf9'     #  0x9D -> LATIN SMALL LETTER U WITH GRAVE
     '\xfb'     #  0x9E -> LATIN SMALL LETTER U WITH CIRCUMFLEX
     '\xfc'     #  0x9F -> LATIN SMALL LETTER U WITH DIAERESIS
-    '\u2020'   #  0xA0 -> DAGGER
+    '\\u2020'   #  0xA0 -> DAGGER
     '\xb0'     #  0xA1 -> DEGREE SIGN
     '\xa2'     #  0xA2 -> CENT SIGN
     '\xa3'     #  0xA3 -> POUND SIGN
     '\xa7'     #  0xA4 -> SECTION SIGN
-    '\u2022'   #  0xA5 -> BULLET
+    '\\u2022'   #  0xA5 -> BULLET
     '\xb6'     #  0xA6 -> PILCROW SIGN
     '\xdf'     #  0xA7 -> LATIN SMALL LETTER SHARP S
     '\xae'     #  0xA8 -> REGISTERED SIGN
     '\xa9'     #  0xA9 -> COPYRIGHT SIGN
-    '\u2122'   #  0xAA -> TRADE MARK SIGN
+    '\\u2122'   #  0xAA -> TRADE MARK SIGN
     '\xb4'     #  0xAB -> ACUTE ACCENT
     '\xa8'     #  0xAC -> DIAERESIS
-    '\u2260'   #  0xAD -> NOT EQUAL TO
-    '\u0102'   #  0xAE -> LATIN CAPITAL LETTER A WITH BREVE
-    '\u0218'   #  0xAF -> LATIN CAPITAL LETTER S WITH COMMA BELOW # for Unicode 3.0 and later
-    '\u221e'   #  0xB0 -> INFINITY
+    '\\u2260'   #  0xAD -> NOT EQUAL TO
+    '\\u0102'   #  0xAE -> LATIN CAPITAL LETTER A WITH BREVE
+    '\\u0218'   #  0xAF -> LATIN CAPITAL LETTER S WITH COMMA BELOW # for Unicode 3.0 and later
+    '\\u221e'   #  0xB0 -> INFINITY
     '\xb1'     #  0xB1 -> PLUS-MINUS SIGN
-    '\u2264'   #  0xB2 -> LESS-THAN OR EQUAL TO
-    '\u2265'   #  0xB3 -> GREATER-THAN OR EQUAL TO
+    '\\u2264'   #  0xB2 -> LESS-THAN OR EQUAL TO
+    '\\u2265'   #  0xB3 -> GREATER-THAN OR EQUAL TO
     '\xa5'     #  0xB4 -> YEN SIGN
     '\xb5'     #  0xB5 -> MICRO SIGN
-    '\u2202'   #  0xB6 -> PARTIAL DIFFERENTIAL
-    '\u2211'   #  0xB7 -> N-ARY SUMMATION
-    '\u220f'   #  0xB8 -> N-ARY PRODUCT
-    '\u03c0'   #  0xB9 -> GREEK SMALL LETTER PI
-    '\u222b'   #  0xBA -> INTEGRAL
+    '\\u2202'   #  0xB6 -> PARTIAL DIFFERENTIAL
+    '\\u2211'   #  0xB7 -> N-ARY SUMMATION
+    '\\u220f'   #  0xB8 -> N-ARY PRODUCT
+    '\\u03c0'   #  0xB9 -> GREEK SMALL LETTER PI
+    '\\u222b'   #  0xBA -> INTEGRAL
     '\xaa'     #  0xBB -> FEMININE ORDINAL INDICATOR
     '\xba'     #  0xBC -> MASCULINE ORDINAL INDICATOR
-    '\u03a9'   #  0xBD -> GREEK CAPITAL LETTER OMEGA
-    '\u0103'   #  0xBE -> LATIN SMALL LETTER A WITH BREVE
-    '\u0219'   #  0xBF -> LATIN SMALL LETTER S WITH COMMA BELOW # for Unicode 3.0 and later
+    '\\u03a9'   #  0xBD -> GREEK CAPITAL LETTER OMEGA
+    '\\u0103'   #  0xBE -> LATIN SMALL LETTER A WITH BREVE
+    '\\u0219'   #  0xBF -> LATIN SMALL LETTER S WITH COMMA BELOW # for Unicode 3.0 and later
     '\xbf'     #  0xC0 -> INVERTED QUESTION MARK
     '\xa1'     #  0xC1 -> INVERTED EXCLAMATION MARK
     '\xac'     #  0xC2 -> NOT SIGN
-    '\u221a'   #  0xC3 -> SQUARE ROOT
-    '\u0192'   #  0xC4 -> LATIN SMALL LETTER F WITH HOOK
-    '\u2248'   #  0xC5 -> ALMOST EQUAL TO
-    '\u2206'   #  0xC6 -> INCREMENT
+    '\\u221a'   #  0xC3 -> SQUARE ROOT
+    '\\u0192'   #  0xC4 -> LATIN SMALL LETTER F WITH HOOK
+    '\\u2248'   #  0xC5 -> ALMOST EQUAL TO
+    '\\u2206'   #  0xC6 -> INCREMENT
     '\xab'     #  0xC7 -> LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
     '\xbb'     #  0xC8 -> RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
-    '\u2026'   #  0xC9 -> HORIZONTAL ELLIPSIS
+    '\\u2026'   #  0xC9 -> HORIZONTAL ELLIPSIS
     '\xa0'     #  0xCA -> NO-BREAK SPACE
     '\xc0'     #  0xCB -> LATIN CAPITAL LETTER A WITH GRAVE
     '\xc3'     #  0xCC -> LATIN CAPITAL LETTER A WITH TILDE
     '\xd5'     #  0xCD -> LATIN CAPITAL LETTER O WITH TILDE
-    '\u0152'   #  0xCE -> LATIN CAPITAL LIGATURE OE
-    '\u0153'   #  0xCF -> LATIN SMALL LIGATURE OE
-    '\u2013'   #  0xD0 -> EN DASH
-    '\u2014'   #  0xD1 -> EM DASH
-    '\u201c'   #  0xD2 -> LEFT DOUBLE QUOTATION MARK
-    '\u201d'   #  0xD3 -> RIGHT DOUBLE QUOTATION MARK
-    '\u2018'   #  0xD4 -> LEFT SINGLE QUOTATION MARK
-    '\u2019'   #  0xD5 -> RIGHT SINGLE QUOTATION MARK
+    '\\u0152'   #  0xCE -> LATIN CAPITAL LIGATURE OE
+    '\\u0153'   #  0xCF -> LATIN SMALL LIGATURE OE
+    '\\u2013'   #  0xD0 -> EN DASH
+    '\\u2014'   #  0xD1 -> EM DASH
+    '\\u201c'   #  0xD2 -> LEFT DOUBLE QUOTATION MARK
+    '\\u201d'   #  0xD3 -> RIGHT DOUBLE QUOTATION MARK
+    '\\u2018'   #  0xD4 -> LEFT SINGLE QUOTATION MARK
+    '\\u2019'   #  0xD5 -> RIGHT SINGLE QUOTATION MARK
     '\xf7'     #  0xD6 -> DIVISION SIGN
-    '\u25ca'   #  0xD7 -> LOZENGE
+    '\\u25ca'   #  0xD7 -> LOZENGE
     '\xff'     #  0xD8 -> LATIN SMALL LETTER Y WITH DIAERESIS
-    '\u0178'   #  0xD9 -> LATIN CAPITAL LETTER Y WITH DIAERESIS
-    '\u2044'   #  0xDA -> FRACTION SLASH
-    '\u20ac'   #  0xDB -> EURO SIGN
-    '\u2039'   #  0xDC -> SINGLE LEFT-POINTING ANGLE QUOTATION MARK
-    '\u203a'   #  0xDD -> SINGLE RIGHT-POINTING ANGLE QUOTATION MARK
-    '\u021a'   #  0xDE -> LATIN CAPITAL LETTER T WITH COMMA BELOW # for Unicode 3.0 and later
-    '\u021b'   #  0xDF -> LATIN SMALL LETTER T WITH COMMA BELOW # for Unicode 3.0 and later
-    '\u2021'   #  0xE0 -> DOUBLE DAGGER
+    '\\u0178'   #  0xD9 -> LATIN CAPITAL LETTER Y WITH DIAERESIS
+    '\\u2044'   #  0xDA -> FRACTION SLASH
+    '\\u20ac'   #  0xDB -> EURO SIGN
+    '\\u2039'   #  0xDC -> SINGLE LEFT-POINTING ANGLE QUOTATION MARK
+    '\\u203a'   #  0xDD -> SINGLE RIGHT-POINTING ANGLE QUOTATION MARK
+    '\\u021a'   #  0xDE -> LATIN CAPITAL LETTER T WITH COMMA BELOW # for Unicode 3.0 and later
+    '\\u021b'   #  0xDF -> LATIN SMALL LETTER T WITH COMMA BELOW # for Unicode 3.0 and later
+    '\\u2021'   #  0xE0 -> DOUBLE DAGGER
     '\xb7'     #  0xE1 -> MIDDLE DOT
-    '\u201a'   #  0xE2 -> SINGLE LOW-9 QUOTATION MARK
-    '\u201e'   #  0xE3 -> DOUBLE LOW-9 QUOTATION MARK
-    '\u2030'   #  0xE4 -> PER MILLE SIGN
+    '\\u201a'   #  0xE2 -> SINGLE LOW-9 QUOTATION MARK
+    '\\u201e'   #  0xE3 -> DOUBLE LOW-9 QUOTATION MARK
+    '\\u2030'   #  0xE4 -> PER MILLE SIGN
     '\xc2'     #  0xE5 -> LATIN CAPITAL LETTER A WITH CIRCUMFLEX
     '\xca'     #  0xE6 -> LATIN CAPITAL LETTER E WITH CIRCUMFLEX
     '\xc1'     #  0xE7 -> LATIN CAPITAL LETTER A WITH ACUTE
@@ -285,22 +285,22 @@ decoding_table = (
     '\xcc'     #  0xED -> LATIN CAPITAL LETTER I WITH GRAVE
     '\xd3'     #  0xEE -> LATIN CAPITAL LETTER O WITH ACUTE
     '\xd4'     #  0xEF -> LATIN CAPITAL LETTER O WITH CIRCUMFLEX
-    '\uf8ff'   #  0xF0 -> Apple logo
+    '\\uf8ff'   #  0xF0 -> Apple logo
     '\xd2'     #  0xF1 -> LATIN CAPITAL LETTER O WITH GRAVE
     '\xda'     #  0xF2 -> LATIN CAPITAL LETTER U WITH ACUTE
     '\xdb'     #  0xF3 -> LATIN CAPITAL LETTER U WITH CIRCUMFLEX
     '\xd9'     #  0xF4 -> LATIN CAPITAL LETTER U WITH GRAVE
-    '\u0131'   #  0xF5 -> LATIN SMALL LETTER DOTLESS I
-    '\u02c6'   #  0xF6 -> MODIFIER LETTER CIRCUMFLEX ACCENT
-    '\u02dc'   #  0xF7 -> SMALL TILDE
+    '\\u0131'   #  0xF5 -> LATIN SMALL LETTER DOTLESS I
+    '\\u02c6'   #  0xF6 -> MODIFIER LETTER CIRCUMFLEX ACCENT
+    '\\u02dc'   #  0xF7 -> SMALL TILDE
     '\xaf'     #  0xF8 -> MACRON
-    '\u02d8'   #  0xF9 -> BREVE
-    '\u02d9'   #  0xFA -> DOT ABOVE
-    '\u02da'   #  0xFB -> RING ABOVE
+    '\\u02d8'   #  0xF9 -> BREVE
+    '\\u02d9'   #  0xFA -> DOT ABOVE
+    '\\u02da'   #  0xFB -> RING ABOVE
     '\xb8'     #  0xFC -> CEDILLA
-    '\u02dd'   #  0xFD -> DOUBLE ACUTE ACCENT
-    '\u02db'   #  0xFE -> OGONEK
-    '\u02c7'   #  0xFF -> CARON
+    '\\u02dd'   #  0xFD -> DOUBLE ACUTE ACCENT
+    '\\u02db'   #  0xFE -> OGONEK
+    '\\u02c7'   #  0xFF -> CARON
 )
 
 ### Encoding table

@@ -58,15 +58,15 @@ class BuildExtTestCase(unittest.TestCase):
         import xx
 
         for attr in ('error', 'foo', 'new', 'roj'):
-            self.assert_(hasattr(xx, attr))
+            self.assertTrue(hasattr(xx, attr))
 
-        self.assertEquals(xx.foo(2, 5), 7)
-        self.assertEquals(xx.foo(13,15), 28)
-        self.assertEquals(xx.new().demo(), None)
+        self.assertEqual(xx.foo(2, 5), 7)
+        self.assertEqual(xx.foo(13,15), 28)
+        self.assertEqual(xx.new().demo(), None)
         doc = 'This is a template module just for instruction.'
-        self.assertEquals(xx.__doc__, doc)
-        self.assert_(isinstance(xx.Null(), xx.Null))
-        self.assert_(isinstance(xx.Str(), xx.Str))
+        self.assertEqual(xx.__doc__, doc)
+        self.assertTrue(isinstance(xx.Null(), xx.Null))
+        self.assertTrue(isinstance(xx.Str(), xx.Str))
 
     def tearDown(self):
         # Get everything back to normal

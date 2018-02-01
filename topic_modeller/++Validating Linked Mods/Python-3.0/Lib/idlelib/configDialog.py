@@ -1109,13 +1109,13 @@ class ConfigDialog(Toplevel):
     def DeactivateCurrentConfig(self):
         #Before a config is saved, some cleanup of current
         #config must be done - remove the previous keybindings
-        winInstances = self.parent.instance_dict.keys()
+        winInstances = list(self.parent.instance_dict.keys())
         for instance in winInstances:
             instance.RemoveKeybindings()
 
     def ActivateConfigChanges(self):
         "Dynamically apply configuration changes"
-        winInstances = self.parent.instance_dict.keys()
+        winInstances = list(self.parent.instance_dict.keys())
         for instance in winInstances:
             instance.ResetColorizer()
             instance.ResetFont()

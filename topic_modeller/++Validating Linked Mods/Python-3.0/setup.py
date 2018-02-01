@@ -203,8 +203,8 @@ class PyBuildExt(build_ext):
             while len(lst) % 3:
                 lst.append("")
             for e, f, g in zip(lst[::3], lst[1::3], lst[2::3]):
-                print("%-*s   %-*s   %-*s" % (longest, e, longest, f,
-                                              longest, g))
+                print(("%-*s   %-*s   %-*s" % (longest, e, longest, f,
+                                              longest, g)))
 
         if missing:
             print()
@@ -640,8 +640,8 @@ class PyBuildExt(build_ext):
                                        library_dirs = ssl_libs,
                                        libraries = ['ssl', 'crypto']) )
             else:
-                print("warning: openssl 0x%08x is too old for _hashlib" %
-                      openssl_ver)
+                print(("warning: openssl 0x%08x is too old for _hashlib" %
+                      openssl_ver))
                 missing.append('_hashlib')
         else:
             missing.append('_hashlib')
@@ -700,7 +700,7 @@ class PyBuildExt(build_ext):
         for d in inc_dirs + sqlite_inc_paths:
             f = os.path.join(d, "sqlite3.h")
             if os.path.exists(f):
-                if sqlite_setup_debug: print("sqlite: found %s"%f)
+                if sqlite_setup_debug: print(("sqlite: found %s"%f))
                 incf = open(f).read()
                 m = re.search(
                     r'\s*.*#\s*.*define\s.*SQLITE_VERSION\W*"(.*)"', incf)
@@ -711,15 +711,15 @@ class PyBuildExt(build_ext):
                     if sqlite_version_tuple >= MIN_SQLITE_VERSION_NUMBER:
                         # we win!
                         if sqlite_setup_debug:
-                            print("%s/sqlite3.h: version %s"%(d, sqlite_version))
+                            print(("%s/sqlite3.h: version %s"%(d, sqlite_version)))
                         sqlite_incdir = d
                         break
                     else:
                         if sqlite_setup_debug:
-                            print("%s: version %d is too old, need >= %s"%(d,
-                                        sqlite_version, MIN_SQLITE_VERSION))
+                            print(("%s: version %d is too old, need >= %s"%(d,
+                                        sqlite_version, MIN_SQLITE_VERSION)))
                 elif sqlite_setup_debug:
-                    print("sqlite: %s had no SQLITE_VERSION"%(f,))
+                    print(("sqlite: %s had no SQLITE_VERSION"%(f,)))
 
         if sqlite_incdir:
             sqlite_dirs_to_check = [

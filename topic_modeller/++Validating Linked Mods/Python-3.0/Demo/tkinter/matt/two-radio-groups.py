@@ -1,4 +1,4 @@
-from Tkinter import *
+from tkinter import *
 
 #       The way to think about this is that each radio button menu
 #       controls a different variable -- clicking on one of the
@@ -75,8 +75,8 @@ def makeFlavors(var):
 
 
 def printStuff():
-    print("party is", party.get())
-    print("flavor is", flavor.get())
+    print(("party is", party.get()))
+    print(("flavor is", flavor.get()))
     print()
 
 #################################################

@@ -240,7 +240,7 @@ class JSONEncoder(object):
             keys.sort()
             items = [(k, dct[k]) for k in keys]
         else:
-            items = iter(dct.items())
+            items = iter(list(dct.items()))
         _encoding = self.encoding
         _do_decode = (_encoding is not None
             and not (_encoding == 'utf-8'))
@@ -254,7 +254,7 @@ class JSONEncoder(object):
             # also allow them.  Many encoders seem to do something like this.
             elif isinstance(key, float):
                 key = floatstr(key, allow_nan)
-            elif isinstance(key, (int, int)):
+            elif isinstance(key, int):
                 key = str(key)
             elif key is True:
                 key = 'true'
@@ -298,7 +298,7 @@ class JSONEncoder(object):
             yield 'true'
         elif o is False:
             yield 'false'
-        elif isinstance(o, (int, int)):
+        elif isinstance(o, int):
             yield str(o)
         elif isinstance(o, float):
             yield floatstr(o, self.allow_nan)

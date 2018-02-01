@@ -1171,7 +1171,7 @@ class DefaultCookiePolicy(CookiePolicy):
 
 def vals_sorted_by_key(adict):
     keys = sorted(adict.keys())
-    return map(adict.get, keys)
+    return list(map(adict.get, keys))
 
 def deepvalues(mapping):
     """Iterates over nested mapping, depth-first, in sorted order by key."""
@@ -1226,11 +1226,11 @@ class CookieJar:
             return []
         _debug("Checking %s for cookies to return", domain)
         cookies_by_path = self._cookies[domain]
-        for path in cookies_by_path.keys():
+        for path in list(cookies_by_path.keys()):
             if not self._policy.path_return_ok(path, request):
                 continue
             cookies_by_name = cookies_by_path[path]
-            for cookie in cookies_by_name.values():
+            for cookie in list(cookies_by_name.values()):
                 if not self._policy.return_ok(cookie, request):
                     _debug("   not returning cookie")
                     continue
@@ -1241,7 +1241,7 @@ class CookieJar:
     def _cookies_for_request(self, request):
         """Return a list of cookies to be returned to server."""
         cookies = []
-        for domain in self._cookies.keys():
+        for domain in list(self._cookies.keys()):
             cookies.extend(self._cookies_for_domain(domain, request))
         return cookies
 
@@ -1590,7 +1590,7 @@ class CookieJar:
                 def no_matching_rfc2965(ns_cookie, lookup=lookup):
                     key = ns_cookie.domain, ns_cookie.path, ns_cookie.name
                     return key not in lookup
-                ns_cookies = filter(no_matching_rfc2965, ns_cookies)
+                ns_cookies = list(filter(no_matching_rfc2965, ns_cookies))
 
             if ns_cookies:
                 cookies.extend(ns_cookies)

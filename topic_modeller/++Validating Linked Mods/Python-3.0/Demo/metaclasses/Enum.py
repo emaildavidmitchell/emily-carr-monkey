@@ -42,7 +42,7 @@ class EnumMetaClass:
         self.__name__ = name
         self.__bases__ = bases
         self.__dict = {}
-        for key, value in dict.items():
+        for key, value in list(dict.items()):
             self.__dict[key] = EnumInstance(name, key, value)
 
     def __getattr__(self, name):
@@ -80,7 +80,7 @@ class EnumMetaClass:
             s = s + '(' + string.join([x.__name__ for x in self.__bases__], ", ") + ')'
         if self.__dict:
             list = []
-            for key, value in self.__dict.items():
+            for key, value in list(self.__dict.items()):
                 list.append("%s: %s" % (key, int(value)))
             s = "%s: {%s}" % (s, string.join(list, ", "))
         return s
@@ -129,13 +129,13 @@ def _test():
         green = 2
         blue = 3
 
-    print(Color.red)
-    print(dir(Color))
+    print((Color.red))
+    print((dir(Color)))
 
-    print(Color.red == Color.red)
-    print(Color.red == Color.blue)
-    print(Color.red == 1)
-    print(Color.red == 2)
+    print((Color.red == Color.red))
+    print((Color.red == Color.blue))
+    print((Color.red == 1))
+    print((Color.red == 2))
 
     class ExtendedColor(Color):
         white = 0
@@ -144,10 +144,10 @@ def _test():
         purple = 6
         black = 7
 
-    print(ExtendedColor.orange)
-    print(ExtendedColor.red)
+    print((ExtendedColor.orange))
+    print((ExtendedColor.red))
 
-    print(Color.red == ExtendedColor.red)
+    print((Color.red == ExtendedColor.red))
 
     class OtherColor(Enum):
         white = 4
@@ -156,8 +156,8 @@ def _test():
     class MergedColor(Color, OtherColor):
         pass
 
-    print(MergedColor.red)
-    print(MergedColor.white)
+    print((MergedColor.red))
+    print((MergedColor.white))
 
     print(Color)
     print(ExtendedColor)

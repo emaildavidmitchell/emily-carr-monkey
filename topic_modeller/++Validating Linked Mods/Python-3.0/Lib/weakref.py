@@ -62,7 +62,7 @@ class WeakValueDictionary(collections.MutableMapping):
         del self.data[key]
 
     def __len__(self):
-        return sum(wr() is not None for wr in self.data.values())
+        return sum(wr() is not None for wr in list(self.data.values()))
 
     def __contains__(self, key):
         try:
@@ -79,7 +79,7 @@ class WeakValueDictionary(collections.MutableMapping):
 
     def copy(self):
         new = WeakValueDictionary()
-        for key, wr in self.data.items():
+        for key, wr in list(self.data.items()):
             o = wr()
             if o is not None:
                 new[key] = o
@@ -100,23 +100,23 @@ class WeakValueDictionary(collections.MutableMapping):
 
     def items(self):
         L = []
-        for key, wr in self.data.items():
+        for key, wr in list(self.data.items()):
             o = wr()
             if o is not None:
                 L.append((key, o))
         return L
 
     def items(self):
-        for wr in self.data.values():
+        for wr in list(self.data.values()):
             value = wr()
             if value is not None:
                 yield wr.key, value
 
     def keys(self):
-        return iter(self.data.keys())
+        return iter(list(self.data.keys()))
 
     def __iter__(self):
-        return iter(self.data.keys())
+        return iter(list(self.data.keys()))
 
     def itervaluerefs(self):
         """Return an iterator that yields the weak references to the values.
@@ -128,10 +128,10 @@ class WeakValueDictionary(collections.MutableMapping):
         keep the values around longer than needed.
 
         """
-        return self.data.values()
+        return list(self.data.values())
 
     def values(self):
-        for wr in self.data.values():
+        for wr in list(self.data.values()):
             obj = wr()
             if obj is not None:
                 yield obj
@@ -169,7 +169,7 @@ class WeakValueDictionary(collections.MutableMapping):
         if dict is not None:
             if not hasattr(dict, "items"):
                 dict = type({})(dict)
-            for key, o in dict.items():
+            for key, o in list(dict.items()):
                 d[key] = KeyedRef(o, self._remove, key)
         if len(kwargs):
             self.update(kwargs)
@@ -184,7 +184,7 @@ class WeakValueDictionary(collections.MutableMapping):
         keep the values around longer than needed.
 
         """
-        return self.data.values()
+        return list(self.data.values())
 
 
 class KeyedRef(ref):
@@ -245,7 +245,7 @@ class WeakKeyDictionary(collections.MutableMapping):
 
     def copy(self):
         new = WeakKeyDictionary()
-        for key, value in self.data.items():
+        for key, value in list(self.data.items()):
             o = key()
             if o is not None:
                 new[o] = value
@@ -262,7 +262,7 @@ class WeakKeyDictionary(collections.MutableMapping):
         return wr in self.data
 
     def items(self):
-        for wr, value in self.data.items():
+        for wr, value in list(self.data.items()):
             key = wr()
             if key is not None:
                 yield key, value
@@ -277,19 +277,19 @@ class WeakKeyDictionary(collections.MutableMapping):
         keep the keys around longer than needed.
 
         """
-        return self.data.keys()
+        return list(self.data.keys())
 
     def keys(self):
-        for wr in self.data.keys():
+        for wr in list(self.data.keys()):
             obj = wr()
             if obj is not None:
                 yield obj
 
     def __iter__(self):
-        return iter(self.keys())
+        return iter(list(self.keys()))
 
     def values(self):
-        return iter(self.data.values())
+        return iter(list(self.data.values()))
 
     def keyrefs(self):
         """Return a list of weak references to the keys.
@@ -301,7 +301,7 @@ class WeakKeyDictionary(collections.MutableMapping):
         keep the keys around longer than needed.
 
         """
-        return self.data.keys()
+        return list(self.data.keys())
 
     def popitem(self):
         while 1:
@@ -321,7 +321,7 @@ class WeakKeyDictionary(collections.MutableMapping):
         if dict is not None:
             if not hasattr(dict, "items"):
                 dict = type({})(dict)
-            for key, value in dict.items():
+            for key, value in list(dict.items()):
                 d[ref(key, self._remove)] = value
         if len(kwargs):
             self.update(kwargs)

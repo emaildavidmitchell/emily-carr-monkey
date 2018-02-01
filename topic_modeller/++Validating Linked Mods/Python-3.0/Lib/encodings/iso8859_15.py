@@ -209,11 +209,11 @@ decoding_table = (
     '\xa1'     #  0xA1 -> INVERTED EXCLAMATION MARK
     '\xa2'     #  0xA2 -> CENT SIGN
     '\xa3'     #  0xA3 -> POUND SIGN
-    '\u20ac'   #  0xA4 -> EURO SIGN
+    '\\u20ac'   #  0xA4 -> EURO SIGN
     '\xa5'     #  0xA5 -> YEN SIGN
-    '\u0160'   #  0xA6 -> LATIN CAPITAL LETTER S WITH CARON
+    '\\u0160'   #  0xA6 -> LATIN CAPITAL LETTER S WITH CARON
     '\xa7'     #  0xA7 -> SECTION SIGN
-    '\u0161'   #  0xA8 -> LATIN SMALL LETTER S WITH CARON
+    '\\u0161'   #  0xA8 -> LATIN SMALL LETTER S WITH CARON
     '\xa9'     #  0xA9 -> COPYRIGHT SIGN
     '\xaa'     #  0xAA -> FEMININE ORDINAL INDICATOR
     '\xab'     #  0xAB -> LEFT-POINTING DOUBLE ANGLE QUOTATION MARK
@@ -225,17 +225,17 @@ decoding_table = (
     '\xb1'     #  0xB1 -> PLUS-MINUS SIGN
     '\xb2'     #  0xB2 -> SUPERSCRIPT TWO
     '\xb3'     #  0xB3 -> SUPERSCRIPT THREE
-    '\u017d'   #  0xB4 -> LATIN CAPITAL LETTER Z WITH CARON
+    '\\u017d'   #  0xB4 -> LATIN CAPITAL LETTER Z WITH CARON
     '\xb5'     #  0xB5 -> MICRO SIGN
     '\xb6'     #  0xB6 -> PILCROW SIGN
     '\xb7'     #  0xB7 -> MIDDLE DOT
-    '\u017e'   #  0xB8 -> LATIN SMALL LETTER Z WITH CARON
+    '\\u017e'   #  0xB8 -> LATIN SMALL LETTER Z WITH CARON
     '\xb9'     #  0xB9 -> SUPERSCRIPT ONE
     '\xba'     #  0xBA -> MASCULINE ORDINAL INDICATOR
     '\xbb'     #  0xBB -> RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK
-    '\u0152'   #  0xBC -> LATIN CAPITAL LIGATURE OE
-    '\u0153'   #  0xBD -> LATIN SMALL LIGATURE OE
-    '\u0178'   #  0xBE -> LATIN CAPITAL LETTER Y WITH DIAERESIS
+    '\\u0152'   #  0xBC -> LATIN CAPITAL LIGATURE OE
+    '\\u0153'   #  0xBD -> LATIN SMALL LIGATURE OE
+    '\\u0178'   #  0xBE -> LATIN CAPITAL LETTER Y WITH DIAERESIS
     '\xbf'     #  0xBF -> INVERTED QUESTION MARK
     '\xc0'     #  0xC0 -> LATIN CAPITAL LETTER A WITH GRAVE
     '\xc1'     #  0xC1 -> LATIN CAPITAL LETTER A WITH ACUTE

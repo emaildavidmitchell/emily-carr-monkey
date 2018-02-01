@@ -153,7 +153,7 @@ you can try compiling with MingW32, by passing "-c mingw32" to setup.py.""")
                 self.macros["$(FrameworkVersion)"] = d["version"]
 
     def sub(self, s):
-        for k, v in self.macros.items():
+        for k, v in list(self.macros.items()):
             s = s.replace(k, v)
         return s
 

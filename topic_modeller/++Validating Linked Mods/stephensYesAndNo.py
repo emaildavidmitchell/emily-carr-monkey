@@ -10,7 +10,7 @@ for n in file_lines:
     print("Is the following statement true?(y or n, x to exit)")
     print(n)
     while True:
-        input_var = raw_input()
+        input_var = input()
         if input_var == 'y':
             write_file.write(n)
             break

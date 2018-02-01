@@ -51,20 +51,20 @@ def reportboguslinks(prefix):
         try:
             mode = os.lstat(name)[ST_MODE]
         except os.error:
-            print("%s%s: can't stat: %s" % (prefix, name, msg))
+            print(("%s%s: can't stat: %s" % (prefix, name, msg)))
             continue
         if S_ISLNK(mode):
             try:
                 os.stat(name)
             except os.error:
-                print("%s%s -> %s" % \
-                      (prefix, name, os.readlink(name)))
+                print(("%s%s -> %s" % \
+                      (prefix, name, os.readlink(name))))
         elif S_ISDIR(mode):
             try:
                 os.chdir(name)
             except os.error as msg:
-                print("%s%s: can't chdir: %s" % \
-                      (prefix, name, msg))
+                print(("%s%s: can't chdir: %s" % \
+                      (prefix, name, msg)))
                 continue
             try:
                 reportboguslinks(prefix + name + '/')

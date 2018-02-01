@@ -57,9 +57,9 @@ def test():
     ADDRESS = ('localhost', 8000)
     NUMBER_OF_PROCESSES = 4
 
-    print('Serving at http://%s:%d using %d worker processes' % \
-          (ADDRESS[0], ADDRESS[1], NUMBER_OF_PROCESSES))
-    print('To exit press Ctrl-' + ['C', 'Break'][sys.platform=='win32'])
+    print(('Serving at http://%s:%d using %d worker processes' % \
+          (ADDRESS[0], ADDRESS[1], NUMBER_OF_PROCESSES)))
+    print(('To exit press Ctrl-' + ['C', 'Break'][sys.platform=='win32']))
 
     os.chdir(DIR)
     runpool(ADDRESS, NUMBER_OF_PROCESSES)

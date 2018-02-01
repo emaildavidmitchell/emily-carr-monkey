@@ -37,7 +37,7 @@ def server():
     print('udp echo server ready')
     while 1:
         data, addr = s.recvfrom(BUFSIZE)
-        print('server received %r from %r' % (data, addr))
+        print(('server received %r from %r' % (data, addr)))
         s.sendto(data, addr)
 
 def client():
@@ -56,9 +56,9 @@ def client():
         line = sys.stdin.readline()
         if not line:
             break
-        print('addr = ', addr)
+        print(('addr = ', addr))
         s.sendto(bytes(line, 'ascii'), addr)
         data, fromaddr = s.recvfrom(BUFSIZE)
-        print('client received %r from %r' % (data, fromaddr))
+        print(('client received %r from %r' % (data, fromaddr)))
 
 main()

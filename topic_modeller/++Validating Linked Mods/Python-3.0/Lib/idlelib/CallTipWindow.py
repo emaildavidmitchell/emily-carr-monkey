@@ -59,8 +59,8 @@ class CallTip:
             return
 
         self.widget.mark_set(MARK_RIGHT, parenright)
-        self.parenline, self.parencol = map(
-            int, self.widget.index(parenleft).split("."))
+        self.parenline, self.parencol = list(map(
+            int, self.widget.index(parenleft).split(".")))
 
         self.tipwindow = tw = Toplevel(self.widget)
         self.position_window()
@@ -95,7 +95,7 @@ class CallTip:
             # this function, the function will be called nevertheless,
             # so do nothing in this case.
             return
-        curline, curcol = map(int, self.widget.index("insert").split('.'))
+        curline, curcol = list(map(int, self.widget.index("insert").split('.')))
         if curline < self.parenline or \
            (curline == self.parenline and curcol <= self.parencol) or \
            self.widget.compare("insert", ">", MARK_RIGHT):

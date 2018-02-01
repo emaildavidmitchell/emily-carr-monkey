@@ -10,7 +10,7 @@ running time.
 try:
     from . import support
 except ImportError:
-    import support
+    from . import support
 
 # Python imports
 import unittest
@@ -27,7 +27,7 @@ class Test_all(support.TestCase):
 
     def test_all_project_files(self):
         for filepath in support.all_project_files():
-            print("Fixing %s..." % filepath)
+            print(("Fixing %s..." % filepath))
             self.refactor.refactor_string(open(filepath).read(), filepath)
 
 

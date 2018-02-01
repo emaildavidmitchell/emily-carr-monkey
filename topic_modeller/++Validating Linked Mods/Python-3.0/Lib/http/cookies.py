@@ -235,7 +235,7 @@ def _quote(str, LegalChars=_LegalChars):
     if all(c in LegalChars for c in str):
         return str
     else:
-        return '"' + _nulljoin( map(_Translator.get, str, str) ) + '"'
+        return '"' + _nulljoin( list(map(_Translator.get, str, str)) ) + '"'
 # end _quote
 
 

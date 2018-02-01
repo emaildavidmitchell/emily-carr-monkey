@@ -580,7 +580,7 @@ class _Pickler:
             return
 
         items = iter(items)
-        r = range(self._BATCHSIZE)
+        r = list(range(self._BATCHSIZE))
         while items is not None:
             tmp = []
             for i in r:
@@ -610,7 +610,7 @@ class _Pickler:
             write(MARK + DICT)
 
         self.memoize(obj)
-        self._batch_setitems(obj.items())
+        self._batch_setitems(list(obj.items()))
 
     dispatch[dict] = save_dict
     if PyStringMap is not None:
@@ -629,7 +629,7 @@ class _Pickler:
             return
 
         items = iter(items)
-        r = range(self._BATCHSIZE)
+        r = list(range(self._BATCHSIZE))
         while items is not None:
             tmp = []
             for i in r:
@@ -1089,8 +1089,8 @@ class _Unpickler:
         try:
             value = func(*args)
         except:
-            print(sys.exc_info())
-            print(func, args)
+            print((sys.exc_info()))
+            print((func, args))
             raise
         stack[-1] = value
     dispatch[REDUCE[0]] = load_reduce
@@ -1185,7 +1185,7 @@ class _Unpickler:
         if state:
             inst.__dict__.update(state)
         if slotstate:
-            for k, v in slotstate.items():
+            for k, v in list(slotstate.items()):
                 setattr(inst, k, v)
     dispatch[BUILD[0]] = load_build
 

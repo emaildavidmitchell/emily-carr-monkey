@@ -47,7 +47,7 @@ class DummyCommand:
     """Class to store options for retrieval via set_undefined_options()."""
 
     def __init__(self, **kwargs):
-        for kw, val in kwargs.items():
+        for kw, val in list(kwargs.items()):
             setattr(self, kw, val)
 
     def ensure_finalized(self):

@@ -31,20 +31,20 @@ __all__ = ["Hashable", "Iterable", "Iterator",
 bytes_iterator = type(iter(b''))
 bytearray_iterator = type(iter(bytearray()))
 #callable_iterator = ???
-dict_keyiterator = type(iter({}.keys()))
-dict_valueiterator = type(iter({}.values()))
-dict_itemiterator = type(iter({}.items()))
+dict_keyiterator = type(iter(list({}.keys())))
+dict_valueiterator = type(iter(list({}.values())))
+dict_itemiterator = type(iter(list({}.items())))
 list_iterator = type(iter([]))
 list_reverseiterator = type(iter(reversed([])))
-range_iterator = type(iter(range(0)))
+range_iterator = type(iter(list(range(0))))
 set_iterator = type(iter(set()))
 str_iterator = type(iter(""))
 tuple_iterator = type(iter(()))
 zip_iterator = type(iter(zip()))
 ## views ##
-dict_keys = type({}.keys())
-dict_values = type({}.values())
-dict_items = type({}.items())
+dict_keys = type(list({}.keys()))
+dict_values = type(list({}.values()))
+dict_items = type(list({}.items()))
 ## misc ##
 dict_proxy = type(type.__dict__)
 
@@ -378,7 +378,7 @@ class Mapping(Sized, Iterable, Container):
 
     def __eq__(self, other):
         return isinstance(other, Mapping) and \
-               dict(self.items()) == dict(other.items())
+               dict(list(self.items())) == dict(list(other.items()))
 
     def __ne__(self, other):
         return not (self == other)
@@ -482,12 +482,12 @@ class MutableMapping(Mapping):
             for key in other:
                 self[key] = other[key]
         elif hasattr(other, "keys"):
-            for key in other.keys():
+            for key in list(other.keys()):
                 self[key] = other[key]
         else:
             for key, value in other:
                 self[key] = value
-        for key, value in kwds.items():
+        for key, value in list(kwds.items()):
             self[key] = value
 
     def setdefault(self, key, default=None):
@@ -532,7 +532,7 @@ class Sequence(Sized, Iterable, Container):
         return False
 
     def __reversed__(self):
-        for i in reversed(range(len(self))):
+        for i in reversed(list(range(len(self)))):
             yield self[i]
 
     def index(self, value):

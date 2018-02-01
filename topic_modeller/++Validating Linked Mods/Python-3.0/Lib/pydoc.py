@@ -135,7 +135,7 @@ def allmethods(cl):
         methods[key] = 1
     for base in cl.__bases__:
         methods.update(allmethods(base)) # all your base are belong to us
-    for key in methods.keys():
+    for key in list(methods.keys()):
         methods[key] = getattr(cl, key)
     return methods
 
@@ -978,7 +978,7 @@ class TextDoc(Doc):
 
     def bold(self, text):
         """Format a string in bold by overstriking."""
-        return ''.join(map(lambda ch: ch + '\b' + ch, text))
+        return ''.join([ch + '\b' + ch for ch in text])
 
     def indent(self, text, prefix='    '):
         """Indent text by prepending a given prefix to each line."""
@@ -1002,7 +1002,7 @@ class TextDoc(Doc):
                 c, bases = entry
                 result = result + prefix + classname(c, modname)
                 if bases and bases != (parent,):
-                    parents = map(lambda c, m=modname: classname(c, m), bases)
+                    parents = list(map(lambda c, m=modname: classname(c, m), bases))
                     result = result + '(%s)' % ', '.join(parents)
                 result = result + '\n'
             elif type(entry) is type([]):
@@ -1124,7 +1124,7 @@ class TextDoc(Doc):
         else:
             title = self.bold(name) + ' = class ' + realname
         if bases:
-            parents = map(makename, bases)
+            parents = list(map(makename, bases))
             title = title + '(%s)' % ', '.join(parents)
 
         doc = getdoc(object)
@@ -1513,7 +1513,7 @@ def writedoc(thing, forceload=0):
         file = open(name + '.html', 'w')
         file.write(page)
         file.close()
-        print('wrote', name + '.html')
+        print(('wrote', name + '.html'))
     except (ImportError, ErrorDuringImport) as value:
         print(value)
 
@@ -1695,7 +1695,7 @@ has the same effect as typing a particular string at the help> prompt.
     def getline(self, prompt):
         """Read one line, using input() when appropriate."""
         if self.input is sys.stdin:
-            return input(prompt)
+            return eval(input(prompt))
         else:
             self.output.write(prompt)
             self.output.flush()
@@ -1751,14 +1751,14 @@ such as "spam", type "modules spam".
 Here is a list of the Python keywords.  Enter any keyword to get more help.
 
 ''')
-        self.list(self.keywords.keys())
+        self.list(list(self.keywords.keys()))
 
     def listtopics(self):
         self.output.write('''
 Here is a list of available topics.  Enter any topic name to get more help.
 
 ''')
-        self.list(self.topics.keys())
+        self.list(list(self.topics.keys()))
 
     def showtopic(self, topic):
         try:
@@ -1811,7 +1811,7 @@ Please wait a moment while I gather a list of all available modules...
             def onerror(modname):
                 callback(None, modname, None)
             ModuleScanner().run(callback, onerror=onerror)
-            self.list(modules.keys())
+            self.list(list(modules.keys()))
             self.output.write('''
 Enter any module name to get more help.  Or, type "modules spam" to search
 for modules whose descriptions contain the word "spam".
@@ -1827,7 +1827,7 @@ class Scanner:
         self.children = children
         self.descendp = descendp
 
-    def next(self):
+    def __next__(self):
         if not self.state:
             if not self.roots:
                 return None
@@ -1836,7 +1836,7 @@ class Scanner:
         node, children = self.state[-1]
         if not children:
             self.state.pop()
-            return self.next()
+            return next(self)
         child = children.pop(0)
         if self.descendp(child):
             self.state.append((child, self.children(child)))
@@ -1904,7 +1904,7 @@ def apropos(key):
     def callback(path, modname, desc):
         if modname[-9:] == '.__init__':
             modname = modname[:-9] + ' (package)'
-        print(modname, desc and '- ' + desc)
+        print((modname, desc and '- ' + desc))
     def onerror(modname):
         pass
     try: import warnings
@@ -2212,7 +2212,7 @@ def cli():
                 except ValueError:
                     raise BadUsage
                 def ready(server):
-                    print('pydoc server ready at %s' % server.url)
+                    print(('pydoc server ready at %s' % server.url))
                 def stopped():
                     print('pydoc server stopped')
                 serve(port, ready, stopped)
@@ -2223,7 +2223,7 @@ def cli():
         if not args: raise BadUsage
         for arg in args:
             if ispath(arg) and not os.path.exists(arg):
-                print('file %r does not exist' % arg)
+                print(('file %r does not exist' % arg))
                 break
             try:
                 if ispath(arg) and os.path.isfile(arg):
@@ -2240,7 +2240,7 @@ def cli():
 
     except (getopt.error, BadUsage):
         cmd = os.path.basename(sys.argv[0])
-        print("""pydoc - the Python documentation tool
+        print(("""pydoc - the Python documentation tool
 
 %s <name> ...
     Show text documentation on something.  <name> may be the name of a
@@ -2263,6 +2263,6 @@ def cli():
     Write out the HTML documentation for a module to a file in the current
     directory.  If <name> contains a '%s', it is treated as a filename; if
     it names a directory, documentation is written for all the contents.
-""" % (cmd, os.sep, cmd, cmd, cmd, cmd, os.sep))
+""" % (cmd, os.sep, cmd, cmd, cmd, cmd, os.sep)))
 
 if __name__ == '__main__': cli()

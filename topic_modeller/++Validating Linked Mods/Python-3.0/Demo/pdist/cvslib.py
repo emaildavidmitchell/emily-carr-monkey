@@ -146,13 +146,13 @@ class File:
                 self.extra)
 
     def report(self):
-        print('-'*50)
+        print(('-'*50))
         def r(key, repr=repr, self=self):
             try:
                 value = repr(getattr(self, key))
             except AttributeError:
                 value = "?"
-            print("%-15s:" % key, value)
+            print(("%-15s:" % key, value))
         r("file")
         if self.lseen:
             r("lsum", hexify)
@@ -251,7 +251,7 @@ class CVS:
     def report(self):
         for e in list(self.values()):
             e.report()
-        print('-'*50)
+        print(('-'*50))
 
     def keys(self):
         return sorted(self.entries.keys())
@@ -259,12 +259,12 @@ class CVS:
     def values(self):
         def value(key, self=self):
             return self.entries[key]
-        return [value(k) for k in self.keys()]
+        return [value(k) for k in list(self.keys())]
 
     def items(self):
         def item(key, self=self):
             return (key, self.entries[key])
-        return [item(k) for k in self.keys()]
+        return [item(k) for k in list(self.keys())]
 
     def cvsexists(self, file):
         file = os.path.join("CVS", file)
@@ -335,14 +335,14 @@ def test_unctime():
     now = int(time.time())
     t = time.gmtime(now)
     at = time.asctime(t)
-    print('GMT', now, at)
-    print('timezone', time.timezone)
-    print('local', time.ctime(now))
+    print(('GMT', now, at))
+    print(('timezone', time.timezone))
+    print(('local', time.ctime(now)))
     u = unctime(at)
-    print('unctime()', u)
+    print(('unctime()', u))
     gu = time.gmtime(u)
-    print('->', gu)
-    print(time.asctime(gu))
+    print(('->', gu))
+    print((time.asctime(gu)))
 
 def test():
     x = CVS()

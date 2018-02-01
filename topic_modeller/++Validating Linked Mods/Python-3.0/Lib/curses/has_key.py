@@ -181,8 +181,8 @@ if __name__ == '__main__':
     try:
         L = []
         _curses.initscr()
-        for key in _capability_names.keys():
-            system = _curses.has_key(key)
+        for key in list(_capability_names.keys()):
+            system = key in _curses
             python = has_key(key)
             if system != python:
                 L.append( 'Mismatch for key %s, system=%i, Python=%i'

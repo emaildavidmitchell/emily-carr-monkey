@@ -377,7 +377,7 @@ class HTMLParser(_markupbase.ParserBase):
                 import html.entities
                 if HTMLParser.entitydefs is None:
                     entitydefs = HTMLParser.entitydefs = {'apos':"'"}
-                    for k, v in html.entities.name2codepoint.items():
+                    for k, v in list(html.entities.name2codepoint.items()):
                         entitydefs[k] = chr(v)
                 try:
                     return self.entitydefs[s]

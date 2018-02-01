@@ -61,9 +61,9 @@ class MimeTypes:
         self.suffix_map = suffix_map.copy()
         self.types_map = ({}, {}) # dict for (non-strict, strict)
         self.types_map_inv = ({}, {})
-        for (ext, type) in types_map.items():
+        for (ext, type) in list(types_map.items()):
             self.add_type(type, ext, True)
-        for (ext, type) in common_types.items():
+        for (ext, type) in list(common_types.items()):
             self.add_type(type, ext, False)
         for name in filenames:
             self.read(name, strict)
@@ -528,9 +528,9 @@ More than one type argument may be given.
     for gtype in args:
         if extension:
             guess = guess_extension(gtype, strict)
-            if not guess: print("I don't know anything about type", gtype)
+            if not guess: print(("I don't know anything about type", gtype))
             else: print(guess)
         else:
             guess, encoding = guess_type(gtype, strict)
-            if not guess: print("I don't know anything about type", gtype)
-            else: print('type:', guess, 'encoding:', encoding)
+            if not guess: print(("I don't know anything about type", gtype))
+            else: print(('type:', guess, 'encoding:', encoding))

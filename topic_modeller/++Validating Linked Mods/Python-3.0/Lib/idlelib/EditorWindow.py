@@ -661,12 +661,12 @@ class EditorWindow(object):
         "Remove the keybindings before they are changed."
         # Called from configDialog.py
         self.Bindings.default_keydefs = keydefs = idleConf.GetCurrentKeySet()
-        for event, keylist in keydefs.items():
+        for event, keylist in list(keydefs.items()):
             self.text.event_delete(event, *keylist)
         for extensionName in self.get_standard_extension_names():
             xkeydefs = idleConf.GetExtensionBindings(extensionName)
             if xkeydefs:
-                for event, keylist in xkeydefs.items():
+                for event, keylist in list(xkeydefs.items()):
                     self.text.event_delete(event, *keylist)
 
     def ApplyKeybindings(self):
@@ -784,15 +784,15 @@ class EditorWindow(object):
     def saved_change_hook(self):
         short = self.short_title()
         long = self.long_title()
-        if short and long:
-            title = short + " - " + long
+        if short and int:
+            title = short + " - " + int
         elif short:
             title = short
-        elif long:
-            title = long
+        elif int:
+            title = int
         else:
             title = "Untitled"
-        icon = short or long or title
+        icon = short or int or title
         if not self.get_saved():
             title = "*%s*" % title
             icon = "*%s" % icon
@@ -903,7 +903,7 @@ class EditorWindow(object):
             try:
                 self.load_extension(name)
             except:
-                print("Failed to load extension", repr(name))
+                print(("Failed to load extension", repr(name)))
                 traceback.print_exc()
 
     def get_standard_extension_names(self):
@@ -913,7 +913,7 @@ class EditorWindow(object):
         try:
             mod = __import__(name, globals(), locals(), [])
         except ImportError:
-            print("\nFailed to import extension: ", name)
+            print(("\nFailed to import extension: ", name))
             raise
         cls = getattr(mod, name)
         keydefs = idleConf.GetExtensionBindings(name)
@@ -938,7 +938,7 @@ class EditorWindow(object):
             keydefs = self.Bindings.default_keydefs
         text = self.text
         text.keydefs = keydefs
-        for event, keylist in keydefs.items():
+        for event, keylist in list(keydefs.items()):
             if keylist:
                 text.event_add(event, *keylist)
 

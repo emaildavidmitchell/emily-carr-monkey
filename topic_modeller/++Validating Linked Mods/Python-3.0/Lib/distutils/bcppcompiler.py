@@ -231,7 +231,7 @@ class BCPPCompiler(CCompiler) :
                              "writing %s" % def_file)
 
             # Borland C++ has problems with '/' in paths
-            objects2 = map(os.path.normpath, objects)
+            objects2 = list(map(os.path.normpath, objects))
             # split objects in .obj and .res files
             # Borland C++ needs them at different positions in the command line
             objects = [startup_obj]

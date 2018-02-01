@@ -118,7 +118,7 @@ class CCompiler:
         # named library files) to include on any link
         self.objects = []
 
-        for key in self.executables.keys():
+        for key in list(self.executables.keys()):
             self.set_executable(key, self.executables[key])
 
     def set_executables(self, **kwargs):
@@ -1057,7 +1057,7 @@ def show_compilers():
     # commands that use it.
     from distutils.fancy_getopt import FancyGetopt
     compilers = []
-    for compiler in compiler_class.keys():
+    for compiler in list(compiler_class.keys()):
         compilers.append(("compiler="+compiler, None,
                           compiler_class[compiler][2]))
     compilers.sort()

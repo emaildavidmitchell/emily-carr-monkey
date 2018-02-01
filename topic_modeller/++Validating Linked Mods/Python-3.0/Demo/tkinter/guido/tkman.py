@@ -6,7 +6,7 @@ import sys
 import os
 import string
 import re
-from Tkinter import *
+from tkinter import *
 from ManPage import ManPage
 
 MANNDIRLIST = ['/depot/sundry/man/mann','/usr/local/man/mann']
@@ -218,7 +218,7 @@ class SelectionBox:
                 prog = re.compile(search)
         except re.error as msg:
             self.frame.bell()
-            print('Regex error:', msg)
+            print(('Regex error:', msg))
             return
         here = self.text.index(AtInsert())
         lineno = string.atoi(here[:string.find(here, '.')])

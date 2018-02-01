@@ -23,7 +23,7 @@ class Log:
                 # don't even try to string-format
                 print(msg)
             else:
-                print(msg % args)
+                print((msg % args))
             sys.stdout.flush()
 
     def log(self, level, msg, *args):

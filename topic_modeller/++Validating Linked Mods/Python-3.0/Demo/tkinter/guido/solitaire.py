@@ -25,7 +25,7 @@ know!
 import math
 import random
 
-from Tkinter import *
+from tkinter import *
 from Canvas import Rectangle, CanvasText, Group, Window
 
 
@@ -91,7 +91,7 @@ ACE = 1
 JACK = 11
 QUEEN = 12
 KING = 13
-ALLVALUES = range(1, 14) # (one more than the highest value)
+ALLVALUES = list(range(1, 14)) # (one more than the highest value)
 NVALUES = len(ALLVALUES)
 
 
@@ -99,7 +99,7 @@ NVALUES = len(ALLVALUES)
 # dummy element at index 0 so it can be indexed directly with the card
 # value.
 
-VALNAMES = ["", "A"] + list(map(str, range(2, 11))) + ["J", "Q", "K"]
+VALNAMES = ["", "A"] + list(map(str, list(range(2, 11)))) + ["J", "Q", "K"]
 
 
 # Solitaire constants.  The only one I can think of is the number of
@@ -435,7 +435,7 @@ class Deck(Stack):
 
 def randperm(n):
     """Function returning a random permutation of range(n)."""
-    r = range(n)
+    r = list(range(n))
     x = []
     while r:
         i = random.choice(r)

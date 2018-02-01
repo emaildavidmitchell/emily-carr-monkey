@@ -53,6 +53,6 @@ for fixer in refactor.fixers:
 
 t = time()
 for f in files:
-    print("Matching", f)
+    print(("Matching", f))
     refactor.refactor_file(f)
-print("%d seconds to match %d files" % (time() - t, len(sys.modules)))
+print(("%d seconds to match %d files" % (time() - t, len(sys.modules))))

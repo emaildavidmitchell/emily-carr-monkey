@@ -42,10 +42,10 @@ def handleSlide(slide):
     handlePoints(slide.getElementsByTagName("point"))
 
 def handleSlideshowTitle(title):
-    print("<title>%s</title>" % getText(title.childNodes))
+    print(("<title>%s</title>" % getText(title.childNodes)))
 
 def handleSlideTitle(title):
-    print("<h2>%s</h2>" % getText(title.childNodes))
+    print(("<h2>%s</h2>" % getText(title.childNodes)))
 
 def handlePoints(points):
     print("<ul>")
@@ -54,11 +54,11 @@ def handlePoints(points):
     print("</ul>")
 
 def handlePoint(point):
-    print("<li>%s</li>" % getText(point.childNodes))
+    print(("<li>%s</li>" % getText(point.childNodes)))
 
 def handleToc(slides):
     for slide in slides:
         title = slide.getElementsByTagName("title")[0]
-        print("<p>%s</p>" % getText(title.childNodes))
+        print(("<p>%s</p>" % getText(title.childNodes)))
 
 handleSlideshow(dom)

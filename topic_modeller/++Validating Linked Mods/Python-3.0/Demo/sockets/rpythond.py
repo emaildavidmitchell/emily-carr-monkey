@@ -23,7 +23,7 @@ def main():
     s.listen(1)
     while 1:
         conn, (remotehost, remoteport) = s.accept()
-        print('connected by', remotehost, remoteport)
+        print(('connected by', remotehost, remoteport))
         request = ''
         while 1:
             data = conn.recv(BUFSIZE)

@@ -33,8 +33,8 @@ bytes_types = (bytes, bytearray)  # Types acceptable as binary data
 def _translate(s, altchars):
     if not isinstance(s, bytes_types):
         raise TypeError("expected bytes, not %s" % s.__class__.__name__)
-    translation = bytearray(range(256))
-    for k, v in altchars.items():
+    translation = bytearray(list(range(256)))
+    for k, v in list(altchars.items()):
         translation[ord(k)] = v[0]
     return s.translate(translation)
 
@@ -141,7 +141,7 @@ _b32alphabet = {
     }
 
 _b32tab = [v[0] for k, v in sorted(_b32alphabet.items())]
-_b32rev = dict([(v[0], k) for k, v in _b32alphabet.items()])
+_b32rev = dict([(v[0], k) for k, v in list(_b32alphabet.items())])
 
 
 def b32encode(s):
@@ -363,10 +363,10 @@ def main():
     except getopt.error as msg:
         sys.stdout = sys.stderr
         print(msg)
-        print("""usage: %s [-d|-e|-u|-t] [file|-]
+        print(("""usage: %s [-d|-e|-u|-t] [file|-]
         -d, -u: decode
         -e: encode (default)
-        -t: encode and decode string 'Aladdin:open sesame'"""%sys.argv[0])
+        -t: encode and decode string 'Aladdin:open sesame'"""%sys.argv[0]))
         sys.exit(2)
     func = encode
     for o, a in opts:
@@ -382,11 +382,11 @@ def main():
 
 def test():
     s0 = b"Aladdin:open sesame"
-    print(repr(s0))
+    print((repr(s0)))
     s1 = encodestring(s0)
-    print(repr(s1))
+    print((repr(s1)))
     s2 = decodestring(s1)
-    print(repr(s2))
+    print((repr(s2)))
     assert s0 == s2
 
 

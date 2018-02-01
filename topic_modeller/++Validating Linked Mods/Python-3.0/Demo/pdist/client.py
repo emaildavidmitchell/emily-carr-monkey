@@ -24,7 +24,7 @@ class Client:
             address = ('', address)
         self._address = address
         self._verbose = verbose
-        if self._verbose: print("Connecting to %s ..." % repr(address))
+        if self._verbose: print(("Connecting to %s ..." % repr(address)))
         self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self._socket.connect(address)
         if self._verbose: print("Connected.")
@@ -78,7 +78,7 @@ class Client:
         self._nextid = id+1
         if not wantreply: id = -id
         request = (name, args, id)
-        if self._verbose > 1: print("sending request: %s" % repr(request))
+        if self._verbose > 1: print(("sending request: %s" % repr(request)))
         wp = pickle.Pickler(self._wf)
         wp.dump(request)
         return id
@@ -101,17 +101,17 @@ class Client:
     def _vrecv(self, id):
         self._flush()
         if id in self._replies:
-            if self._verbose > 1: print("retrieving previous reply, id = %d" % id)
+            if self._verbose > 1: print(("retrieving previous reply, id = %d" % id))
             reply = self._replies[id]
             del self._replies[id]
             return reply
         aid = abs(id)
         while 1:
-            if self._verbose > 1: print("waiting for reply, id = %d" % id)
+            if self._verbose > 1: print(("waiting for reply, id = %d" % id))
             rp = pickle.Unpickler(self._rf)
             reply = rp.load()
             del rp
-            if self._verbose > 1: print("got reply: %s" % repr(reply))
+            if self._verbose > 1: print(("got reply: %s" % repr(reply)))
             rid = reply[2]
             arid = abs(rid)
             if arid == aid:

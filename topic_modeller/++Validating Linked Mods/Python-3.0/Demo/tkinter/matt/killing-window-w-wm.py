@@ -1,4 +1,4 @@
-from Tkinter import *
+from tkinter import *
 
 # This file shows how to trap the killing of a window
 # when the user uses window manager menus (typ. upper left hand corner
@@ -11,7 +11,7 @@ def my_delete_callback():
 
 class Test(Frame):
     def deathHandler(self, event):
-        print(self, "is now getting nuked. performing some save here....")
+        print((self, "is now getting nuked. performing some save here...."))
 
     def createWidgets(self):
         # a hello button

@@ -78,10 +78,10 @@ class SequenceTreeItem(ObjectTreeItem):
     def IsExpandable(self):
         return len(self.object) > 0
     def keys(self):
-        return range(len(self.object))
+        return list(range(len(self.object)))
     def GetSubList(self):
         sublist = []
-        for key in self.keys():
+        for key in list(self.keys()):
             try:
                 value = self.object[key]
             except KeyError:

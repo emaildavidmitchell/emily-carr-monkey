@@ -173,38 +173,38 @@ decoding_table = (
     '}'        #  0x7D -> RIGHT CURLY BRACKET
     '~'        #  0x7E -> TILDE
     '\x7f'     #  0x7F -> DELETE
-    '\u20ac'   #  0x80 -> EURO SIGN
-    '\ufffe'   #  0x81 -> UNDEFINED
-    '\u201a'   #  0x82 -> SINGLE LOW-9 QUOTATION MARK
-    '\u0192'   #  0x83 -> LATIN SMALL LETTER F WITH HOOK
-    '\u201e'   #  0x84 -> DOUBLE LOW-9 QUOTATION MARK
-    '\u2026'   #  0x85 -> HORIZONTAL ELLIPSIS
-    '\u2020'   #  0x86 -> DAGGER
-    '\u2021'   #  0x87 -> DOUBLE DAGGER
-    '\u02c6'   #  0x88 -> MODIFIER LETTER CIRCUMFLEX ACCENT
-    '\u2030'   #  0x89 -> PER MILLE SIGN
-    '\u0160'   #  0x8A -> LATIN CAPITAL LETTER S WITH CARON
-    '\u2039'   #  0x8B -> SINGLE LEFT-POINTING ANGLE QUOTATION MARK
-    '\u0152'   #  0x8C -> LATIN CAPITAL LIGATURE OE
-    '\ufffe'   #  0x8D -> UNDEFINED
-    '\ufffe'   #  0x8E -> UNDEFINED
-    '\ufffe'   #  0x8F -> UNDEFINED
-    '\ufffe'   #  0x90 -> UNDEFINED
-    '\u2018'   #  0x91 -> LEFT SINGLE QUOTATION MARK
-    '\u2019'   #  0x92 -> RIGHT SINGLE QUOTATION MARK
-    '\u201c'   #  0x93 -> LEFT DOUBLE QUOTATION MARK
-    '\u201d'   #  0x94 -> RIGHT DOUBLE QUOTATION MARK
-    '\u2022'   #  0x95 -> BULLET
-    '\u2013'   #  0x96 -> EN DASH
-    '\u2014'   #  0x97 -> EM DASH
-    '\u02dc'   #  0x98 -> SMALL TILDE
-    '\u2122'   #  0x99 -> TRADE MARK SIGN
-    '\u0161'   #  0x9A -> LATIN SMALL LETTER S WITH CARON
-    '\u203a'   #  0x9B -> SINGLE RIGHT-POINTING ANGLE QUOTATION MARK
-    '\u0153'   #  0x9C -> LATIN SMALL LIGATURE OE
-    '\ufffe'   #  0x9D -> UNDEFINED
-    '\ufffe'   #  0x9E -> UNDEFINED
-    '\u0178'   #  0x9F -> LATIN CAPITAL LETTER Y WITH DIAERESIS
+    '\\u20ac'   #  0x80 -> EURO SIGN
+    '\\ufffe'   #  0x81 -> UNDEFINED
+    '\\u201a'   #  0x82 -> SINGLE LOW-9 QUOTATION MARK
+    '\\u0192'   #  0x83 -> LATIN SMALL LETTER F WITH HOOK
+    '\\u201e'   #  0x84 -> DOUBLE LOW-9 QUOTATION MARK
+    '\\u2026'   #  0x85 -> HORIZONTAL ELLIPSIS
+    '\\u2020'   #  0x86 -> DAGGER
+    '\\u2021'   #  0x87 -> DOUBLE DAGGER
+    '\\u02c6'   #  0x88 -> MODIFIER LETTER CIRCUMFLEX ACCENT
+    '\\u2030'   #  0x89 -> PER MILLE SIGN
+    '\\u0160'   #  0x8A -> LATIN CAPITAL LETTER S WITH CARON
+    '\\u2039'   #  0x8B -> SINGLE LEFT-POINTING ANGLE QUOTATION MARK
+    '\\u0152'   #  0x8C -> LATIN CAPITAL LIGATURE OE
+    '\\ufffe'   #  0x8D -> UNDEFINED
+    '\\ufffe'   #  0x8E -> UNDEFINED
+    '\\ufffe'   #  0x8F -> UNDEFINED
+    '\\ufffe'   #  0x90 -> UNDEFINED
+    '\\u2018'   #  0x91 -> LEFT SINGLE QUOTATION MARK
+    '\\u2019'   #  0x92 -> RIGHT SINGLE QUOTATION MARK
+    '\\u201c'   #  0x93 -> LEFT DOUBLE QUOTATION MARK
+    '\\u201d'   #  0x94 -> RIGHT DOUBLE QUOTATION MARK
+    '\\u2022'   #  0x95 -> BULLET
+    '\\u2013'   #  0x96 -> EN DASH
+    '\\u2014'   #  0x97 -> EM DASH
+    '\\u02dc'   #  0x98 -> SMALL TILDE
+    '\\u2122'   #  0x99 -> TRADE MARK SIGN
+    '\\u0161'   #  0x9A -> LATIN SMALL LETTER S WITH CARON
+    '\\u203a'   #  0x9B -> SINGLE RIGHT-POINTING ANGLE QUOTATION MARK
+    '\\u0153'   #  0x9C -> LATIN SMALL LIGATURE OE
+    '\\ufffe'   #  0x9D -> UNDEFINED
+    '\\ufffe'   #  0x9E -> UNDEFINED
+    '\\u0178'   #  0x9F -> LATIN CAPITAL LETTER Y WITH DIAERESIS
     '\xa0'     #  0xA0 -> NO-BREAK SPACE
     '\xa1'     #  0xA1 -> INVERTED EXCLAMATION MARK
     '\xa2'     #  0xA2 -> CENT SIGN
@@ -253,7 +253,7 @@ decoding_table = (
     '\xcd'     #  0xCD -> LATIN CAPITAL LETTER I WITH ACUTE
     '\xce'     #  0xCE -> LATIN CAPITAL LETTER I WITH CIRCUMFLEX
     '\xcf'     #  0xCF -> LATIN CAPITAL LETTER I WITH DIAERESIS
-    '\u011e'   #  0xD0 -> LATIN CAPITAL LETTER G WITH BREVE
+    '\\u011e'   #  0xD0 -> LATIN CAPITAL LETTER G WITH BREVE
     '\xd1'     #  0xD1 -> LATIN CAPITAL LETTER N WITH TILDE
     '\xd2'     #  0xD2 -> LATIN CAPITAL LETTER O WITH GRAVE
     '\xd3'     #  0xD3 -> LATIN CAPITAL LETTER O WITH ACUTE
@@ -266,8 +266,8 @@ decoding_table = (
     '\xda'     #  0xDA -> LATIN CAPITAL LETTER U WITH ACUTE
     '\xdb'     #  0xDB -> LATIN CAPITAL LETTER U WITH CIRCUMFLEX
     '\xdc'     #  0xDC -> LATIN CAPITAL LETTER U WITH DIAERESIS
-    '\u0130'   #  0xDD -> LATIN CAPITAL LETTER I WITH DOT ABOVE
-    '\u015e'   #  0xDE -> LATIN CAPITAL LETTER S WITH CEDILLA
+    '\\u0130'   #  0xDD -> LATIN CAPITAL LETTER I WITH DOT ABOVE
+    '\\u015e'   #  0xDE -> LATIN CAPITAL LETTER S WITH CEDILLA
     '\xdf'     #  0xDF -> LATIN SMALL LETTER SHARP S
     '\xe0'     #  0xE0 -> LATIN SMALL LETTER A WITH GRAVE
     '\xe1'     #  0xE1 -> LATIN SMALL LETTER A WITH ACUTE
@@ -285,7 +285,7 @@ decoding_table = (
     '\xed'     #  0xED -> LATIN SMALL LETTER I WITH ACUTE
     '\xee'     #  0xEE -> LATIN SMALL LETTER I WITH CIRCUMFLEX
     '\xef'     #  0xEF -> LATIN SMALL LETTER I WITH DIAERESIS
-    '\u011f'   #  0xF0 -> LATIN SMALL LETTER G WITH BREVE
+    '\\u011f'   #  0xF0 -> LATIN SMALL LETTER G WITH BREVE
     '\xf1'     #  0xF1 -> LATIN SMALL LETTER N WITH TILDE
     '\xf2'     #  0xF2 -> LATIN SMALL LETTER O WITH GRAVE
     '\xf3'     #  0xF3 -> LATIN SMALL LETTER O WITH ACUTE
@@ -298,8 +298,8 @@ decoding_table = (
     '\xfa'     #  0xFA -> LATIN SMALL LETTER U WITH ACUTE
     '\xfb'     #  0xFB -> LATIN SMALL LETTER U WITH CIRCUMFLEX
     '\xfc'     #  0xFC -> LATIN SMALL LETTER U WITH DIAERESIS
-    '\u0131'   #  0xFD -> LATIN SMALL LETTER DOTLESS I
-    '\u015f'   #  0xFE -> LATIN SMALL LETTER S WITH CEDILLA
+    '\\u0131'   #  0xFD -> LATIN SMALL LETTER DOTLESS I
+    '\\u015f'   #  0xFE -> LATIN SMALL LETTER S WITH CEDILLA
     '\xff'     #  0xFF -> LATIN SMALL LETTER Y WITH DIAERESIS
 )
 

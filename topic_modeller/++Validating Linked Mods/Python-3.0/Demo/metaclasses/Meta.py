@@ -96,9 +96,9 @@ Meta = MetaClass('Meta', (), {})
 def _test():
     class C(Meta):
         def __init__(self, *args):
-            print("__init__, args =", args)
+            print(("__init__, args =", args))
         def m1(self, x):
-            print("m1(x=%r)" % (x,))
+            print(("m1(x=%r)" % (x,)))
     print(C)
     x = C()
     print(x)
@@ -108,8 +108,8 @@ def _test():
             if name[:2] == '__': raise AttributeError(name)
             return "getattr:%s" % name
     x = D()
-    print(x.foo)
-    print(x._foo)
+    print((x.foo))
+    print((x._foo))
 ##     print x.__foo
 ##     print x.__foo__
 

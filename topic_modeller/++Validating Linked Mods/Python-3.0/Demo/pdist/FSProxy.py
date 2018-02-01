@@ -88,7 +88,7 @@ class FSProxyLocal:
                     c, t = fs.GetCreatorType()
                     if t != 'TEXT': return 0
                 except macfs.error as msg:
-                    print("***", name, msg)
+                    print(("***", name, msg))
                     return 0
         else:
             if os.path.islink(name): return 0

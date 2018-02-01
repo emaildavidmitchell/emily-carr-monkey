@@ -5,6 +5,6 @@
 
 try:
     from test2to3.hello import hello
-except ImportError, e:
-    print "Import failed", e
+except ImportError as e:
+    print("Import failed", e)
 hello()

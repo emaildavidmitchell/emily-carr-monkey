@@ -24,7 +24,7 @@ class uploadTestCase(PyPIRCCommandTestCase):
         for attr, waited in (('username', 'me'), ('password', 'secret'),
                              ('realm', 'pypi'),
                              ('repository', 'http://pypi.python.org/pypi')):
-            self.assertEquals(getattr(cmd, attr), waited)
+            self.assertEqual(getattr(cmd, attr), waited)
 
 
 def test_suite():

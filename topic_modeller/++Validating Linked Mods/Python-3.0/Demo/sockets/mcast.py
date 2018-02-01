@@ -52,7 +52,7 @@ def receiver():
     while 1:
         data, sender = s.recvfrom(1500)
         while data[-1:] == '\0': data = data[:-1] # Strip trailing \0's
-        print(sender, ':', repr(data))
+        print((sender, ':', repr(data)))
 
 
 # Open a UDP socket, bind it to a port and select a multicast group

@@ -48,7 +48,7 @@ def getregentry():
 
 ### Decoding Map
 
-decoding_map = codecs.make_identity_dict(range(256))
+decoding_map = codecs.make_identity_dict(list(range(256)))
 decoding_map.update({
         0x00a1: 0x00c0, #       LATIN CAPITAL LETTER A WITH GRAVE
         0x00a2: 0x00c2, #       LATIN CAPITAL LETTER A WITH CIRCUMFLEX

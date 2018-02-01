@@ -229,7 +229,7 @@ d[tuple] = _deepcopy_tuple
 def _deepcopy_dict(x, memo):
     y = {}
     memo[id(x)] = y
-    for key, value in x.items():
+    for key, value in list(x.items()):
         y[deepcopy(key, memo)] = deepcopy(value, memo)
     return y
 d[dict] = _deepcopy_dict
@@ -301,7 +301,7 @@ def _reconstruct(x, info, deep, memo=None):
             if state is not None:
                 y.__dict__.update(state)
             if slotstate is not None:
-                for key, value in slotstate.items():
+                for key, value in list(slotstate.items()):
                     setattr(y, key, value)
     return y
 
@@ -317,11 +317,11 @@ def _test():
     l = [None, 1, 2, 3.14, 'xyzzy', (1, 2), [3.14, 'abc'],
          {'abc': 'ABC'}, (), [], {}]
     l1 = copy(l)
-    print(l1==l)
-    l1 = map(copy, l)
-    print(l1==l)
+    print((l1==l))
+    l1 = list(map(copy, l))
+    print((l1==l))
     l1 = deepcopy(l)
-    print(l1==l)
+    print((l1==l))
     class C:
         def __init__(self, arg=None):
             self.a = 1
@@ -336,7 +336,7 @@ def _test():
         def __getstate__(self):
             return {'a': self.a, 'arg': self.arg}
         def __setstate__(self, state):
-            for key, value in state.items():
+            for key, value in list(state.items()):
                 setattr(self, key, value)
         def __deepcopy__(self, memo=None):
             new = self.__class__(deepcopy(self.arg, memo))
@@ -345,25 +345,25 @@ def _test():
     c = C('argument sketch')
     l.append(c)
     l2 = copy(l)
-    print(l == l2)
+    print((l == l2))
     print(l)
     print(l2)
     l2 = deepcopy(l)
-    print(l == l2)
+    print((l == l2))
     print(l)
     print(l2)
     l.append({l[1]: l, 'xyz': l[2]})
     l3 = copy(l)
     import reprlib
-    print(map(reprlib.repr, l))
-    print(map(reprlib.repr, l1))
-    print(map(reprlib.repr, l2))
-    print(map(reprlib.repr, l3))
+    print((list(map(reprlib.repr, l))))
+    print((list(map(reprlib.repr, l1))))
+    print((list(map(reprlib.repr, l2))))
+    print((list(map(reprlib.repr, l3))))
     l3 = deepcopy(l)
-    print(map(reprlib.repr, l))
-    print(map(reprlib.repr, l1))
-    print(map(reprlib.repr, l2))
-    print(map(reprlib.repr, l3))
+    print((list(map(reprlib.repr, l))))
+    print((list(map(reprlib.repr, l1))))
+    print((list(map(reprlib.repr, l2))))
+    print((list(map(reprlib.repr, l3))))
 
 if __name__ == '__main__':
     _test()

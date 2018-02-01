@@ -19,7 +19,7 @@ stand-alone application.
 """
 
 
-from Tkinter import *
+from tkinter import *
 from Canvas import Line, Rectangle
 import random
 
@@ -364,7 +364,7 @@ def uniform(array):
 
 def distinct(array):
     size = array.getsize()
-    array.setdata(range(1, size+1))
+    array.setdata(list(range(1, size+1)))
     array.reset("Distinct data, size %d" % size)
 
 def randomize(array):
@@ -519,7 +519,7 @@ class SortDemo:
 
         self.v_size = MyIntVar(self.master, self)
         self.v_size.set(size)
-        sizes = [1, 2, 3, 4] + range(5, 55, 5)
+        sizes = [1, 2, 3, 4] + list(range(5, 55, 5))
         if self.size not in sizes:
             sizes.append(self.size)
             sizes.sort()
@@ -561,7 +561,7 @@ class SortDemo:
             self.master.bell()
             return
         self.size = newsize
-        self.array.setdata(range(1, self.size+1))
+        self.array.setdata(list(range(1, self.size+1)))
 
     def c_qsort(self):
         self.run(quicksort)

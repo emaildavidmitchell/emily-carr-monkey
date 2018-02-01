@@ -76,4 +76,4 @@ if __name__ == '__main__':
     except IndexError:
         print('Usage: emx_link <source> <target>')
     except OSError:
-        print('emx_link: %s' % str(sys.exc_info()[1]))
+        print(('emx_link: %s' % str(sys.exc_info()[1])))

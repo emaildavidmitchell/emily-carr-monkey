@@ -91,7 +91,7 @@ def _spawn_os2(cmd, search_path=1, verbose=0, dry_run=0):
                   "command '%s' failed: %s" % (cmd[0], exc.args[-1]))
         if rc != 0:
             # and this reflects the command running but failing
-            print("command '%s' failed with exit status %d" % (cmd[0], rc))
+            print(("command '%s' failed with exit status %d" % (cmd[0], rc)))
             raise DistutilsExecError(
                   "command '%s' failed with exit status %d" % (cmd[0], rc))
 

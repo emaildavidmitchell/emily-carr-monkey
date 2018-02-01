@@ -190,8 +190,8 @@ def main():
             if argspec != expected:
                 failed.append(t)
                 fmt = "%s - expected %s, but got %s"
-                print(fmt % (t.__name__, expected, get_argspec(t)))
-        print("%d of %d tests failed" % (len(failed), len(tests)))
+                print((fmt % (t.__name__, expected, get_argspec(t))))
+        print(("%d of %d tests failed" % (len(failed), len(tests))))
 
     tc = TC()
     tests = (t1, t2, t3, t4, t5, t6,

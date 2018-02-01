@@ -10,6 +10,7 @@ from imp import reload
 
 import turtle
 import time
+import imp
 
 STARTUP = 1
 READY = 2
@@ -26,7 +27,7 @@ def getExampleEntries():
     #print(cwd, os.listdir(cwd))
     if "turtleDemo.py" not in os.listdir(cwd):
         print("Directory of turtleDemo must be current working directory!")
-        print("But in your case this is", cwd)
+        print(("But in your case this is", cwd))
         sys.exit()
     entries1 = [entry for entry in os.listdir(cwd) if
                      entry.startswith("tdemo_") and
@@ -218,7 +219,7 @@ class DemoWindow(object):
             direc, fname = os.path.split(filename)
             self.root.title(fname[6:-3]+" - a Python turtle graphics example")
             self.module = __import__(fname[:-3])
-            reload(self.module)
+            imp.reload(self.module)
             self.configGUI(NORMAL, NORMAL, DISABLED, DISABLED,
                            "Press start button", "red")
             self.state = READY

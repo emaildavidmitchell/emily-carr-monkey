@@ -110,7 +110,7 @@ class _Database(collections.MutableMapping):
 
         f = self._io.open(self._dirfile, 'w', encoding="Latin-1")
         self._chmod(self._dirfile)
-        for key, pos_and_siz_pair in self._index.items():
+        for key, pos_and_siz_pair in list(self._index.items()):
             # Use Latin-1 since it has no qualms with any value in any
             # position; UTF-8, though, does care sometimes.
             f.write("%r, %r\n" % (key.decode('Latin-1'), pos_and_siz_pair))
@@ -212,7 +212,7 @@ class _Database(collections.MutableMapping):
         return list(self._index.keys())
 
     def items(self):
-        return [(key, self[key]) for key in self._index.keys()]
+        return [(key, self[key]) for key in list(self._index.keys())]
 
     def __contains__(self, key):
         if isinstance(key, str):
@@ -220,7 +220,7 @@ class _Database(collections.MutableMapping):
         return key in self._index
 
     def iterkeys(self):
-        return iter(self._index.keys())
+        return iter(list(self._index.keys()))
     __iter__ = iterkeys
 
     def __len__(self):

@@ -99,7 +99,7 @@ def _resolve(name):
     return found
 
 def _strip_spaces(alist):
-    return map(lambda x: x.strip(), alist)
+    return [x.strip() for x in alist]
 
 def _create_formatters(cp):
     """Create and return formatters"""
@@ -179,7 +179,7 @@ def _install_loggers(cp, handlers, disable_existing_loggers):
     # configure the root first
     llist = cp.get("loggers", "keys")
     llist = llist.split(",")
-    llist = list(map(lambda x: x.strip(), llist))
+    llist = list([x.strip() for x in llist])
     llist.remove("root")
     sectname = "logger_root"
     root = logging.root

@@ -125,7 +125,7 @@ class Extension:
 
         # If there are unknown keyword options, warn about them
         if len(kw):
-            L = map(repr, sorted(kw))
+            L = list(map(repr, sorted(kw)))
             msg = "Unknown Extension options: " + ', '.join(L)
             if warnings is not None:
                 warnings.warn(msg)

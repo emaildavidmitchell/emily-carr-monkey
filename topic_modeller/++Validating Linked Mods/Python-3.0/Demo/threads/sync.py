@@ -492,13 +492,13 @@ def _new_thread(func, *args):
     global TID
     tid.acquire(); id = TID = TID+1; tid.release()
     io.acquire(); alive.append(id); \
-                  print('starting thread', id, '--', len(alive), 'alive'); \
+                  print(('starting thread', id, '--', len(alive), 'alive')); \
                   io.release()
     thread.start_new_thread( func, (id,) + args )
 
 def _qsort(tid, a, l, r, finished):
     # sort a[l:r]; post finished when done
-    io.acquire(); print('thread', tid, 'qsort', l, r); io.release()
+    io.acquire(); print(('thread', tid, 'qsort', l, r)); io.release()
     if r-l > 1:
         pivot = a[l]
         j = l+1   # make a[l:j] <= pivot, and a[j:r] > pivot
@@ -515,44 +515,44 @@ def _qsort(tid, a, l, r, finished):
         l_subarray_sorted.wait()
         r_subarray_sorted.wait()
 
-    io.acquire(); print('thread', tid, 'qsort done'); \
+    io.acquire(); print(('thread', tid, 'qsort done')); \
                   alive.remove(tid); io.release()
     finished.post()
 
 def _randarray(tid, a, finished):
-    io.acquire(); print('thread', tid, 'randomizing array'); \
+    io.acquire(); print(('thread', tid, 'randomizing array')); \
                   io.release()
     for i in range(1, len(a)):
         wh.acquire(); j = randint(0,i); wh.release()
         a[i], a[j] = a[j], a[i]
-    io.acquire(); print('thread', tid, 'randomizing done'); \
+    io.acquire(); print(('thread', tid, 'randomizing done')); \
                   alive.remove(tid); io.release()
     finished.post()
 
 def _check_sort(a):
-    if a != range(len(a)):
+    if a != list(range(len(a))):
         raise ValueError('a not sorted', a)
 
 def _run_one_sort(tid, a, bar, done):
     # randomize a, and quicksort it
     # for variety, all the threads running this enter a barrier
     # at the end, and post `done' after the barrier exits
-    io.acquire(); print('thread', tid, 'randomizing', a); \
+    io.acquire(); print(('thread', tid, 'randomizing', a)); \
                   io.release()
     finished = event()
     _new_thread(_randarray, a, finished)
     finished.wait()
 
-    io.acquire(); print('thread', tid, 'sorting', a); io.release()
+    io.acquire(); print(('thread', tid, 'sorting', a)); io.release()
     finished.clear()
     _new_thread(_qsort, a, 0, len(a), finished)
     finished.wait()
     _check_sort(a)
 
-    io.acquire(); print('thread', tid, 'entering barrier'); \
+    io.acquire(); print(('thread', tid, 'entering barrier')); \
                   io.release()
     bar.enter()
-    io.acquire(); print('thread', tid, 'leaving barrier'); \
+    io.acquire(); print(('thread', tid, 'leaving barrier')); \
                   io.release()
     io.acquire(); alive.remove(tid); io.release()
     bar.enter() # make sure they've all removed themselves from alive
@@ -574,7 +574,7 @@ def test():
     NSORTS = 5
     arrays = []
     for i in range(NSORTS):
-        arrays.append( range( (i+1)*10 ) )
+        arrays.append( list(range( (i+1)*10)) )
 
     bar = barrier(NSORTS)
     finished = event()
@@ -591,7 +591,7 @@ def test():
             raise ValueError('length of array', i, 'screwed up')
         _check_sort(a)
 
-    print('test passed!', TID, 'threads created in all')
+    print(('test passed!', TID, 'threads created in all'))
 
 if __name__ == '__main__':
     test()

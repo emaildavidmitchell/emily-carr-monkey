@@ -33,7 +33,7 @@ class Error(Exception):
     pass
 
 # States (what have we written)
-[_DID_HEADER, _DID_DATA, _DID_RSRC] = range(3)
+[_DID_HEADER, _DID_DATA, _DID_RSRC] = list(range(3))
 
 # Various constants
 REASONABLY_LARGE = 32768  # Minimal amount we pass the rle-coder

@@ -16,7 +16,7 @@ FILENAME_CHARS = string.ascii_letters + string.digits + os.curdir + "._~#$:-"
 ID_CHARS = string.ascii_letters + string.digits + "_"
 
 # These constants represent the two different types of completions
-COMPLETE_ATTRIBUTES, COMPLETE_FILES = range(1, 2+1)
+COMPLETE_ATTRIBUTES, COMPLETE_FILES = list(range(1, 2+1))
 
 from idlelib import AutoCompleteWindow
 from idlelib.HyperParser import HyperParser

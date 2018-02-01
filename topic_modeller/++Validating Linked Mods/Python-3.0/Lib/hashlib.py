@@ -105,7 +105,7 @@ try:
     # use the wrapper of the C implementation
     new = __hash_new
 
-    for opensslFuncName in filter(lambda n: n.startswith('openssl_'), dir(_hashlib)):
+    for opensslFuncName in [n for n in dir(_hashlib) if n.startswith('openssl_')]:
         funcName = opensslFuncName[len('openssl_'):]
         try:
             # try them all, some may not work due to the OpenSSL

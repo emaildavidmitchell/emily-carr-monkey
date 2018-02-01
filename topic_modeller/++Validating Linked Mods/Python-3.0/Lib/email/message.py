@@ -401,7 +401,7 @@ class Message:
         msg.add_header('content-disposition', 'attachment', filename='bud.gif')
         """
         parts = []
-        for k, v in _params.items():
+        for k, v in list(_params.items()):
             if v is None:
                 parts.append(k.replace('_', '-'))
             else:
@@ -418,7 +418,7 @@ class Message:
         raised.
         """
         _name = _name.lower()
-        for i, (k, v) in zip(range(len(self._headers)), self._headers):
+        for i, (k, v) in zip(list(range(len(self._headers))), self._headers):
             if k.lower() == _name:
                 self._headers[i] = (k, _value)
                 break

@@ -99,7 +99,7 @@ class Debugger:
         bl.append(b)
         self.bstep = b = Button(bframe, text="Step", command=self.step)
         bl.append(b)
-        self.bnext = b = Button(bframe, text="Over", command=self.next)
+        self.bnext = b = Button(bframe, text="Over", command=self.__next__)
         bl.append(b)
         self.bret = b = Button(bframe, text="Out", command=self.ret)
         bl.append(b)
@@ -222,7 +222,7 @@ class Debugger:
         self.idb.set_step()
         self.root.quit()
 
-    def next(self):
+    def __next__(self):
         self.idb.set_next(self.frame)
         self.root.quit()
 
@@ -457,7 +457,7 @@ class NamespaceViewer:
             # interpreter gets into a loop requesting non-existing dict[0],
             # dict[1], dict[2], etc from the RemoteDebugger.DictProxy.
             ###
-            keys_list = dict.keys()
+            keys_list = list(dict.keys())
             names = sorted(keys_list)
             ###
             row = 0

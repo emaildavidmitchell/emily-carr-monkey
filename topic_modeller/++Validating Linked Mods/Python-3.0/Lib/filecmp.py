@@ -129,9 +129,9 @@ class dircmp:
         self.right_list.sort()
 
     def phase1(self): # Compute common names
-        a = dict(zip(map(os.path.normcase, self.left_list), self.left_list))
-        b = dict(zip(map(os.path.normcase, self.right_list), self.right_list))
-        self.common = list(map(a.__getitem__, filter(b.__contains__, a)))
+        a = dict(list(zip(list(map(os.path.normcase, self.left_list)), self.left_list)))
+        b = dict(list(zip(list(map(os.path.normcase, self.right_list)), self.right_list)))
+        self.common = list(map(a.__getitem__, list(filter(b.__contains__, a))))
         self.left_only = list(map(a.__getitem__, filterfalse(b.__contains__, a)))
         self.right_only = list(map(b.__getitem__, filterfalse(a.__contains__, b)))
 
@@ -186,43 +186,43 @@ class dircmp:
 
     def phase4_closure(self): # Recursively call phase4() on subdirectories
         self.phase4()
-        for sd in self.subdirs.values():
+        for sd in list(self.subdirs.values()):
             sd.phase4_closure()
 
     def report(self): # Print a report on the differences between a and b
         # Output format is purposely lousy
-        print('diff', self.left, self.right)
+        print(('diff', self.left, self.right))
         if self.left_only:
             self.left_only.sort()
-            print('Only in', self.left, ':', self.left_only)
+            print(('Only in', self.left, ':', self.left_only))
         if self.right_only:
             self.right_only.sort()
-            print('Only in', self.right, ':', self.right_only)
+            print(('Only in', self.right, ':', self.right_only))
         if self.same_files:
             self.same_files.sort()
-            print('Identical files :', self.same_files)
+            print(('Identical files :', self.same_files))
         if self.diff_files:
             self.diff_files.sort()
-            print('Differing files :', self.diff_files)
+            print(('Differing files :', self.diff_files))
         if self.funny_files:
             self.funny_files.sort()
-            print('Trouble with common files :', self.funny_files)
+            print(('Trouble with common files :', self.funny_files))
         if self.common_dirs:
             self.common_dirs.sort()
-            print('Common subdirectories :', self.common_dirs)
+            print(('Common subdirectories :', self.common_dirs))
         if self.common_funny:
             self.common_funny.sort()
-            print('Common funny cases :', self.common_funny)
+            print(('Common funny cases :', self.common_funny))
 
     def report_partial_closure(self): # Print reports on self and on subdirs
         self.report()
-        for sd in self.subdirs.values():
+        for sd in list(self.subdirs.values()):
             print()
             sd.report()
 
     def report_full_closure(self): # Report on self and subdirs recursively
         self.report()
-        for sd in self.subdirs.values():
+        for sd in list(self.subdirs.values()):
             print()
             sd.report_full_closure()
 

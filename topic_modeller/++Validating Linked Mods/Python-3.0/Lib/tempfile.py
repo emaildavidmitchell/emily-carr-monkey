@@ -578,8 +578,8 @@ class SpooledTemporaryFile:
     def newlines(self):
         return self._file.newlines
 
-    def next(self):
-        return self._file.next
+    def __next__(self):
+        return self._file.__next__
 
     def read(self, *args):
         return self._file.read(*args)

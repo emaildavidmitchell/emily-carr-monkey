@@ -124,7 +124,7 @@ class Cmd:
                 else:
                     if self.use_rawinput:
                         try:
-                            line = input(self.prompt)
+                            line = eval(input(self.prompt))
                         except EOFError:
                             line = 'EOF'
                     else:

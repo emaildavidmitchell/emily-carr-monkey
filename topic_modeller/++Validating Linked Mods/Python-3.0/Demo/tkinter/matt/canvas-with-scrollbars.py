@@ -1,4 +1,4 @@
-from Tkinter import *
+from tkinter import *
 
 # This example program creates a scroling canvas, and demonstrates
 # how to tie scrollbars and canvses together. The mechanism
@@ -46,8 +46,8 @@ class Test(Frame):
 
 
     def scrollCanvasX(self, *args):
-        print("scrolling", args)
-        print(self.draw.scrollX.get())
+        print(("scrolling", args))
+        print((self.draw.scrollX.get()))
 
 
     def __init__(self, master=None):

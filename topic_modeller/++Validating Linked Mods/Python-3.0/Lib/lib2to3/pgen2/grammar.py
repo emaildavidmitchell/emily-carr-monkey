@@ -110,7 +110,7 @@ class Grammar(object):
         pprint(self.dfas)
         print("labels")
         pprint(self.labels)
-        print("start", self.start)
+        print(("start", self.start))
 
 
 # Map from operator to number (since tokenize doesn't do this)

@@ -529,7 +529,7 @@ class TestLoader:
         testCaseNames = self.getTestCaseNames(testCaseClass)
         if not testCaseNames and hasattr(testCaseClass, 'runTest'):
             testCaseNames = ['runTest']
-        return self.suiteClass(map(testCaseClass, testCaseNames))
+        return self.suiteClass(list(map(testCaseClass, testCaseNames)))
 
     def loadTestsFromModule(self, module):
         """Return a suite of all tests cases contained in the given module"""
@@ -805,7 +805,7 @@ Examples:
 
     def usageExit(self, msg=None):
         if msg: print(msg)
-        print(self.USAGE % self.__dict__)
+        print((self.USAGE % self.__dict__))
         sys.exit(2)
 
     def parseArgs(self, argv):

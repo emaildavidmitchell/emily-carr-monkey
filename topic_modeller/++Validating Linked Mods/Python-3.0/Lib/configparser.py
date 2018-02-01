@@ -220,7 +220,7 @@ class RawConfigParser:
         self._sections = self._dict()
         self._defaults = self._dict()
         if defaults:
-            for key, value in defaults.items():
+            for key, value in list(defaults.items()):
                 self._defaults[self.optionxform(key)] = value
 
     def defaults(self):
@@ -331,7 +331,7 @@ class RawConfigParser:
         d.update(d2)
         if "__name__" in d:
             del d["__name__"]
-        return d.items()
+        return list(d.items())
 
     def _get(self, section, conv, option):
         return conv(self.get(section, option))
@@ -381,12 +381,12 @@ class RawConfigParser:
         """Write an .ini-format representation of the configuration state."""
         if self._defaults:
             fp.write("[%s]\n" % DEFAULTSECT)
-            for (key, value) in self._defaults.items():
+            for (key, value) in list(self._defaults.items()):
                 fp.write("%s = %s\n" % (key, str(value).replace('\n', '\n\t')))
             fp.write("\n")
         for section in self._sections:
             fp.write("[%s]\n" % section)
-            for (key, value) in self._sections[section].items():
+            for (key, value) in list(self._sections[section].items()):
                 if key != "__name__":
                     fp.write("%s = %s\n" %
                              (key, str(value).replace('\n', '\n\t')))
@@ -531,7 +531,7 @@ class ConfigParser(RawConfigParser):
                 raise NoSectionError(section)
         # Update with the entry specific variables
         if vars:
-            for key, value in vars.items():
+            for key, value in list(vars.items()):
                 d[self.optionxform(key)] = value
         option = self.optionxform(option)
         try:
@@ -564,7 +564,7 @@ class ConfigParser(RawConfigParser):
                 raise NoSectionError(section)
         # Update with the entry specific variables
         if vars:
-            for key, value in vars.items():
+            for key, value in list(vars.items()):
                 d[self.optionxform(key)] = value
         options = list(d.keys())
         if "__name__" in options:

@@ -230,9 +230,9 @@ Common commands: (see '--help-commands' for more)
             options = attrs.get('options')
             if options:
                 del attrs['options']
-                for (command, cmd_options) in options.items():
+                for (command, cmd_options) in list(options.items()):
                     opt_dict = self.get_option_dict(command)
-                    for (opt, val) in cmd_options.items():
+                    for (opt, val) in list(cmd_options.items()):
                         opt_dict[opt] = ("setup script", val)
 
             if 'licence' in attrs:
@@ -246,7 +246,7 @@ Common commands: (see '--help-commands' for more)
 
             # Now work on the rest of the attributes.  Any attribute that's
             # not already defined is invalid!
-            for (key,val) in attrs.items():
+            for (key,val) in list(attrs.items()):
                 if hasattr(self.metadata, "set_" + key):
                     getattr(self.metadata, "set_" + key)(val)
                 elif hasattr(self.metadata, key):
@@ -283,22 +283,22 @@ Common commands: (see '--help-commands' for more)
             commands = sorted(self.command_options.keys())
 
         if header is not None:
-            print(indent + header)
+            print((indent + header))
             indent = indent + "  "
 
         if not commands:
-            print(indent + "no commands known yet")
+            print((indent + "no commands known yet"))
             return
 
         for cmd_name in commands:
             opt_dict = self.command_options.get(cmd_name)
             if opt_dict is None:
-                print(indent + "no option dict for '%s' command" % cmd_name)
+                print((indent + "no option dict for '%s' command" % cmd_name))
             else:
-                print(indent + "option dict for '%s' command:" % cmd_name)
+                print((indent + "option dict for '%s' command:" % cmd_name))
                 out = pformat(opt_dict)
                 for line in out.split("\n"):
-                    print(indent + "  " + line)
+                    print((indent + "  " + line))
 
 
 
@@ -357,7 +357,7 @@ Common commands: (see '--help-commands' for more)
 
         parser = ConfigParser()
         for filename in filenames:
-            if DEBUG: print("  reading", filename)
+            if DEBUG: print(("  reading", filename))
             parser.read(filename)
             for section in parser.sections():
                 options = parser.options(section)
@@ -377,7 +377,7 @@ Common commands: (see '--help-commands' for more)
         # to set Distribution options.
 
         if 'global' in self.command_options:
-            for (opt, (src, val)) in self.command_options['global'].items():
+            for (opt, (src, val)) in list(self.command_options['global'].items()):
                 alias = self.negative_opt.get(opt)
                 try:
                     if alias:
@@ -566,7 +566,7 @@ Common commands: (see '--help-commands' for more)
         # Put the options from the command-line into their official
         # holding pen, the 'command_options' dictionary.
         opt_dict = self.get_option_dict(command)
-        for (name, value) in vars(opts).items():
+        for (name, value) in list(vars(opts).items()):
             opt_dict[name] = ("command line", value)
 
         return args
@@ -640,7 +640,7 @@ Common commands: (see '--help-commands' for more)
             parser.print_help("Options for '%s' command:" % klass.__name__)
             print()
 
-        print(gen_usage(self.script_name))
+        print((gen_usage(self.script_name)))
         return
 
 
@@ -658,7 +658,7 @@ Common commands: (see '--help-commands' for more)
         if self.help_commands:
             self.print_commands()
             print()
-            print(gen_usage(self.script_name))
+            print((gen_usage(self.script_name)))
             return 1
 
         # If user supplied any of the "display metadata" options, then
@@ -674,10 +674,10 @@ Common commands: (see '--help-commands' for more)
                 opt = translate_longopt(opt)
                 value = getattr(self.metadata, "get_"+opt)()
                 if opt in ['keywords', 'platforms']:
-                    print(','.join(value))
+                    print((','.join(value)))
                 elif opt in ('classifiers', 'provides', 'requires',
                              'obsoletes'):
-                    print('\n'.join(value))
+                    print(('\n'.join(value)))
                 else:
                     print(value)
                 any_display_options = 1
@@ -688,7 +688,7 @@ Common commands: (see '--help-commands' for more)
         """Print a subset of the list of all commands -- used by
         'print_commands()'.
         """
-        print(header + ":")
+        print((header + ":"))
 
         for cmd in commands:
             klass = self.cmdclass.get(cmd)
@@ -699,7 +699,7 @@ Common commands: (see '--help-commands' for more)
             except AttributeError:
                 description = "(no description available)"
 
-            print("  %-*s  %s" % (max_length, cmd, description))
+            print(("  %-*s  %s" % (max_length, cmd, description)))
 
 
     def print_commands (self):
@@ -717,7 +717,7 @@ Common commands: (see '--help-commands' for more)
             is_std[cmd] = 1
 
         extra_commands = []
-        for cmd in self.cmdclass.keys():
+        for cmd in list(self.cmdclass.keys()):
             if not is_std.get(cmd):
                 extra_commands.append(cmd)
 
@@ -751,7 +751,7 @@ Common commands: (see '--help-commands' for more)
             is_std[cmd] = 1
 
         extra_commands = []
-        for cmd in self.cmdclass.keys():
+        for cmd in list(self.cmdclass.keys()):
             if not is_std.get(cmd):
                 extra_commands.append(cmd)
 
@@ -829,8 +829,8 @@ Common commands: (see '--help-commands' for more)
         cmd_obj = self.command_obj.get(command)
         if not cmd_obj and create:
             if DEBUG:
-                print("Distribution.get_command_obj(): " \
-                      "creating '%s' command object" % command)
+                print(("Distribution.get_command_obj(): " \
+                      "creating '%s' command object" % command))
 
             klass = self.get_command_class(command)
             cmd_obj = self.command_obj[command] = klass(self)
@@ -860,9 +860,9 @@ Common commands: (see '--help-commands' for more)
         if option_dict is None:
             option_dict = self.get_option_dict(command_name)
 
-        if DEBUG: print("  setting options for '%s' command:" % command_name)
-        for (option, (source, value)) in option_dict.items():
-            if DEBUG: print("    %s = %s (from %s)" % (option, value, source))
+        if DEBUG: print(("  setting options for '%s' command:" % command_name))
+        for (option, (source, value)) in list(option_dict.items()):
+            if DEBUG: print(("    %s = %s (from %s)" % (option, value, source)))
             try:
                 bool_opts = [translate_longopt(o)
                              for o in command_obj.boolean_options]

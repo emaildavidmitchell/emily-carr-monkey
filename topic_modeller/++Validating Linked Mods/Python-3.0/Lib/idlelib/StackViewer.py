@@ -110,7 +110,7 @@ class VariablesTreeItem(ObjectTreeItem):
 
     def GetSubList(self):
         sublist = []
-        for key in self.keys():
+        for key in list(self.keys()):
             try:
                 value = self.object[key]
             except KeyError:

@@ -32,7 +32,7 @@ def initscr():
     setupterm(term=_os.environ.get("TERM", "unknown"),
               fd=_sys.__stdout__.fileno())
     stdscr = _curses.initscr()
-    for key, value in _curses.__dict__.items():
+    for key, value in list(_curses.__dict__.items()):
         if key[0:4] == 'ACS_' or key in ('LINES', 'COLS'):
             setattr(curses, key, value)
 
@@ -56,4 +56,4 @@ def start_color():
 try:
     has_key
 except NameError:
-    from has_key import has_key
+    from .has_key import has_key

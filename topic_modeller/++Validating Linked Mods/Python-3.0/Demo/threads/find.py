@@ -132,7 +132,7 @@ def find(dir, pred, wq):
     try:
         names = os.listdir(dir)
     except os.error as msg:
-        print(repr(dir), ':', msg)
+        print((repr(dir), ':', msg))
         return
     for name in names:
         if name not in (os.curdir, os.pardir):
@@ -140,7 +140,7 @@ def find(dir, pred, wq):
             try:
                 stat = os.lstat(fullname)
             except os.error as msg:
-                print(repr(fullname), ':', msg)
+                print((repr(fullname), ':', msg))
                 continue
             if pred(dir, name, fullname, stat):
                 print(fullname)

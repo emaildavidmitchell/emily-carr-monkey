@@ -123,7 +123,7 @@ class upload(PyPIRCCommand):
         sep_boundary = b'\n--' + boundary.encode('ascii')
         end_boundary = sep_boundary + b'--'
         body = io.BytesIO()
-        for key, value in data.items():
+        for key, value in list(data.items()):
             title = '\nContent-Disposition: form-data; name="%s"' % key
             # handle multiple entries for the same name
             if type(value) != type([]):
@@ -183,4 +183,4 @@ class upload(PyPIRCCommand):
             self.announce('Upload failed (%s): %s' % (r.status, r.reason),
                           log.ERROR)
         if self.show_response:
-            print('-'*75, r.read(), '-'*75)
+            print(('-'*75, r.read(), '-'*75))

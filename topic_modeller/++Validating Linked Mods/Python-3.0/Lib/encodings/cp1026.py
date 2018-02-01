@@ -135,8 +135,8 @@ decoding_table = (
     '\xef'     #  0x57 -> LATIN SMALL LETTER I WITH DIAERESIS
     '\xec'     #  0x58 -> LATIN SMALL LETTER I WITH GRAVE
     '\xdf'     #  0x59 -> LATIN SMALL LETTER SHARP S (GERMAN)
-    '\u011e'   #  0x5A -> LATIN CAPITAL LETTER G WITH BREVE
-    '\u0130'   #  0x5B -> LATIN CAPITAL LETTER I WITH DOT ABOVE
+    '\\u011e'   #  0x5A -> LATIN CAPITAL LETTER G WITH BREVE
+    '\\u0130'   #  0x5B -> LATIN CAPITAL LETTER I WITH DOT ABOVE
     '*'        #  0x5C -> ASTERISK
     ')'        #  0x5D -> RIGHT PARENTHESIS
     ';'        #  0x5E -> SEMICOLON
@@ -151,7 +151,7 @@ decoding_table = (
     '\xc5'     #  0x67 -> LATIN CAPITAL LETTER A WITH RING ABOVE
     '['        #  0x68 -> LEFT SQUARE BRACKET
     '\xd1'     #  0x69 -> LATIN CAPITAL LETTER N WITH TILDE
-    '\u015f'   #  0x6A -> LATIN SMALL LETTER S WITH CEDILLA
+    '\\u015f'   #  0x6A -> LATIN SMALL LETTER S WITH CEDILLA
     ','        #  0x6B -> COMMA
     '%'        #  0x6C -> PERCENT SIGN
     '_'        #  0x6D -> LOW LINE
@@ -166,10 +166,10 @@ decoding_table = (
     '\xce'     #  0x76 -> LATIN CAPITAL LETTER I WITH CIRCUMFLEX
     '\xcf'     #  0x77 -> LATIN CAPITAL LETTER I WITH DIAERESIS
     '\xcc'     #  0x78 -> LATIN CAPITAL LETTER I WITH GRAVE
-    '\u0131'   #  0x79 -> LATIN SMALL LETTER DOTLESS I
+    '\\u0131'   #  0x79 -> LATIN SMALL LETTER DOTLESS I
     ':'        #  0x7A -> COLON
     '\xd6'     #  0x7B -> LATIN CAPITAL LETTER O WITH DIAERESIS
-    '\u015e'   #  0x7C -> LATIN CAPITAL LETTER S WITH CEDILLA
+    '\\u015e'   #  0x7C -> LATIN CAPITAL LETTER S WITH CEDILLA
     "'"        #  0x7D -> APOSTROPHE
     '='        #  0x7E -> EQUALS SIGN
     '\xdc'     #  0x7F -> LATIN CAPITAL LETTER U WITH DIAERESIS
@@ -253,7 +253,7 @@ decoding_table = (
     '\xf2'     #  0xCD -> LATIN SMALL LETTER O WITH GRAVE
     '\xf3'     #  0xCE -> LATIN SMALL LETTER O WITH ACUTE
     '\xf5'     #  0xCF -> LATIN SMALL LETTER O WITH TILDE
-    '\u011f'   #  0xD0 -> LATIN SMALL LETTER G WITH BREVE
+    '\\u011f'   #  0xD0 -> LATIN SMALL LETTER G WITH BREVE
     'J'        #  0xD1 -> LATIN CAPITAL LETTER J
     'K'        #  0xD2 -> LATIN CAPITAL LETTER K
     'L'        #  0xD3 -> LATIN CAPITAL LETTER L

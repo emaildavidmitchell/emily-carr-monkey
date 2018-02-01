@@ -382,14 +382,14 @@ class _Printer(object):
         while 1:
             try:
                 for i in range(lineno, lineno + self.MAXLINES):
-                    print(self.__lines[i])
+                    print((self.__lines[i]))
             except IndexError:
                 break
             else:
                 lineno += self.MAXLINES
                 key = None
                 while key is None:
-                    key = input(prompt)
+                    key = eval(input(prompt))
                     if key not in ('', 'q'):
                         key = None
                 if key == 'q':
@@ -536,13 +536,13 @@ def _script():
     if not args:
         print("sys.path = [")
         for dir in sys.path:
-            print("    %r," % (dir,))
+            print(("    %r," % (dir,)))
         print("]")
-        print("USER_BASE: %r (%s)" % (USER_BASE,
-            "exists" if os.path.isdir(USER_BASE) else "doesn't exist"))
-        print("USER_SITE: %r (%s)" % (USER_SITE,
-            "exists" if os.path.isdir(USER_SITE) else "doesn't exist"))
-        print("ENABLE_USER_SITE: %r" %  ENABLE_USER_SITE)
+        print(("USER_BASE: %r (%s)" % (USER_BASE,
+            "exists" if os.path.isdir(USER_BASE) else "doesn't exist")))
+        print(("USER_SITE: %r (%s)" % (USER_SITE,
+            "exists" if os.path.isdir(USER_SITE) else "doesn't exist")))
+        print(("ENABLE_USER_SITE: %r" %  ENABLE_USER_SITE))
         sys.exit(0)
 
     buffer = []
@@ -552,7 +552,7 @@ def _script():
         buffer.append(USER_SITE)
 
     if buffer:
-        print(os.pathsep.join(buffer))
+        print((os.pathsep.join(buffer)))
         if ENABLE_USER_SITE:
             sys.exit(0)
         elif ENABLE_USER_SITE is False:
@@ -563,7 +563,7 @@ def _script():
             sys.exit(3)
     else:
         import textwrap
-        print(textwrap.dedent(help % (sys.argv[0], os.pathsep)))
+        print((textwrap.dedent(help % (sys.argv[0], os.pathsep))))
         sys.exit(10)
 
 if __name__ == '__main__':

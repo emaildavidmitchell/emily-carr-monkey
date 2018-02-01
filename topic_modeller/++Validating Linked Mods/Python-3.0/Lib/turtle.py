@@ -195,7 +195,7 @@ def config_dict(filename):
         try:
             key, value = line.split("=")
         except:
-            print("Bad line in config-file %s:\n%s" % (filename,line))
+            print(("Bad line in config-file %s:\n%s" % (filename,line)))
             continue
         key = key.strip()
         value = value.strip()
@@ -313,7 +313,7 @@ def __methodDict(cls, _dict):
     baseList.reverse()
     for _super in baseList:
         __methodDict(_super, _dict)
-    for key, value in cls.__dict__.items():
+    for key, value in list(cls.__dict__.items()):
         if type(value) == types.FunctionType:
             _dict[key] = value
 
@@ -321,7 +321,7 @@ def __methods(cls):
     """helper function for Scrolled Canvas"""
     _dict = {}
     __methodDict(cls, _dict)
-    return _dict.keys()
+    return list(_dict.keys())
 
 __stringBody = (
     'def %(method)s(self, *args, **kw): return ' +
@@ -333,13 +333,13 @@ def __forwardmethods(fromClass, toClass, toPart, exclude = ()):
     __methodDict(toClass, _dict_1)
     _dict = {}
     mfc = __methods(fromClass)
-    for ex in _dict_1.keys():
+    for ex in list(_dict_1.keys()):
         if ex[:1] == '_' or ex[-1:] == '_' or ex in exclude or ex in mfc:
             pass
         else:
             _dict[ex] = _dict_1[ex]
 
-    for method, func in _dict.items():
+    for method, func in list(_dict.items()):
         d = {'method': method, 'func': func}
         if isinstance(toPart, str):
             execString = \
@@ -3757,7 +3757,7 @@ def write_docstringdict(filename="turtle_docstringdict"):
         docsdict[key] = eval(key).__doc__
 
     f = open("%s.py" % filename,"w")
-    keys = sorted([x for x in docsdict.keys()
+    keys = sorted([x for x in list(docsdict.keys())
                         if x.split('.')[1] not in _alias_list])
     f.write('docsdict = {\n\n')
     for key in keys[:-1]:
@@ -3784,7 +3784,7 @@ def read_docstrings(lang):
 #            eval(key).im_func.__doc__ = docsdict[key]
             eval(key).__doc__ = docsdict[key]
         except:
-            print("Bad docstring-entry: %s" % key)
+            print(("Bad docstring-entry: %s" % key))
 
 _LANGUAGE = _CFG["language"]
 
@@ -3792,10 +3792,10 @@ try:
     if _LANGUAGE != "english":
         read_docstrings(_LANGUAGE)
 except ImportError:
-    print("Cannot find docsdict for", _LANGUAGE)
+    print(("Cannot find docsdict for", _LANGUAGE))
 except:
-    print ("Unknown Error when trying to import %s-docstring-dictionary" %
-                                                                  _LANGUAGE)
+    print(("Unknown Error when trying to import %s-docstring-dictionary" %
+                                                                  _LANGUAGE))
 
 
 def getmethparlist(ob):
@@ -3817,7 +3817,7 @@ def getmethparlist(ob):
     items2 = list(ob.__code__.co_varnames[argOffset:counter])
     realArgs = ob.__code__.co_varnames[argOffset:counter]
     defaults = ob.__defaults__ or []
-    defaults = list(map(lambda name: "=%s" % repr(name), defaults))
+    defaults = list(["=%s" % repr(name) for name in defaults])
     defaults = [""] * (len(realArgs)-len(defaults)) + defaults
     items1 = list(map(lambda arg, dflt: arg+dflt, realArgs, defaults))
     if ob.__code__.co_flags & 0x4:
@@ -3867,7 +3867,7 @@ def _screen_docrevise(docstr):
 for methodname in _tg_screen_functions:
     pl1, pl2 = getmethparlist(eval('_Screen.' + methodname))
     if pl1 == "":
-        print(">>>>>>", pl1, pl2)
+        print((">>>>>>", pl1, pl2))
         continue
     defstr = ("def %(key)s%(pl1)s: return _getscreen().%(key)s%(pl2)s" %
                                    {'key':methodname, 'pl1':pl1, 'pl2':pl2})
@@ -3878,7 +3878,7 @@ for methodname in _tg_screen_functions:
 for methodname in _tg_turtle_functions:
     pl1, pl2 = getmethparlist(eval('Turtle.' + methodname))
     if pl1 == "":
-        print(">>>>>>", pl1, pl2)
+        print((">>>>>>", pl1, pl2))
         continue
     defstr = ("def %(key)s%(pl1)s: return _getpen().%(key)s%(pl2)s" %
                                    {'key':methodname, 'pl1':pl1, 'pl2':pl2})

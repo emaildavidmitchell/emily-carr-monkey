@@ -140,7 +140,7 @@ def iter_modules(path=None, prefix=''):
     if path is None:
         importers = iter_importers()
     else:
-        importers = map(get_importer, path)
+        importers = list(map(get_importer, path))
 
     yielded = {}
     for i in importers:
@@ -321,7 +321,7 @@ try:
     from zipimport import zipimporter
 
     def iter_zipimport_modules(importer, prefix=''):
-        dirlist = zipimport._zip_directory_cache[importer.archive].keys()
+        dirlist = list(zipimport._zip_directory_cache[importer.archive].keys())
         dirlist.sort()
         _prefix = importer.prefix
         plen = len(_prefix)

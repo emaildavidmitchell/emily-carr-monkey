@@ -99,7 +99,7 @@ class LifeBoard:
         d = {}
         self.boring = 1
         for i in range(0, M):
-            L = range( max(0, i-1), min(M, i+2) )
+            L = list(range( max(0, i-1), min(M, i+2)))
             for j in range(0, N):
                 s = 0
                 live = (i,j) in self.state

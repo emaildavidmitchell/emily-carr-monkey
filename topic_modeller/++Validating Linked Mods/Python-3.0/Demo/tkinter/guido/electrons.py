@@ -11,7 +11,7 @@
 # /usr/include/X11/bitmaps for samples); it is displayed as the
 # background of the animation.  Default is no bitmap.
 
-from Tkinter import *
+from tkinter import *
 import random
 
 
@@ -43,8 +43,8 @@ class Electrons:
     def random_move(self, n):
         c = self.canvas
         for p in self.pieces:
-            x = random.choice(range(-2,4))
-            y = random.choice(range(-3,4))
+            x = random.choice(list(range(-2,4)))
+            y = random.choice(list(range(-3,4)))
             c.move(p, x, y)
         self.tk.update()
 

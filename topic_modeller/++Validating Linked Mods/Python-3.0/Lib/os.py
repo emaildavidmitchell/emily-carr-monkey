@@ -383,7 +383,7 @@ class _Environ(MutableMapping):
         self.putenv = putenv
         self.unsetenv = unsetenv
         self.data = data = {}
-        for key, value in environ.items():
+        for key, value in list(environ.items()):
             data[keymap(key)] = str(value)
     def __getitem__(self, key):
         return self.data[self.keymap(key)]

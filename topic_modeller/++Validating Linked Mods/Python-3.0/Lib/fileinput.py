@@ -404,12 +404,12 @@ def _test():
     for o, a in opts:
         if o == '-i': inplace = 1
         if o == '-b': backup = a
-    for line in input(args, inplace=inplace, backup=backup):
+    for line in eval(input(args, inplace=inplace, backup=backup)):
         if line[-1:] == '\n': line = line[:-1]
         if line[-1:] == '\r': line = line[:-1]
-        print("%d: %s[%d]%s %s" % (lineno(), filename(), filelineno(),
-                                   isfirstline() and "*" or "", line))
-    print("%d: %s[%d]" % (lineno(), filename(), filelineno()))
+        print(("%d: %s[%d]%s %s" % (lineno(), filename(), filelineno(),
+                                   isfirstline() and "*" or "", line)))
+    print(("%d: %s[%d]" % (lineno(), filename(), filelineno())))
 
 if __name__ == '__main__':
     _test()

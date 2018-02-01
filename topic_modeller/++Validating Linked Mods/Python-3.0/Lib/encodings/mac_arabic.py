@@ -43,7 +43,7 @@ def getregentry():
 
 ### Decoding Map
 
-decoding_map = codecs.make_identity_dict(range(256))
+decoding_map = codecs.make_identity_dict(list(range(256)))
 decoding_map.update({
     0x0080: 0x00c4,     #  LATIN CAPITAL LETTER A WITH DIAERESIS
     0x0081: 0x00a0,     #  NO-BREAK SPACE, right-left
@@ -317,7 +317,7 @@ decoding_table = (
     '\xe0'     #  0x0088 -> LATIN SMALL LETTER A WITH GRAVE
     '\xe2'     #  0x0089 -> LATIN SMALL LETTER A WITH CIRCUMFLEX
     '\xe4'     #  0x008a -> LATIN SMALL LETTER A WITH DIAERESIS
-    '\u06ba'   #  0x008b -> ARABIC LETTER NOON GHUNNA
+    '\\u06ba'   #  0x008b -> ARABIC LETTER NOON GHUNNA
     '\xab'     #  0x008c -> LEFT-POINTING DOUBLE ANGLE QUOTATION MARK, right-left
     '\xe7'     #  0x008d -> LATIN SMALL LETTER C WITH CEDILLA
     '\xe9'     #  0x008e -> LATIN SMALL LETTER E WITH ACUTE
@@ -325,7 +325,7 @@ decoding_table = (
     '\xea'     #  0x0090 -> LATIN SMALL LETTER E WITH CIRCUMFLEX
     '\xeb'     #  0x0091 -> LATIN SMALL LETTER E WITH DIAERESIS
     '\xed'     #  0x0092 -> LATIN SMALL LETTER I WITH ACUTE
-    '\u2026'   #  0x0093 -> HORIZONTAL ELLIPSIS, right-left
+    '\\u2026'   #  0x0093 -> HORIZONTAL ELLIPSIS, right-left
     '\xee'     #  0x0094 -> LATIN SMALL LETTER I WITH CIRCUMFLEX
     '\xef'     #  0x0095 -> LATIN SMALL LETTER I WITH DIAERESIS
     '\xf1'     #  0x0096 -> LATIN SMALL LETTER N WITH TILDE
@@ -343,97 +343,97 @@ decoding_table = (
     '"'        #  0x00a2 -> QUOTATION MARK, right-left
     '#'        #  0x00a3 -> NUMBER SIGN, right-left
     '$'        #  0x00a4 -> DOLLAR SIGN, right-left
-    '\u066a'   #  0x00a5 -> ARABIC PERCENT SIGN
+    '\\u066a'   #  0x00a5 -> ARABIC PERCENT SIGN
     '&'        #  0x00a6 -> AMPERSAND, right-left
     "'"        #  0x00a7 -> APOSTROPHE, right-left
     '('        #  0x00a8 -> LEFT PARENTHESIS, right-left
     ')'        #  0x00a9 -> RIGHT PARENTHESIS, right-left
     '*'        #  0x00aa -> ASTERISK, right-left
     '+'        #  0x00ab -> PLUS SIGN, right-left
-    '\u060c'   #  0x00ac -> ARABIC COMMA
+    '\\u060c'   #  0x00ac -> ARABIC COMMA
     '-'        #  0x00ad -> HYPHEN-MINUS, right-left
     '.'        #  0x00ae -> FULL STOP, right-left
     '/'        #  0x00af -> SOLIDUS, right-left
-    '\u0660'   #  0x00b0 -> ARABIC-INDIC DIGIT ZERO, right-left (need override)
-    '\u0661'   #  0x00b1 -> ARABIC-INDIC DIGIT ONE, right-left (need override)
-    '\u0662'   #  0x00b2 -> ARABIC-INDIC DIGIT TWO, right-left (need override)
-    '\u0663'   #  0x00b3 -> ARABIC-INDIC DIGIT THREE, right-left (need override)
-    '\u0664'   #  0x00b4 -> ARABIC-INDIC DIGIT FOUR, right-left (need override)
-    '\u0665'   #  0x00b5 -> ARABIC-INDIC DIGIT FIVE, right-left (need override)
-    '\u0666'   #  0x00b6 -> ARABIC-INDIC DIGIT SIX, right-left (need override)
-    '\u0667'   #  0x00b7 -> ARABIC-INDIC DIGIT SEVEN, right-left (need override)
-    '\u0668'   #  0x00b8 -> ARABIC-INDIC DIGIT EIGHT, right-left (need override)
-    '\u0669'   #  0x00b9 -> ARABIC-INDIC DIGIT NINE, right-left (need override)
+    '\\u0660'   #  0x00b0 -> ARABIC-INDIC DIGIT ZERO, right-left (need override)
+    '\\u0661'   #  0x00b1 -> ARABIC-INDIC DIGIT ONE, right-left (need override)
+    '\\u0662'   #  0x00b2 -> ARABIC-INDIC DIGIT TWO, right-left (need override)
+    '\\u0663'   #  0x00b3 -> ARABIC-INDIC DIGIT THREE, right-left (need override)
+    '\\u0664'   #  0x00b4 -> ARABIC-INDIC DIGIT FOUR, right-left (need override)
+    '\\u0665'   #  0x00b5 -> ARABIC-INDIC DIGIT FIVE, right-left (need override)
+    '\\u0666'   #  0x00b6 -> ARABIC-INDIC DIGIT SIX, right-left (need override)
+    '\\u0667'   #  0x00b7 -> ARABIC-INDIC DIGIT SEVEN, right-left (need override)
+    '\\u0668'   #  0x00b8 -> ARABIC-INDIC DIGIT EIGHT, right-left (need override)
+    '\\u0669'   #  0x00b9 -> ARABIC-INDIC DIGIT NINE, right-left (need override)
     ':'        #  0x00ba -> COLON, right-left
-    '\u061b'   #  0x00bb -> ARABIC SEMICOLON
+    '\\u061b'   #  0x00bb -> ARABIC SEMICOLON
     '<'        #  0x00bc -> LESS-THAN SIGN, right-left
     '='        #  0x00bd -> EQUALS SIGN, right-left
     '>'        #  0x00be -> GREATER-THAN SIGN, right-left
-    '\u061f'   #  0x00bf -> ARABIC QUESTION MARK
-    '\u274a'   #  0x00c0 -> EIGHT TEARDROP-SPOKED PROPELLER ASTERISK, right-left
-    '\u0621'   #  0x00c1 -> ARABIC LETTER HAMZA
-    '\u0622'   #  0x00c2 -> ARABIC LETTER ALEF WITH MADDA ABOVE
-    '\u0623'   #  0x00c3 -> ARABIC LETTER ALEF WITH HAMZA ABOVE
-    '\u0624'   #  0x00c4 -> ARABIC LETTER WAW WITH HAMZA ABOVE
-    '\u0625'   #  0x00c5 -> ARABIC LETTER ALEF WITH HAMZA BELOW
-    '\u0626'   #  0x00c6 -> ARABIC LETTER YEH WITH HAMZA ABOVE
-    '\u0627'   #  0x00c7 -> ARABIC LETTER ALEF
-    '\u0628'   #  0x00c8 -> ARABIC LETTER BEH
-    '\u0629'   #  0x00c9 -> ARABIC LETTER TEH MARBUTA
-    '\u062a'   #  0x00ca -> ARABIC LETTER TEH
-    '\u062b'   #  0x00cb -> ARABIC LETTER THEH
-    '\u062c'   #  0x00cc -> ARABIC LETTER JEEM
-    '\u062d'   #  0x00cd -> ARABIC LETTER HAH
-    '\u062e'   #  0x00ce -> ARABIC LETTER KHAH
-    '\u062f'   #  0x00cf -> ARABIC LETTER DAL
-    '\u0630'   #  0x00d0 -> ARABIC LETTER THAL
-    '\u0631'   #  0x00d1 -> ARABIC LETTER REH
-    '\u0632'   #  0x00d2 -> ARABIC LETTER ZAIN
-    '\u0633'   #  0x00d3 -> ARABIC LETTER SEEN
-    '\u0634'   #  0x00d4 -> ARABIC LETTER SHEEN
-    '\u0635'   #  0x00d5 -> ARABIC LETTER SAD
-    '\u0636'   #  0x00d6 -> ARABIC LETTER DAD
-    '\u0637'   #  0x00d7 -> ARABIC LETTER TAH
-    '\u0638'   #  0x00d8 -> ARABIC LETTER ZAH
-    '\u0639'   #  0x00d9 -> ARABIC LETTER AIN
-    '\u063a'   #  0x00da -> ARABIC LETTER GHAIN
+    '\\u061f'   #  0x00bf -> ARABIC QUESTION MARK
+    '\\u274a'   #  0x00c0 -> EIGHT TEARDROP-SPOKED PROPELLER ASTERISK, right-left
+    '\\u0621'   #  0x00c1 -> ARABIC LETTER HAMZA
+    '\\u0622'   #  0x00c2 -> ARABIC LETTER ALEF WITH MADDA ABOVE
+    '\\u0623'   #  0x00c3 -> ARABIC LETTER ALEF WITH HAMZA ABOVE
+    '\\u0624'   #  0x00c4 -> ARABIC LETTER WAW WITH HAMZA ABOVE
+    '\\u0625'   #  0x00c5 -> ARABIC LETTER ALEF WITH HAMZA BELOW
+    '\\u0626'   #  0x00c6 -> ARABIC LETTER YEH WITH HAMZA ABOVE
+    '\\u0627'   #  0x00c7 -> ARABIC LETTER ALEF
+    '\\u0628'   #  0x00c8 -> ARABIC LETTER BEH
+    '\\u0629'   #  0x00c9 -> ARABIC LETTER TEH MARBUTA
+    '\\u062a'   #  0x00ca -> ARABIC LETTER TEH
+    '\\u062b'   #  0x00cb -> ARABIC LETTER THEH
+    '\\u062c'   #  0x00cc -> ARABIC LETTER JEEM
+    '\\u062d'   #  0x00cd -> ARABIC LETTER HAH
+    '\\u062e'   #  0x00ce -> ARABIC LETTER KHAH
+    '\\u062f'   #  0x00cf -> ARABIC LETTER DAL
+    '\\u0630'   #  0x00d0 -> ARABIC LETTER THAL
+    '\\u0631'   #  0x00d1 -> ARABIC LETTER REH
+    '\\u0632'   #  0x00d2 -> ARABIC LETTER ZAIN
+    '\\u0633'   #  0x00d3 -> ARABIC LETTER SEEN
+    '\\u0634'   #  0x00d4 -> ARABIC LETTER SHEEN
+    '\\u0635'   #  0x00d5 -> ARABIC LETTER SAD
+    '\\u0636'   #  0x00d6 -> ARABIC LETTER DAD
+    '\\u0637'   #  0x00d7 -> ARABIC LETTER TAH
+    '\\u0638'   #  0x00d8 -> ARABIC LETTER ZAH
+    '\\u0639'   #  0x00d9 -> ARABIC LETTER AIN
+    '\\u063a'   #  0x00da -> ARABIC LETTER GHAIN
     '['        #  0x00db -> LEFT SQUARE BRACKET, right-left
     '\\'       #  0x00dc -> REVERSE SOLIDUS, right-left
     ']'        #  0x00dd -> RIGHT SQUARE BRACKET, right-left
     '^'        #  0x00de -> CIRCUMFLEX ACCENT, right-left
     '_'        #  0x00df -> LOW LINE, right-left
-    '\u0640'   #  0x00e0 -> ARABIC TATWEEL
-    '\u0641'   #  0x00e1 -> ARABIC LETTER FEH
-    '\u0642'   #  0x00e2 -> ARABIC LETTER QAF
-    '\u0643'   #  0x00e3 -> ARABIC LETTER KAF
-    '\u0644'   #  0x00e4 -> ARABIC LETTER LAM
-    '\u0645'   #  0x00e5 -> ARABIC LETTER MEEM
-    '\u0646'   #  0x00e6 -> ARABIC LETTER NOON
-    '\u0647'   #  0x00e7 -> ARABIC LETTER HEH
-    '\u0648'   #  0x00e8 -> ARABIC LETTER WAW
-    '\u0649'   #  0x00e9 -> ARABIC LETTER ALEF MAKSURA
-    '\u064a'   #  0x00ea -> ARABIC LETTER YEH
-    '\u064b'   #  0x00eb -> ARABIC FATHATAN
-    '\u064c'   #  0x00ec -> ARABIC DAMMATAN
-    '\u064d'   #  0x00ed -> ARABIC KASRATAN
-    '\u064e'   #  0x00ee -> ARABIC FATHA
-    '\u064f'   #  0x00ef -> ARABIC DAMMA
-    '\u0650'   #  0x00f0 -> ARABIC KASRA
-    '\u0651'   #  0x00f1 -> ARABIC SHADDA
-    '\u0652'   #  0x00f2 -> ARABIC SUKUN
-    '\u067e'   #  0x00f3 -> ARABIC LETTER PEH
-    '\u0679'   #  0x00f4 -> ARABIC LETTER TTEH
-    '\u0686'   #  0x00f5 -> ARABIC LETTER TCHEH
-    '\u06d5'   #  0x00f6 -> ARABIC LETTER AE
-    '\u06a4'   #  0x00f7 -> ARABIC LETTER VEH
-    '\u06af'   #  0x00f8 -> ARABIC LETTER GAF
-    '\u0688'   #  0x00f9 -> ARABIC LETTER DDAL
-    '\u0691'   #  0x00fa -> ARABIC LETTER RREH
+    '\\u0640'   #  0x00e0 -> ARABIC TATWEEL
+    '\\u0641'   #  0x00e1 -> ARABIC LETTER FEH
+    '\\u0642'   #  0x00e2 -> ARABIC LETTER QAF
+    '\\u0643'   #  0x00e3 -> ARABIC LETTER KAF
+    '\\u0644'   #  0x00e4 -> ARABIC LETTER LAM
+    '\\u0645'   #  0x00e5 -> ARABIC LETTER MEEM
+    '\\u0646'   #  0x00e6 -> ARABIC LETTER NOON
+    '\\u0647'   #  0x00e7 -> ARABIC LETTER HEH
+    '\\u0648'   #  0x00e8 -> ARABIC LETTER WAW
+    '\\u0649'   #  0x00e9 -> ARABIC LETTER ALEF MAKSURA
+    '\\u064a'   #  0x00ea -> ARABIC LETTER YEH
+    '\\u064b'   #  0x00eb -> ARABIC FATHATAN
+    '\\u064c'   #  0x00ec -> ARABIC DAMMATAN
+    '\\u064d'   #  0x00ed -> ARABIC KASRATAN
+    '\\u064e'   #  0x00ee -> ARABIC FATHA
+    '\\u064f'   #  0x00ef -> ARABIC DAMMA
+    '\\u0650'   #  0x00f0 -> ARABIC KASRA
+    '\\u0651'   #  0x00f1 -> ARABIC SHADDA
+    '\\u0652'   #  0x00f2 -> ARABIC SUKUN
+    '\\u067e'   #  0x00f3 -> ARABIC LETTER PEH
+    '\\u0679'   #  0x00f4 -> ARABIC LETTER TTEH
+    '\\u0686'   #  0x00f5 -> ARABIC LETTER TCHEH
+    '\\u06d5'   #  0x00f6 -> ARABIC LETTER AE
+    '\\u06a4'   #  0x00f7 -> ARABIC LETTER VEH
+    '\\u06af'   #  0x00f8 -> ARABIC LETTER GAF
+    '\\u0688'   #  0x00f9 -> ARABIC LETTER DDAL
+    '\\u0691'   #  0x00fa -> ARABIC LETTER RREH
     '{'        #  0x00fb -> LEFT CURLY BRACKET, right-left
     '|'        #  0x00fc -> VERTICAL LINE, right-left
     '}'        #  0x00fd -> RIGHT CURLY BRACKET, right-left
-    '\u0698'   #  0x00fe -> ARABIC LETTER JEH
-    '\u06d2'   #  0x00ff -> ARABIC LETTER YEH BARREE
+    '\\u0698'   #  0x00fe -> ARABIC LETTER JEH
+    '\\u06d2'   #  0x00ff -> ARABIC LETTER YEH BARREE
 )
 
 ### Encoding Map

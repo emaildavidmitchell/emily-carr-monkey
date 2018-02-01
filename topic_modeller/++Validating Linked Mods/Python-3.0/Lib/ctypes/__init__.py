@@ -94,7 +94,7 @@ def CFUNCTYPE(restype, *argtypes, **kw):
     if kw.pop("use_last_error", False):
         flags |= _FUNCFLAG_USE_LASTERROR
     if kw:
-        raise ValueError("unexpected keyword argument(s) %s" % kw.keys())
+        raise ValueError("unexpected keyword argument(s) %s" % list(kw.keys()))
     try:
         return _c_functype_cache[(restype, argtypes, flags)]
     except KeyError:
@@ -121,7 +121,7 @@ if _os.name in ("nt", "ce"):
         if kw.pop("use_last_error", False):
             flags |= _FUNCFLAG_USE_LASTERROR
         if kw:
-            raise ValueError("unexpected keyword argument(s) %s" % kw.keys())
+            raise ValueError("unexpected keyword argument(s) %s" % list(kw.keys()))
         try:
             return _win_functype_cache[(restype, argtypes, flags)]
         except KeyError:

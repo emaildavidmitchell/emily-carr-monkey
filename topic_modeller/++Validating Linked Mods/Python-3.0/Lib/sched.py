@@ -131,4 +131,4 @@ class scheduler:
         # With heapq, two events scheduled at the same time will show in
         # the actual order they would be retrieved.
         events = self._queue[:]
-        return map(heapq.heappop, [events]*len(events))
+        return list(map(heapq.heappop, [events]*len(events)))

@@ -35,7 +35,7 @@ class OutputWindow(EditorWindow):
     # Act as output file
 
     def write(self, s, tags=(), mark="insert"):
-        if isinstance(s, (bytes, bytes)):
+        if isinstance(s, bytes):
             s = s.decode(IOBinding.encoding, "replace")
         self.text.insert(mark, s, tags)
         self.text.see(mark)
@@ -129,7 +129,7 @@ class OnDemandOutputWindow:
     def setup(self):
         self.owin = owin = OutputWindow(self.flist)
         text = owin.text
-        for tag, cnf in self.tagdefs.items():
+        for tag, cnf in list(self.tagdefs.items()):
             if cnf:
                 text.tag_configure(tag, **cnf)
         text.tag_raise('sel')

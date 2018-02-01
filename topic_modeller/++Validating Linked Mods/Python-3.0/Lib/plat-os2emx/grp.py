@@ -175,7 +175,7 @@ def getgrnam(name):
 # return all the group database entries
 def getgrall():
     g, n = __read_group_file()
-    return g.values()
+    return list(g.values())
 
 # test harness
 if __name__ == '__main__':

@@ -43,7 +43,7 @@ def getregentry():
 
 ### Decoding Map
 
-decoding_map = codecs.make_identity_dict(range(256))
+decoding_map = codecs.make_identity_dict(list(range(256)))
 decoding_map.update({
     0x0025: 0x066a,     #  ARABIC PERCENT SIGN
     0x0080: 0x00b0,     #  DEGREE SIGN
@@ -213,7 +213,7 @@ decoding_table = (
     '"'        #  0x0022 -> QUOTATION MARK
     '#'        #  0x0023 -> NUMBER SIGN
     '$'        #  0x0024 -> DOLLAR SIGN
-    '\u066a'   #  0x0025 -> ARABIC PERCENT SIGN
+    '\\u066a'   #  0x0025 -> ARABIC PERCENT SIGN
     '&'        #  0x0026 -> AMPERSAND
     "'"        #  0x0027 -> APOSTROPHE
     '('        #  0x0028 -> LEFT PARENTHESIS
@@ -306,132 +306,132 @@ decoding_table = (
     '\x7f'     #  0x007f -> DELETE
     '\xb0'     #  0x0080 -> DEGREE SIGN
     '\xb7'     #  0x0081 -> MIDDLE DOT
-    '\u2219'   #  0x0082 -> BULLET OPERATOR
-    '\u221a'   #  0x0083 -> SQUARE ROOT
-    '\u2592'   #  0x0084 -> MEDIUM SHADE
-    '\u2500'   #  0x0085 -> FORMS LIGHT HORIZONTAL
-    '\u2502'   #  0x0086 -> FORMS LIGHT VERTICAL
-    '\u253c'   #  0x0087 -> FORMS LIGHT VERTICAL AND HORIZONTAL
-    '\u2524'   #  0x0088 -> FORMS LIGHT VERTICAL AND LEFT
-    '\u252c'   #  0x0089 -> FORMS LIGHT DOWN AND HORIZONTAL
-    '\u251c'   #  0x008a -> FORMS LIGHT VERTICAL AND RIGHT
-    '\u2534'   #  0x008b -> FORMS LIGHT UP AND HORIZONTAL
-    '\u2510'   #  0x008c -> FORMS LIGHT DOWN AND LEFT
-    '\u250c'   #  0x008d -> FORMS LIGHT DOWN AND RIGHT
-    '\u2514'   #  0x008e -> FORMS LIGHT UP AND RIGHT
-    '\u2518'   #  0x008f -> FORMS LIGHT UP AND LEFT
-    '\u03b2'   #  0x0090 -> GREEK SMALL BETA
-    '\u221e'   #  0x0091 -> INFINITY
-    '\u03c6'   #  0x0092 -> GREEK SMALL PHI
+    '\\u2219'   #  0x0082 -> BULLET OPERATOR
+    '\\u221a'   #  0x0083 -> SQUARE ROOT
+    '\\u2592'   #  0x0084 -> MEDIUM SHADE
+    '\\u2500'   #  0x0085 -> FORMS LIGHT HORIZONTAL
+    '\\u2502'   #  0x0086 -> FORMS LIGHT VERTICAL
+    '\\u253c'   #  0x0087 -> FORMS LIGHT VERTICAL AND HORIZONTAL
+    '\\u2524'   #  0x0088 -> FORMS LIGHT VERTICAL AND LEFT
+    '\\u252c'   #  0x0089 -> FORMS LIGHT DOWN AND HORIZONTAL
+    '\\u251c'   #  0x008a -> FORMS LIGHT VERTICAL AND RIGHT
+    '\\u2534'   #  0x008b -> FORMS LIGHT UP AND HORIZONTAL
+    '\\u2510'   #  0x008c -> FORMS LIGHT DOWN AND LEFT
+    '\\u250c'   #  0x008d -> FORMS LIGHT DOWN AND RIGHT
+    '\\u2514'   #  0x008e -> FORMS LIGHT UP AND RIGHT
+    '\\u2518'   #  0x008f -> FORMS LIGHT UP AND LEFT
+    '\\u03b2'   #  0x0090 -> GREEK SMALL BETA
+    '\\u221e'   #  0x0091 -> INFINITY
+    '\\u03c6'   #  0x0092 -> GREEK SMALL PHI
     '\xb1'     #  0x0093 -> PLUS-OR-MINUS SIGN
     '\xbd'     #  0x0094 -> FRACTION 1/2
     '\xbc'     #  0x0095 -> FRACTION 1/4
-    '\u2248'   #  0x0096 -> ALMOST EQUAL TO
+    '\\u2248'   #  0x0096 -> ALMOST EQUAL TO
     '\xab'     #  0x0097 -> LEFT POINTING GUILLEMET
     '\xbb'     #  0x0098 -> RIGHT POINTING GUILLEMET
-    '\ufef7'   #  0x0099 -> ARABIC LIGATURE LAM WITH ALEF WITH HAMZA ABOVE ISOLATED FORM
-    '\ufef8'   #  0x009a -> ARABIC LIGATURE LAM WITH ALEF WITH HAMZA ABOVE FINAL FORM
-    '\ufffe'   #  0x009b -> UNDEFINED
-    '\ufffe'   #  0x009c -> UNDEFINED
-    '\ufefb'   #  0x009d -> ARABIC LIGATURE LAM WITH ALEF ISOLATED FORM
-    '\ufefc'   #  0x009e -> ARABIC LIGATURE LAM WITH ALEF FINAL FORM
-    '\ufffe'   #  0x009f -> UNDEFINED
+    '\\ufef7'   #  0x0099 -> ARABIC LIGATURE LAM WITH ALEF WITH HAMZA ABOVE ISOLATED FORM
+    '\\ufef8'   #  0x009a -> ARABIC LIGATURE LAM WITH ALEF WITH HAMZA ABOVE FINAL FORM
+    '\\ufffe'   #  0x009b -> UNDEFINED
+    '\\ufffe'   #  0x009c -> UNDEFINED
+    '\\ufefb'   #  0x009d -> ARABIC LIGATURE LAM WITH ALEF ISOLATED FORM
+    '\\ufefc'   #  0x009e -> ARABIC LIGATURE LAM WITH ALEF FINAL FORM
+    '\\ufffe'   #  0x009f -> UNDEFINED
     '\xa0'     #  0x00a0 -> NON-BREAKING SPACE
     '\xad'     #  0x00a1 -> SOFT HYPHEN
-    '\ufe82'   #  0x00a2 -> ARABIC LETTER ALEF WITH MADDA ABOVE FINAL FORM
+    '\\ufe82'   #  0x00a2 -> ARABIC LETTER ALEF WITH MADDA ABOVE FINAL FORM
     '\xa3'     #  0x00a3 -> POUND SIGN
     '\xa4'     #  0x00a4 -> CURRENCY SIGN
-    '\ufe84'   #  0x00a5 -> ARABIC LETTER ALEF WITH HAMZA ABOVE FINAL FORM
-    '\ufffe'   #  0x00a6 -> UNDEFINED
-    '\ufffe'   #  0x00a7 -> UNDEFINED
-    '\ufe8e'   #  0x00a8 -> ARABIC LETTER ALEF FINAL FORM
-    '\ufe8f'   #  0x00a9 -> ARABIC LETTER BEH ISOLATED FORM
-    '\ufe95'   #  0x00aa -> ARABIC LETTER TEH ISOLATED FORM
-    '\ufe99'   #  0x00ab -> ARABIC LETTER THEH ISOLATED FORM
-    '\u060c'   #  0x00ac -> ARABIC COMMA
-    '\ufe9d'   #  0x00ad -> ARABIC LETTER JEEM ISOLATED FORM
-    '\ufea1'   #  0x00ae -> ARABIC LETTER HAH ISOLATED FORM
-    '\ufea5'   #  0x00af -> ARABIC LETTER KHAH ISOLATED FORM
-    '\u0660'   #  0x00b0 -> ARABIC-INDIC DIGIT ZERO
-    '\u0661'   #  0x00b1 -> ARABIC-INDIC DIGIT ONE
-    '\u0662'   #  0x00b2 -> ARABIC-INDIC DIGIT TWO
-    '\u0663'   #  0x00b3 -> ARABIC-INDIC DIGIT THREE
-    '\u0664'   #  0x00b4 -> ARABIC-INDIC DIGIT FOUR
-    '\u0665'   #  0x00b5 -> ARABIC-INDIC DIGIT FIVE
-    '\u0666'   #  0x00b6 -> ARABIC-INDIC DIGIT SIX
-    '\u0667'   #  0x00b7 -> ARABIC-INDIC DIGIT SEVEN
-    '\u0668'   #  0x00b8 -> ARABIC-INDIC DIGIT EIGHT
-    '\u0669'   #  0x00b9 -> ARABIC-INDIC DIGIT NINE
-    '\ufed1'   #  0x00ba -> ARABIC LETTER FEH ISOLATED FORM
-    '\u061b'   #  0x00bb -> ARABIC SEMICOLON
-    '\ufeb1'   #  0x00bc -> ARABIC LETTER SEEN ISOLATED FORM
-    '\ufeb5'   #  0x00bd -> ARABIC LETTER SHEEN ISOLATED FORM
-    '\ufeb9'   #  0x00be -> ARABIC LETTER SAD ISOLATED FORM
-    '\u061f'   #  0x00bf -> ARABIC QUESTION MARK
+    '\\ufe84'   #  0x00a5 -> ARABIC LETTER ALEF WITH HAMZA ABOVE FINAL FORM
+    '\\ufffe'   #  0x00a6 -> UNDEFINED
+    '\\ufffe'   #  0x00a7 -> UNDEFINED
+    '\\ufe8e'   #  0x00a8 -> ARABIC LETTER ALEF FINAL FORM
+    '\\ufe8f'   #  0x00a9 -> ARABIC LETTER BEH ISOLATED FORM
+    '\\ufe95'   #  0x00aa -> ARABIC LETTER TEH ISOLATED FORM
+    '\\ufe99'   #  0x00ab -> ARABIC LETTER THEH ISOLATED FORM
+    '\\u060c'   #  0x00ac -> ARABIC COMMA
+    '\\ufe9d'   #  0x00ad -> ARABIC LETTER JEEM ISOLATED FORM
+    '\\ufea1'   #  0x00ae -> ARABIC LETTER HAH ISOLATED FORM
+    '\\ufea5'   #  0x00af -> ARABIC LETTER KHAH ISOLATED FORM
+    '\\u0660'   #  0x00b0 -> ARABIC-INDIC DIGIT ZERO
+    '\\u0661'   #  0x00b1 -> ARABIC-INDIC DIGIT ONE
+    '\\u0662'   #  0x00b2 -> ARABIC-INDIC DIGIT TWO
+    '\\u0663'   #  0x00b3 -> ARABIC-INDIC DIGIT THREE
+    '\\u0664'   #  0x00b4 -> ARABIC-INDIC DIGIT FOUR
+    '\\u0665'   #  0x00b5 -> ARABIC-INDIC DIGIT FIVE
+    '\\u0666'   #  0x00b6 -> ARABIC-INDIC DIGIT SIX
+    '\\u0667'   #  0x00b7 -> ARABIC-INDIC DIGIT SEVEN
+    '\\u0668'   #  0x00b8 -> ARABIC-INDIC DIGIT EIGHT
+    '\\u0669'   #  0x00b9 -> ARABIC-INDIC DIGIT NINE
+    '\\ufed1'   #  0x00ba -> ARABIC LETTER FEH ISOLATED FORM
+    '\\u061b'   #  0x00bb -> ARABIC SEMICOLON
+    '\\ufeb1'   #  0x00bc -> ARABIC LETTER SEEN ISOLATED FORM
+    '\\ufeb5'   #  0x00bd -> ARABIC LETTER SHEEN ISOLATED FORM
+    '\\ufeb9'   #  0x00be -> ARABIC LETTER SAD ISOLATED FORM
+    '\\u061f'   #  0x00bf -> ARABIC QUESTION MARK
     '\xa2'     #  0x00c0 -> CENT SIGN
-    '\ufe80'   #  0x00c1 -> ARABIC LETTER HAMZA ISOLATED FORM
-    '\ufe81'   #  0x00c2 -> ARABIC LETTER ALEF WITH MADDA ABOVE ISOLATED FORM
-    '\ufe83'   #  0x00c3 -> ARABIC LETTER ALEF WITH HAMZA ABOVE ISOLATED FORM
-    '\ufe85'   #  0x00c4 -> ARABIC LETTER WAW WITH HAMZA ABOVE ISOLATED FORM
-    '\ufeca'   #  0x00c5 -> ARABIC LETTER AIN FINAL FORM
-    '\ufe8b'   #  0x00c6 -> ARABIC LETTER YEH WITH HAMZA ABOVE INITIAL FORM
-    '\ufe8d'   #  0x00c7 -> ARABIC LETTER ALEF ISOLATED FORM
-    '\ufe91'   #  0x00c8 -> ARABIC LETTER BEH INITIAL FORM
-    '\ufe93'   #  0x00c9 -> ARABIC LETTER TEH MARBUTA ISOLATED FORM
-    '\ufe97'   #  0x00ca -> ARABIC LETTER TEH INITIAL FORM
-    '\ufe9b'   #  0x00cb -> ARABIC LETTER THEH INITIAL FORM
-    '\ufe9f'   #  0x00cc -> ARABIC LETTER JEEM INITIAL FORM
-    '\ufea3'   #  0x00cd -> ARABIC LETTER HAH INITIAL FORM
-    '\ufea7'   #  0x00ce -> ARABIC LETTER KHAH INITIAL FORM
-    '\ufea9'   #  0x00cf -> ARABIC LETTER DAL ISOLATED FORM
-    '\ufeab'   #  0x00d0 -> ARABIC LETTER THAL ISOLATED FORM
-    '\ufead'   #  0x00d1 -> ARABIC LETTER REH ISOLATED FORM
-    '\ufeaf'   #  0x00d2 -> ARABIC LETTER ZAIN ISOLATED FORM
-    '\ufeb3'   #  0x00d3 -> ARABIC LETTER SEEN INITIAL FORM
-    '\ufeb7'   #  0x00d4 -> ARABIC LETTER SHEEN INITIAL FORM
-    '\ufebb'   #  0x00d5 -> ARABIC LETTER SAD INITIAL FORM
-    '\ufebf'   #  0x00d6 -> ARABIC LETTER DAD INITIAL FORM
-    '\ufec1'   #  0x00d7 -> ARABIC LETTER TAH ISOLATED FORM
-    '\ufec5'   #  0x00d8 -> ARABIC LETTER ZAH ISOLATED FORM
-    '\ufecb'   #  0x00d9 -> ARABIC LETTER AIN INITIAL FORM
-    '\ufecf'   #  0x00da -> ARABIC LETTER GHAIN INITIAL FORM
+    '\\ufe80'   #  0x00c1 -> ARABIC LETTER HAMZA ISOLATED FORM
+    '\\ufe81'   #  0x00c2 -> ARABIC LETTER ALEF WITH MADDA ABOVE ISOLATED FORM
+    '\\ufe83'   #  0x00c3 -> ARABIC LETTER ALEF WITH HAMZA ABOVE ISOLATED FORM
+    '\\ufe85'   #  0x00c4 -> ARABIC LETTER WAW WITH HAMZA ABOVE ISOLATED FORM
+    '\\ufeca'   #  0x00c5 -> ARABIC LETTER AIN FINAL FORM
+    '\\ufe8b'   #  0x00c6 -> ARABIC LETTER YEH WITH HAMZA ABOVE INITIAL FORM
+    '\\ufe8d'   #  0x00c7 -> ARABIC LETTER ALEF ISOLATED FORM
+    '\\ufe91'   #  0x00c8 -> ARABIC LETTER BEH INITIAL FORM
+    '\\ufe93'   #  0x00c9 -> ARABIC LETTER TEH MARBUTA ISOLATED FORM
+    '\\ufe97'   #  0x00ca -> ARABIC LETTER TEH INITIAL FORM
+    '\\ufe9b'   #  0x00cb -> ARABIC LETTER THEH INITIAL FORM
+    '\\ufe9f'   #  0x00cc -> ARABIC LETTER JEEM INITIAL FORM
+    '\\ufea3'   #  0x00cd -> ARABIC LETTER HAH INITIAL FORM
+    '\\ufea7'   #  0x00ce -> ARABIC LETTER KHAH INITIAL FORM
+    '\\ufea9'   #  0x00cf -> ARABIC LETTER DAL ISOLATED FORM
+    '\\ufeab'   #  0x00d0 -> ARABIC LETTER THAL ISOLATED FORM
+    '\\ufead'   #  0x00d1 -> ARABIC LETTER REH ISOLATED FORM
+    '\\ufeaf'   #  0x00d2 -> ARABIC LETTER ZAIN ISOLATED FORM
+    '\\ufeb3'   #  0x00d3 -> ARABIC LETTER SEEN INITIAL FORM
+    '\\ufeb7'   #  0x00d4 -> ARABIC LETTER SHEEN INITIAL FORM
+    '\\ufebb'   #  0x00d5 -> ARABIC LETTER SAD INITIAL FORM
+    '\\ufebf'   #  0x00d6 -> ARABIC LETTER DAD INITIAL FORM
+    '\\ufec1'   #  0x00d7 -> ARABIC LETTER TAH ISOLATED FORM
+    '\\ufec5'   #  0x00d8 -> ARABIC LETTER ZAH ISOLATED FORM
+    '\\ufecb'   #  0x00d9 -> ARABIC LETTER AIN INITIAL FORM
+    '\\ufecf'   #  0x00da -> ARABIC LETTER GHAIN INITIAL FORM
     '\xa6'     #  0x00db -> BROKEN VERTICAL BAR
     '\xac'     #  0x00dc -> NOT SIGN
     '\xf7'     #  0x00dd -> DIVISION SIGN
     '\xd7'     #  0x00de -> MULTIPLICATION SIGN
-    '\ufec9'   #  0x00df -> ARABIC LETTER AIN ISOLATED FORM
-    '\u0640'   #  0x00e0 -> ARABIC TATWEEL
-    '\ufed3'   #  0x00e1 -> ARABIC LETTER FEH INITIAL FORM
-    '\ufed7'   #  0x00e2 -> ARABIC LETTER QAF INITIAL FORM
-    '\ufedb'   #  0x00e3 -> ARABIC LETTER KAF INITIAL FORM
-    '\ufedf'   #  0x00e4 -> ARABIC LETTER LAM INITIAL FORM
-    '\ufee3'   #  0x00e5 -> ARABIC LETTER MEEM INITIAL FORM
-    '\ufee7'   #  0x00e6 -> ARABIC LETTER NOON INITIAL FORM
-    '\ufeeb'   #  0x00e7 -> ARABIC LETTER HEH INITIAL FORM
-    '\ufeed'   #  0x00e8 -> ARABIC LETTER WAW ISOLATED FORM
-    '\ufeef'   #  0x00e9 -> ARABIC LETTER ALEF MAKSURA ISOLATED FORM
-    '\ufef3'   #  0x00ea -> ARABIC LETTER YEH INITIAL FORM
-    '\ufebd'   #  0x00eb -> ARABIC LETTER DAD ISOLATED FORM
-    '\ufecc'   #  0x00ec -> ARABIC LETTER AIN MEDIAL FORM
-    '\ufece'   #  0x00ed -> ARABIC LETTER GHAIN FINAL FORM
-    '\ufecd'   #  0x00ee -> ARABIC LETTER GHAIN ISOLATED FORM
-    '\ufee1'   #  0x00ef -> ARABIC LETTER MEEM ISOLATED FORM
-    '\ufe7d'   #  0x00f0 -> ARABIC SHADDA MEDIAL FORM
-    '\u0651'   #  0x00f1 -> ARABIC SHADDAH
-    '\ufee5'   #  0x00f2 -> ARABIC LETTER NOON ISOLATED FORM
-    '\ufee9'   #  0x00f3 -> ARABIC LETTER HEH ISOLATED FORM
-    '\ufeec'   #  0x00f4 -> ARABIC LETTER HEH MEDIAL FORM
-    '\ufef0'   #  0x00f5 -> ARABIC LETTER ALEF MAKSURA FINAL FORM
-    '\ufef2'   #  0x00f6 -> ARABIC LETTER YEH FINAL FORM
-    '\ufed0'   #  0x00f7 -> ARABIC LETTER GHAIN MEDIAL FORM
-    '\ufed5'   #  0x00f8 -> ARABIC LETTER QAF ISOLATED FORM
-    '\ufef5'   #  0x00f9 -> ARABIC LIGATURE LAM WITH ALEF WITH MADDA ABOVE ISOLATED FORM
-    '\ufef6'   #  0x00fa -> ARABIC LIGATURE LAM WITH ALEF WITH MADDA ABOVE FINAL FORM
-    '\ufedd'   #  0x00fb -> ARABIC LETTER LAM ISOLATED FORM
-    '\ufed9'   #  0x00fc -> ARABIC LETTER KAF ISOLATED FORM
-    '\ufef1'   #  0x00fd -> ARABIC LETTER YEH ISOLATED FORM
-    '\u25a0'   #  0x00fe -> BLACK SQUARE
-    '\ufffe'   #  0x00ff -> UNDEFINED
+    '\\ufec9'   #  0x00df -> ARABIC LETTER AIN ISOLATED FORM
+    '\\u0640'   #  0x00e0 -> ARABIC TATWEEL
+    '\\ufed3'   #  0x00e1 -> ARABIC LETTER FEH INITIAL FORM
+    '\\ufed7'   #  0x00e2 -> ARABIC LETTER QAF INITIAL FORM
+    '\\ufedb'   #  0x00e3 -> ARABIC LETTER KAF INITIAL FORM
+    '\\ufedf'   #  0x00e4 -> ARABIC LETTER LAM INITIAL FORM
+    '\\ufee3'   #  0x00e5 -> ARABIC LETTER MEEM INITIAL FORM
+    '\\ufee7'   #  0x00e6 -> ARABIC LETTER NOON INITIAL FORM
+    '\\ufeeb'   #  0x00e7 -> ARABIC LETTER HEH INITIAL FORM
+    '\\ufeed'   #  0x00e8 -> ARABIC LETTER WAW ISOLATED FORM
+    '\\ufeef'   #  0x00e9 -> ARABIC LETTER ALEF MAKSURA ISOLATED FORM
+    '\\ufef3'   #  0x00ea -> ARABIC LETTER YEH INITIAL FORM
+    '\\ufebd'   #  0x00eb -> ARABIC LETTER DAD ISOLATED FORM
+    '\\ufecc'   #  0x00ec -> ARABIC LETTER AIN MEDIAL FORM
+    '\\ufece'   #  0x00ed -> ARABIC LETTER GHAIN FINAL FORM
+    '\\ufecd'   #  0x00ee -> ARABIC LETTER GHAIN ISOLATED FORM
+    '\\ufee1'   #  0x00ef -> ARABIC LETTER MEEM ISOLATED FORM
+    '\\ufe7d'   #  0x00f0 -> ARABIC SHADDA MEDIAL FORM
+    '\\u0651'   #  0x00f1 -> ARABIC SHADDAH
+    '\\ufee5'   #  0x00f2 -> ARABIC LETTER NOON ISOLATED FORM
+    '\\ufee9'   #  0x00f3 -> ARABIC LETTER HEH ISOLATED FORM
+    '\\ufeec'   #  0x00f4 -> ARABIC LETTER HEH MEDIAL FORM
+    '\\ufef0'   #  0x00f5 -> ARABIC LETTER ALEF MAKSURA FINAL FORM
+    '\\ufef2'   #  0x00f6 -> ARABIC LETTER YEH FINAL FORM
+    '\\ufed0'   #  0x00f7 -> ARABIC LETTER GHAIN MEDIAL FORM
+    '\\ufed5'   #  0x00f8 -> ARABIC LETTER QAF ISOLATED FORM
+    '\\ufef5'   #  0x00f9 -> ARABIC LIGATURE LAM WITH ALEF WITH MADDA ABOVE ISOLATED FORM
+    '\\ufef6'   #  0x00fa -> ARABIC LIGATURE LAM WITH ALEF WITH MADDA ABOVE FINAL FORM
+    '\\ufedd'   #  0x00fb -> ARABIC LETTER LAM ISOLATED FORM
+    '\\ufed9'   #  0x00fc -> ARABIC LETTER KAF ISOLATED FORM
+    '\\ufef1'   #  0x00fd -> ARABIC LETTER YEH ISOLATED FORM
+    '\\u25a0'   #  0x00fe -> BLACK SQUARE
+    '\\ufffe'   #  0x00ff -> UNDEFINED
 )
 
 ### Encoding Map

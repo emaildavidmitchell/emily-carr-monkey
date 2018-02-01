@@ -44,7 +44,7 @@ def getregentry():
 
 ### Decoding Map
 
-decoding_map = codecs.make_identity_dict(range(256))
+decoding_map = codecs.make_identity_dict(list(range(256)))
 
 # The PalmOS character set is mostly iso-8859-1 with some differences.
 decoding_map.update({

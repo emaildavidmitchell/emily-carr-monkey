@@ -4,7 +4,7 @@ def Extract_bk():
 	try:
 		file_object = open('machineLearningJanuary.txt', "r")
 	except IOError:
-		print "cant open file"
+		print("cant open file")
 	file = open('result.txt', "a")
 	#print lines
 	# lines = file_object.readline()
@@ -36,11 +36,11 @@ def Match_bk():
 			#print line1.strip()	
 				dict[line1.split()[2]] = line1.split()[5]
 	# print dict
-	# cnt = 0
+	cnt = 0
 	for line2 in f2:
 		if line2.strip():
 			line2 = line2.strip()
-			if line2.split()[0] in dict.keys() and line2.split()[1] in dict.keys():
+			if line2.split()[0] in list(dict.keys()) and line2.split()[1] in list(dict.keys()):
 				cnt=cnt+1
 				# pass
 				#print line2.split()[0], dict[line2.split()[0]]

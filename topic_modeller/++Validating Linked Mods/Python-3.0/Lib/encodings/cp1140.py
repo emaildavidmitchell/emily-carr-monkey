@@ -204,7 +204,7 @@ decoding_table = (
     '\xe6'     #  0x9C -> LATIN SMALL LIGATURE AE
     '\xb8'     #  0x9D -> CEDILLA
     '\xc6'     #  0x9E -> LATIN CAPITAL LIGATURE AE
-    '\u20ac'   #  0x9F -> EURO SIGN
+    '\\u20ac'   #  0x9F -> EURO SIGN
     '\xb5'     #  0xA0 -> MICRO SIGN
     '~'        #  0xA1 -> TILDE
     's'        #  0xA2 -> LATIN SMALL LETTER S

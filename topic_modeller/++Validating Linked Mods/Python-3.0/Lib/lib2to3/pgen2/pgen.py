@@ -39,7 +39,7 @@ class ParserGenerator(object):
             states = []
             for state in dfa:
                 arcs = []
-                for label, next in state.arcs.items():
+                for label, next in list(state.arcs.items()):
                     arcs.append((self.make_label(c, label), dfa.index(next)))
                 if state.isfinal:
                     arcs.append((0, dfa.index(state)))
@@ -118,7 +118,7 @@ class ParserGenerator(object):
         state = dfa[0]
         totalset = {}
         overlapcheck = {}
-        for label, next in state.arcs.items():
+        for label, next in list(state.arcs.items()):
             if label in self.dfas:
                 if label in self.first:
                     fset = self.first[label]
@@ -133,7 +133,7 @@ class ParserGenerator(object):
                 totalset[label] = 1
                 overlapcheck[label] = {label: 1}
         inverse = {}
-        for label, itsfirst in overlapcheck.items():
+        for label, itsfirst in list(overlapcheck.items()):
             for symbol in itsfirst:
                 if symbol in inverse:
                     raise ValueError("rule %s is ambiguous; %s is in the"
@@ -192,7 +192,7 @@ class ParserGenerator(object):
                 for label, next in nfastate.arcs:
                     if label is not None:
                         addclosure(next, arcs.setdefault(label, {}))
-            for label, nfaset in arcs.items():
+            for label, nfaset in list(arcs.items()):
                 for st in states:
                     if st.nfaset == nfaset:
                         break
@@ -203,10 +203,10 @@ class ParserGenerator(object):
         return states # List of DFAState instances; first one is start
 
     def dump_nfa(self, name, start, finish):
-        print("Dump of NFA for", name)
+        print(("Dump of NFA for", name))
         todo = [start]
         for i, state in enumerate(todo):
-            print("  State", i, state is finish and "(final)" or "")
+            print(("  State", i, state is finish and "(final)" or ""))
             for label, next in state.arcs:
                 if next in todo:
                     j = todo.index(next)
@@ -214,16 +214,16 @@ class ParserGenerator(object):
                     j = len(todo)
                     todo.append(next)
                 if label is None:
-                    print("    -> %d" % j)
+                    print(("    -> %d" % j))
                 else:
-                    print("    %s -> %d" % (label, j))
+                    print(("    %s -> %d" % (label, j)))
 
     def dump_dfa(self, name, dfa):
-        print("Dump of DFA for", name)
+        print(("Dump of DFA for", name))
         for i, state in enumerate(dfa):
-            print("  State", i, state.isfinal and "(final)" or "")
-            for label, next in state.arcs.items():
-                print("    %s -> %d" % (label, dfa.index(next)))
+            print(("  State", i, state.isfinal and "(final)" or ""))
+            for label, next in list(state.arcs.items()):
+                print(("    %s -> %d" % (label, dfa.index(next))))
 
     def simplify_dfa(self, dfa):
         # This is not theoretically optimal, but works well enough.
@@ -361,7 +361,7 @@ class DFAState(object):
         self.arcs[label] = next
 
     def unifystate(self, old, new):
-        for label, next in self.arcs.items():
+        for label, next in list(self.arcs.items()):
             if next is old:
                 self.arcs[label] = new
 
@@ -374,7 +374,7 @@ class DFAState(object):
         # would invoke this method recursively, with cycles...
         if len(self.arcs) != len(other.arcs):
             return False
-        for label, next in self.arcs.items():
+        for label, next in list(self.arcs.items()):
             if next is not other.arcs.get(label):
                 return False
         return True

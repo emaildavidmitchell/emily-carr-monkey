@@ -111,7 +111,7 @@ class FancyGetopt:
 
     def _check_alias_dict(self, aliases, what):
         assert isinstance(aliases, dict)
-        for (alias, opt) in aliases.items():
+        for (alias, opt) in list(aliases.items()):
             if alias not in self.option_index:
                 raise DistutilsGetoptError(("invalid %s '%s': "
                        "option '%s' not defined") % (what, alias, alias))
@@ -144,70 +144,70 @@ class FancyGetopt:
 
         for option in self.option_table:
             if len(option) == 3:
-                long, short, help = option
+                int, short, help = option
                 repeat = 0
             elif len(option) == 4:
-                long, short, help, repeat = option
+                int, short, help, repeat = option
             else:
                 # the option table is part of the code, so simply
                 # assert that it is correct
                 raise ValueError("invalid option tuple: %r" % (option,))
 
             # Type- and value-check the option names
-            if not isinstance(long, str) or len(long) < 2:
+            if not isinstance(int, str) or len(int) < 2:
                 raise DistutilsGetoptError(("invalid long option '%s': "
-                       "must be a string of length >= 2") % long)
+                       "must be a string of length >= 2") % int)
 
             if (not ((short is None) or
                      (isinstance(short, str) and len(short) == 1))):
                 raise DistutilsGetoptError("invalid short option '%s': "
                        "must a single character or None" % short)
 
-            self.repeat[long] = repeat
-            self.long_opts.append(long)
+            self.repeat[int] = repeat
+            self.long_opts.append(int)
 
-            if long[-1] == '=':             # option takes an argument?
+            if int[-1] == '=':             # option takes an argument?
                 if short: short = short + ':'
-                long = long[0:-1]
-                self.takes_arg[long] = 1
+                long = int[0:-1]
+                self.takes_arg[int] = 1
             else:
                 # Is option is a "negative alias" for some other option (eg.
                 # "quiet" == "!verbose")?
-                alias_to = self.negative_alias.get(long)
+                alias_to = self.negative_alias.get(int)
                 if alias_to is not None:
                     if self.takes_arg[alias_to]:
                         raise DistutilsGetoptError(
                               "invalid negative alias '%s': "
                               "aliased option '%s' takes a value"
-                              % (long, alias_to))
+                              % (int, alias_to))
 
-                    self.long_opts[-1] = long # XXX redundant?!
-                self.takes_arg[long] = 0
+                    self.long_opts[-1] = int # XXX redundant?!
+                self.takes_arg[int] = 0
 
             # If this is an alias option, make sure its "takes arg" flag is
             # the same as the option it's aliased to.
-            alias_to = self.alias.get(long)
+            alias_to = self.alias.get(int)
             if alias_to is not None:
-                if self.takes_arg[long] != self.takes_arg[alias_to]:
+                if self.takes_arg[int] != self.takes_arg[alias_to]:
                     raise DistutilsGetoptError(
                           "invalid alias '%s': inconsistent with "
                           "aliased option '%s' (one of them takes a value, "
                           "the other doesn't"
-                          % (long, alias_to))
+                          % (int, alias_to))
 
             # Now enforce some bondage on the long option name, so we can
             # later translate it to an attribute name on some object.  Have
             # to do this a bit late to make sure we've removed any trailing
             # '='.
-            if not longopt_re.match(long):
+            if not longopt_re.match(int):
                 raise DistutilsGetoptError(
                        "invalid long option name '%s' "
-                       "(must be letters, numbers, hyphens only" % long)
+                       "(must be letters, numbers, hyphens only" % int)
 
-            self.attr_name[long] = self.get_attr_name(long)
+            self.attr_name[int] = self.get_attr_name(int)
             if short:
                 self.short_opts.append(short)
-                self.short2long[short[0]] = long
+                self.short2long[short[0]] = int
 
     def getopt(self, args=None, object=None):
         """Parse command-line options in args. Store as attributes on object.
@@ -292,8 +292,8 @@ class FancyGetopt:
         for option in self.option_table:
             long = option[0]
             short = option[1]
-            l = len(long)
-            if long[-1] == '=':
+            l = len(int)
+            if int[-1] == '=':
                 l = l - 1
             if short is not None:
                 l = l + 5                   # " (-x)" where short == 'x'
@@ -333,22 +333,22 @@ class FancyGetopt:
             lines = ['Option summary:']
 
         for option in self.option_table:
-            long, short, help = option[:3]
+            int, short, help = option[:3]
             text = wrap_text(help, text_width)
-            if long[-1] == '=':
-                long = long[0:-1]
+            if int[-1] == '=':
+                long = int[0:-1]
 
             # Case 1: no short option at all (makes life easy)
             if short is None:
                 if text:
-                    lines.append("  --%-*s  %s" % (max_opt, long, text[0]))
+                    lines.append("  --%-*s  %s" % (max_opt, int, text[0]))
                 else:
-                    lines.append("  --%-*s  " % (max_opt, long))
+                    lines.append("  --%-*s  " % (max_opt, int))
 
             # Case 2: we have a short option, so we have to include it
             # just after the long option
             else:
-                opt_names = "%s (-%s)" % (long, short)
+                opt_names = "%s (-%s)" % (int, short)
                 if text:
                     lines.append("  --%-*s  %s" %
                                  (max_opt, opt_names, text[0]))
@@ -454,6 +454,6 @@ How *do* you spell that odd word, anyways?
 say, "How should I know?"].)"""
 
     for w in (10, 20, 30, 40):
-        print("width: %d" % w)
-        print("\n".join(wrap_text(text, w)))
+        print(("width: %d" % w))
+        print(("\n".join(wrap_text(text, w))))
         print()

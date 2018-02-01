@@ -93,11 +93,11 @@ class Mailbox:
 
     def keys(self):
         """Return a list of keys."""
-        return list(self.iterkeys())
+        return list(self.keys())
 
     def itervalues(self):
         """Return an iterator over all messages."""
-        for key in self.keys():
+        for key in list(self.keys()):
             try:
                 value = self[key]
             except KeyError:
@@ -105,15 +105,15 @@ class Mailbox:
             yield value
 
     def __iter__(self):
-        return self.itervalues()
+        return iter(self.values())
 
     def values(self):
         """Return a list of messages. Memory intensive."""
-        return list(self.itervalues())
+        return list(self.values())
 
     def iteritems(self):
         """Return an iterator over (key, message) tuples."""
-        for key in self.keys():
+        for key in list(self.keys()):
             try:
                 value = self[key]
             except KeyError:
@@ -122,7 +122,7 @@ class Mailbox:
 
     def items(self):
         """Return a list of (key, message) tuples. Memory intensive."""
-        return list(self.iteritems())
+        return list(self.items())
 
     def __contains__(self, key):
         """Return True if the keyed message exists, False otherwise."""
@@ -134,7 +134,7 @@ class Mailbox:
 
     def clear(self):
         """Delete all messages."""
-        for key in self.keys():
+        for key in list(self.keys()):
             self.discard(key)
 
     def pop(self, key, default=None):
@@ -148,7 +148,7 @@ class Mailbox:
 
     def popitem(self):
         """Delete an arbitrary (key, message) pair and return it."""
-        for key in self.keys():
+        for key in list(self.keys()):
             return (key, self.pop(key))     # This is only run once.
         else:
             raise KeyError('No messages in mailbox')
@@ -156,9 +156,9 @@ class Mailbox:
     def update(self, arg=None):
         """Change the messages that correspond to certain keys."""
         if hasattr(arg, 'iteritems'):
-            source = arg.items()
+            source = list(arg.items())
         elif hasattr(arg, 'items'):
-            source = arg.items()
+            source = list(arg.items())
         else:
             source = arg
         bad_key = False
@@ -481,10 +481,10 @@ class Maildir(Mailbox):
             raise KeyError('No message with key: %s' % key)
 
     # This method is for backward compatibility only.
-    def next(self):
+    def __next__(self):
         """Return the next message in a one-time iteration."""
         if not hasattr(self, '_onetime_keys'):
-            self._onetime_keys = iter(self.keys())
+            self._onetime_keys = iter(list(self.keys()))
         while True:
             try:
                 return self[next(self._onetime_keys)]
@@ -542,7 +542,7 @@ class _singlefileMailbox(Mailbox):
     def iterkeys(self):
         """Return an iterator over keys."""
         self._lookup()
-        for key in self._toc.keys():
+        for key in list(self._toc.keys()):
             yield key
 
     def __contains__(self, key):
@@ -818,7 +818,7 @@ class MH(Mailbox):
 
     def add(self, message):
         """Add message and return assigned key."""
-        keys = self.keys()
+        keys = list(self.keys())
         if len(keys) == 0:
             new_key = 1
         else:
@@ -1028,7 +1028,7 @@ class MH(Mailbox):
                             keys.add(int(spec))
                         else:
                             start, stop = (int(x) for x in spec.split('-'))
-                            keys.update(range(start, stop + 1))
+                            keys.update(list(range(start, stop + 1)))
                     results[name] = [key for key in sorted(keys) \
                                          if key in all_keys]
                     if len(results[name]) == 0:
@@ -1045,7 +1045,7 @@ class MH(Mailbox):
         f = open(os.path.join(self._path, '.mh_sequences'), 'r+', newline='')
         try:
             os.close(os.open(f.name, os.O_WRONLY | os.O_TRUNC))
-            for name, keys in sequences.items():
+            for name, keys in list(sequences.items()):
                 if len(keys) == 0:
                     continue
                 f.write('%s:' % name)
@@ -1074,7 +1074,7 @@ class MH(Mailbox):
         sequences = self.get_sequences()
         prev = 0
         changes = []
-        for key in self.keys():
+        for key in list(self.keys()):
             if key - 1 != prev:
                 changes.append((key, prev + 1))
                 if hasattr(os, 'link'):
@@ -1088,7 +1088,7 @@ class MH(Mailbox):
         self._next_key = prev + 1
         if len(changes) == 0:
             return
-        for name, key_list in sequences.items():
+        for name, key_list in list(sequences.items()):
             for old, new in changes:
                 if old in key_list:
                     key_list[key_list.index(old)] = new
@@ -1098,7 +1098,7 @@ class MH(Mailbox):
         """Inspect a new MHMessage and update sequences appropriately."""
         pending_sequences = message.get_sequences()
         all_sequences = self.get_sequences()
-        for name, key_list in all_sequences.items():
+        for name, key_list in list(all_sequences.items()):
             if name in pending_sequences:
                 key_list.append(key)
             elif key in key_list:
@@ -1192,7 +1192,7 @@ class Babyl(_singlefileMailbox):
         """Return a list of user-defined labels in the mailbox."""
         self._lookup()
         labels = set()
-        for label_list in self._labels.values():
+        for label_list in list(self._labels.values()):
             labels.update(label_list)
         labels.difference_update(self._special_labels)
         return list(labels)
@@ -1696,7 +1696,7 @@ class BabylMessage(Message):
 
     def update_visible(self):
         """Update and/or sensibly generate a set of visible headers."""
-        for header in self._visible.keys():
+        for header in list(self._visible.keys()):
             if header in self:
                 self._visible.replace_header(header, self[header])
             else:

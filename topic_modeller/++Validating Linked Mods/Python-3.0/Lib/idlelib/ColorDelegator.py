@@ -51,7 +51,7 @@ class ColorDelegator(Delegator):
             self.notify_range("1.0", "end")
 
     def config_colors(self):
-        for tag, cnf in self.tagdefs.items():
+        for tag, cnf in list(self.tagdefs.items()):
             if cnf:
                 self.tag_configure(tag, **cnf)
         self.tag_raise('sel')
@@ -72,7 +72,7 @@ class ColorDelegator(Delegator):
             "hit": idleConf.GetHighlight(theme, "hit"),
             }
 
-        if DEBUG: print('tagdefs',self.tagdefs)
+        if DEBUG: print(('tagdefs',self.tagdefs))
 
     def insert(self, index, chars, tags=None):
         index = self.index(index)
@@ -129,8 +129,8 @@ class ColorDelegator(Delegator):
         if self.allow_colorizing and not self.colorizing:
             self.after_id = self.after(1, self.recolorize)
         if DEBUG:
-            print("auto colorizing turned",\
-                  self.allow_colorizing and "on" or "off")
+            print(("auto colorizing turned",\
+                  self.allow_colorizing and "on" or "off"))
         return "break"
 
     def recolorize(self):
@@ -151,7 +151,7 @@ class ColorDelegator(Delegator):
             t0 = time.clock()
             self.recolorize_main()
             t1 = time.clock()
-            if DEBUG: print("%.3f seconds" % (t1-t0))
+            if DEBUG: print(("%.3f seconds" % (t1-t0)))
         finally:
             self.colorizing = False
         if self.allow_colorizing and self.tag_nextrange("TODO", "1.0"):
@@ -195,7 +195,7 @@ class ColorDelegator(Delegator):
                 chars = chars + line
                 m = self.prog.search(chars)
                 while m:
-                    for key, value in m.groupdict().items():
+                    for key, value in list(m.groupdict().items()):
                         if value:
                             a, b = m.span(key)
                             self.tag_add(key,

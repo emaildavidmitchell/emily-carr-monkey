@@ -45,9 +45,9 @@ class Server:
     def _serve(self):
         if self._verbose: print("Wait for connection ...")
         conn, address = self._socket.accept()
-        if self._verbose: print("Accepted connection from %s" % repr(address))
+        if self._verbose: print(("Accepted connection from %s" % repr(address)))
         if not self._verify(conn, address):
-            print("*** Connection from %s refused" % repr(address))
+            print(("*** Connection from %s refused" % repr(address)))
             conn.close()
             return
         rf = conn.makefile('r')
@@ -72,7 +72,7 @@ class Server:
             request = rp.load()
         except EOFError:
             return 0
-        if self._verbose > 1: print("Got request: %s" % repr(request))
+        if self._verbose > 1: print(("Got request: %s" % repr(request)))
         try:
             methodname, args, id = request
             if '.' in methodname:
@@ -87,7 +87,7 @@ class Server:
         if id < 0 and reply[:2] == (None, None):
             if self._verbose > 1: print("Suppress reply")
             return 1
-        if self._verbose > 1: print("Send reply: %s" % repr(reply))
+        if self._verbose > 1: print(("Send reply: %s" % repr(reply)))
         wp = pickle.Pickler(wf)
         wp.dump(reply)
         return 1
@@ -101,7 +101,7 @@ class Server:
 
     def _listmethods(self, cl=None):
         if not cl: cl = self.__class__
-        names = sorted([x for x in cl.__dict__.keys() if x[0] != '_'])
+        names = sorted([x for x in list(cl.__dict__.keys()) if x[0] != '_'])
         for base in cl.__bases__:
             basenames = self._listmethods(base)
             basenames = list(filter(lambda x, names=names: x not in names, basenames))
@@ -132,11 +132,11 @@ class SecureServer(Server, Security):
             response = string.atol(string.strip(response))
         except string.atol_error:
             if self._verbose > 0:
-                print("Invalid response syntax", repr(response))
+                print(("Invalid response syntax", repr(response)))
             return 0
         if not self._compare_challenge_response(challenge, response):
             if self._verbose > 0:
-                print("Invalid response value", repr(response))
+                print(("Invalid response value", repr(response)))
             return 0
         if self._verbose > 1:
             print("Response matches challenge.  Go ahead!")

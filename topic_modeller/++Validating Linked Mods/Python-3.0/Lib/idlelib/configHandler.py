@@ -515,7 +515,7 @@ class IdleConf:
             # We're using AquaTk, replace all keybingings that use the
             # Alt key by ones that use the Option key because the former
             # don't work reliably.
-            for k, v in result.items():
+            for k, v in list(result.items()):
                 v2 = [ x.replace('<Alt-', '<Option-') for x in v ]
                 if v != v2:
                     result[k] = v2
@@ -534,7 +534,7 @@ class IdleConf:
             extKeys=self.__GetRawExtensionKeys(extn)
             if extKeys: #the extension defines keybindings
                 for event in extKeys:
-                    if extKeys[event] in keySet.values():
+                    if extKeys[event] in list(keySet.values()):
                         #the binding is already in use
                         extKeys[event]='' #disable this binding
                     keySet[event]=extKeys[event] #add binding
@@ -687,7 +687,7 @@ idleConf=IdleConf()
 ### module test
 if __name__ == '__main__':
     def dumpCfg(cfg):
-        print('\n',cfg,'\n')
+        print(('\n',cfg,'\n'))
         for key in cfg:
             sections=cfg[key].sections()
             print(key)
@@ -697,8 +697,8 @@ if __name__ == '__main__':
                 print(section)
                 print(options)
                 for option in options:
-                    print(option, '=', cfg[key].Get(section,option))
+                    print((option, '=', cfg[key].Get(section,option)))
     dumpCfg(idleConf.defaultCfg)
     dumpCfg(idleConf.userCfg)
-    print(idleConf.userCfg['main'].Get('Theme','name'))
+    print((idleConf.userCfg['main'].Get('Theme','name')))
     #print idleConf.userCfg['highlight'].GetDefHighlight('Foo','normal')

@@ -105,7 +105,7 @@ class DictReader:
         # values
         while row == []:
             row = next(self.reader)
-        d = dict(zip(self.fieldnames, row))
+        d = dict(list(zip(self.fieldnames, row)))
         lf = len(self.fieldnames)
         lr = len(row)
         if lf < lr:
@@ -270,7 +270,7 @@ class Sniffer:
         additional chunks as necessary.
         """
 
-        data = list(filter(None, data.split('\n')))
+        data = list([_f for _f in data.split('\n') if _f])
 
         ascii = [chr(c) for c in range(127)] # 7-bit ASCII
 
@@ -292,7 +292,7 @@ class Sniffer:
                     metaFrequency[freq] = metaFrequency.get(freq, 0) + 1
                     charFrequency[char] = metaFrequency
 
-            for char in charFrequency.keys():
+            for char in list(charFrequency.keys()):
                 items = list(charFrequency[char].items())
                 if len(items) == 1 and items[0][0] == 0:
                     continue
@@ -308,7 +308,7 @@ class Sniffer:
                     modes[char] = items[0]
 
             # build a list of possible delimiters
-            modeList = modes.items()
+            modeList = list(modes.items())
             total = float(chunkLength * iteration)
             # (rows of consistent data) / (number of rows) = 100%
             consistency = 1.0
@@ -338,14 +338,14 @@ class Sniffer:
         # if there's more than one, fall back to a 'preferred' list
         if len(delims) > 1:
             for d in self.preferred:
-                if d in delims.keys():
+                if d in list(delims.keys()):
                     skipinitialspace = (data[0].count(d) ==
                                         data[0].count("%c " % d))
                     return (d, skipinitialspace)
 
         # nothing else indicates a preference, pick the character that
         # dominates(?)
-        items = [(v,k) for (k,v) in delims.items()]
+        items = [(v,k) for (k,v) in list(delims.items())]
         items.sort()
         delim = items[-1][1]
 
@@ -405,7 +405,7 @@ class Sniffer:
         # finally, compare results against first row and "vote"
         # on whether it's a header
         hasHeader = 0
-        for col, colType in columnTypes.items():
+        for col, colType in list(columnTypes.items()):
             if type(colType) == type(0): # it's a length
                 if len(header[col]) != colType:
                     hasHeader += 1

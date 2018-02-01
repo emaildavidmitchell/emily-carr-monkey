@@ -24,7 +24,7 @@ def getcaps():
             continue
         morecaps = readmailcapfile(fp)
         fp.close()
-        for key, value in morecaps.items():
+        for key, value in list(morecaps.items()):
             if not key in caps:
                 caps[key] = value
             else:
@@ -164,7 +164,7 @@ def lookup(caps, MIMEtype, key=None):
     if MIMEtype in caps:
         entries = entries + caps[MIMEtype]
     if key is not None:
-        entries = filter(lambda e, key=key: key in e, entries)
+        entries = list(filter(lambda e, key=key: key in e, entries))
     return entries
 
 def subst(field, MIMEtype, filename, plist=[]):
@@ -225,30 +225,30 @@ def test():
         file = args[1]
         command, e = findmatch(caps, MIMEtype, 'view', file)
         if not command:
-            print("No viewer found for", type)
+            print(("No viewer found for", type))
         else:
-            print("Executing:", command)
+            print(("Executing:", command))
             sts = os.system(command)
             if sts:
-                print("Exit status:", sts)
+                print(("Exit status:", sts))
 
 def show(caps):
     print("Mailcap files:")
-    for fn in listmailcapfiles(): print("\t" + fn)
+    for fn in listmailcapfiles(): print(("\t" + fn))
     print()
     if not caps: caps = getcaps()
     print("Mailcap entries:")
     print()
-    ckeys = caps.keys()
+    ckeys = list(caps.keys())
     ckeys.sort()
     for type in ckeys:
         print(type)
         entries = caps[type]
         for e in entries:
-            keys = e.keys()
+            keys = list(e.keys())
             keys.sort()
             for k in keys:
-                print("  %-15s" % k, e[k])
+                print(("  %-15s" % k, e[k]))
             print()
 
 if __name__ == '__main__':

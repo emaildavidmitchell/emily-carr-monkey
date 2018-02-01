@@ -97,13 +97,13 @@ class netrc:
     def __repr__(self):
         """Dump the class data in the format of a .netrc file."""
         rep = ""
-        for host in self.hosts.keys():
+        for host in list(self.hosts.keys()):
             attrs = self.hosts[host]
             rep = rep + "machine "+ host + "\n\tlogin " + repr(attrs[0]) + "\n"
             if attrs[1]:
                 rep = rep + "account " + repr(attrs[1])
             rep = rep + "\tpassword " + repr(attrs[2]) + "\n"
-        for macro in self.macros.keys():
+        for macro in list(self.macros.keys()):
             rep = rep + "macdef " + macro + "\n"
             for line in self.macros[macro]:
                 rep = rep + line
@@ -111,4 +111,4 @@ class netrc:
         return rep
 
 if __name__ == '__main__':
-    print(netrc())
+    print((netrc()))

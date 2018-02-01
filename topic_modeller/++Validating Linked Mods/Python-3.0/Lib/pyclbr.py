@@ -80,7 +80,7 @@ def readmodule(module, path=None):
     resulting dictionary.'''
 
     res = {}
-    for key, value in _readmodule(module, path or []).items():
+    for key, value in list(_readmodule(module, path or []).items()):
         if isinstance(value, Class):
             res[key] = value
     return res
@@ -325,17 +325,17 @@ def _main():
     else:
         path = []
     dict = readmodule_ex(mod, path)
-    objs = dict.values()
+    objs = list(dict.values())
     objs.sort(key=lambda a: getattr(a, 'lineno', 0))
     for obj in objs:
         if isinstance(obj, Class):
-            print("class", obj.name, obj.super, obj.lineno)
-            methods = sorted(obj.methods.items(), key=itemgetter(1))
+            print(("class", obj.name, obj.super, obj.lineno))
+            methods = sorted(list(obj.methods.items()), key=itemgetter(1))
             for name, lineno in methods:
                 if name != "__path__":
-                    print("  def", name, lineno)
+                    print(("  def", name, lineno))
         elif isinstance(obj, Function):
-            print("def", obj.name, obj.lineno)
+            print(("def", obj.name, obj.lineno))
 
 if __name__ == "__main__":
     _main()

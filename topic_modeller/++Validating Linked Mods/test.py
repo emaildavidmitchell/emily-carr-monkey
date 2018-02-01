@@ -1,6 +1,7 @@
 import os
 import sys
-reload(sys)
+import imp
+imp.reload(sys)
 sys.setdefaultencoding("utf-8")
 from unidecode import unidecode
 

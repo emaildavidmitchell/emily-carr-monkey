@@ -391,7 +391,7 @@ class install (Command):
     def dump_dirs(self, msg):
         if DEBUG:
             from distutils.fancy_getopt import longopt_xlate
-            print(msg + ":")
+            print((msg + ":"))
             for opt in self.user_options:
                 opt_name = opt[0]
                 if opt_name[-1] == "=":
@@ -402,7 +402,7 @@ class install (Command):
                 else:
                     opt_name = longopt_xlate(opt_name)
                     val = getattr(self, opt_name)
-                print("  %s: %s" % (opt_name, val))
+                print(("  %s: %s" % (opt_name, val)))
 
 
     def finalize_unix(self):
@@ -546,7 +546,7 @@ class install (Command):
         if not self.user:
             return
         home = convert_path(os.path.expanduser("~"))
-        for name, path in self.config_vars.items():
+        for name, path in list(self.config_vars.items()):
             if path.startswith(home) and not os.path.isdir(path):
                 self.debug_print("os.makedirs('%s', 0o700)" % path)
                 os.makedirs(path, 0o700)
@@ -585,8 +585,8 @@ class install (Command):
                          "writing list of installed files to '%s'" %
                          self.record)
 
-        sys_path = map(os.path.normpath, sys.path)
-        sys_path = map(os.path.normcase, sys_path)
+        sys_path = list(map(os.path.normpath, sys.path))
+        sys_path = list(map(os.path.normcase, sys_path))
         install_lib = os.path.normcase(os.path.normpath(self.install_lib))
         if (self.warn_dir and
             not (self.path_file and self.install_path_file) and

@@ -42,7 +42,7 @@ def main():
         try:
             f = open(file, 'r')
         except IOError as msg:
-            print(file, ':', msg)
+            print((file, ':', msg))
             sys.exit(1)
     bydate = {}
     bytime = {}
@@ -60,7 +60,7 @@ def main():
             if search and string.find(line, search) < 0:
                 continue
             if prog.match(line) < 0:
-                print('Bad line', lineno, ':', repr(line))
+                print(('Bad line', lineno, ':', repr(line)))
                 continue
             items = prog.group(1, 2, 3, 4, 5, 6)
             (logtime, loguser, loghost, logfile, logbytes,
@@ -93,7 +93,7 @@ def main():
             add(byuser, loguser, items)
             add(bytype, direction, items)
     except KeyboardInterrupt:
-        print('Interrupted at line', lineno)
+        print(('Interrupted at line', lineno))
     show(bytype, 'by transfer direction', maxitems)
     show(bydir, 'by directory', maxitems)
     show(byfile, 'by file', maxitems)
@@ -104,7 +104,7 @@ def main():
 
 def showbar(dict, title):
     n = len(title)
-    print('='*((70-n)//2), title, '='*((71-n)//2))
+    print(('='*((70-n)//2), title, '='*((71-n)//2)))
     list = []
     for key in sorted(dict.keys()):
         n = len(str(key))
@@ -118,19 +118,19 @@ def showbar(dict, title):
     for count, key in list:
         barlength = int(round(maxbarlength*float(count)/maxcount))
         bar = '*'*barlength
-        print('%5d %-*s %s' % (count, maxkeylength, key, bar))
+        print(('%5d %-*s %s' % (count, maxkeylength, key, bar)))
 
 def show(dict, title, maxitems):
     if len(dict) > maxitems:
         title = title + ' (first %d)'%maxitems
     n = len(title)
-    print('='*((70-n)//2), title, '='*((71-n)//2))
+    print(('='*((70-n)//2), title, '='*((71-n)//2)))
     list = []
-    for key in dict.keys():
+    for key in list(dict.keys()):
         list.append((-len(dict[key]), key))
     list.sort()
     for count, key in list[:maxitems]:
-        print('%5d %s' % (-count, key))
+        print(('%5d %s' % (-count, key)))
 
 def add(dict, key, item):
     if key in dict:

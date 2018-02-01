@@ -14,6 +14,7 @@
 import sys, encodings, encodings.aliases
 from builtins import str as _builtin_str
 import functools
+import collections
 
 # Try importing the _locale module.
 #
@@ -207,7 +208,7 @@ def format_string(f, val, grouping=False):
             del new_val[i+1:i+1+starcount]
             i += (1 + starcount)
         val = tuple(new_val)
-    elif operator.isMappingType(val):
+    elif isinstance(val, collections.Mapping):
         for perc in percents:
             key = perc.group("key")
             val[key] = format(perc.group(), val[key], grouping)
@@ -287,10 +288,10 @@ def _test():
     setlocale(LC_ALL, "")
     #do grouping
     s1 = format("%d", 123456789,1)
-    print(s1, "is", atoi(s1))
+    print((s1, "is", atoi(s1)))
     #standard formatting
     s1 = str(3.14)
-    print(s1, "is", atof(s1))
+    print((s1, "is", atof(s1)))
 
 ### Locale name aliasing engine
 
@@ -1663,37 +1664,37 @@ def _print_locale():
     """
     categories = {}
     def _init_categories(categories=categories):
-        for k,v in globals().items():
+        for k,v in list(globals().items()):
             if k[:3] == 'LC_':
                 categories[k] = v
     _init_categories()
     del categories['LC_ALL']
 
     print('Locale defaults as determined by getdefaultlocale():')
-    print('-'*72)
+    print(('-'*72))
     lang, enc = getdefaultlocale()
-    print('Language: ', lang or '(undefined)')
-    print('Encoding: ', enc or '(undefined)')
+    print(('Language: ', lang or '(undefined)'))
+    print(('Encoding: ', enc or '(undefined)'))
     print()
 
     print('Locale settings on startup:')
-    print('-'*72)
-    for name,category in categories.items():
-        print(name, '...')
+    print(('-'*72))
+    for name,category in list(categories.items()):
+        print((name, '...'))
         lang, enc = getlocale(category)
-        print('   Language: ', lang or '(undefined)')
-        print('   Encoding: ', enc or '(undefined)')
+        print(('   Language: ', lang or '(undefined)'))
+        print(('   Encoding: ', enc or '(undefined)'))
         print()
 
     print()
     print('Locale settings after calling resetlocale():')
-    print('-'*72)
+    print(('-'*72))
     resetlocale()
-    for name,category in categories.items():
-        print(name, '...')
+    for name,category in list(categories.items()):
+        print((name, '...'))
         lang, enc = getlocale(category)
-        print('   Language: ', lang or '(undefined)')
-        print('   Encoding: ', enc or '(undefined)')
+        print(('   Language: ', lang or '(undefined)'))
+        print(('   Encoding: ', enc or '(undefined)'))
         print()
 
     try:
@@ -1705,12 +1706,12 @@ def _print_locale():
     else:
         print()
         print('Locale settings after calling setlocale(LC_ALL, ""):')
-        print('-'*72)
-        for name,category in categories.items():
-            print(name, '...')
+        print(('-'*72))
+        for name,category in list(categories.items()):
+            print((name, '...'))
             lang, enc = getlocale(category)
-            print('   Language: ', lang or '(undefined)')
-            print('   Encoding: ', enc or '(undefined)')
+            print(('   Language: ', lang or '(undefined)'))
+            print(('   Encoding: ', enc or '(undefined)'))
             print()
 
 ###

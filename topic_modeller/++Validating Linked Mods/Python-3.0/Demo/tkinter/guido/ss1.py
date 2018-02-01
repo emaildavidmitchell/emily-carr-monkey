@@ -76,10 +76,10 @@ class Sheet:
             del self.cells[xy]
 
     def clearrows(self, y1, y2):
-        self.clearcells(0, y1, sys.maxint, y2)
+        self.clearcells(0, y1, sys.maxsize, y2)
 
     def clearcolumns(self, x1, x2):
-        self.clearcells(x1, 0, x2, sys.maxint)
+        self.clearcells(x1, 0, x2, sys.maxsize)
 
     def selectcells(self, x1, y1, x2, y2):
         if x1 > x2:
@@ -110,23 +110,23 @@ class Sheet:
 
     def insertrows(self, y, n):
         assert n > 0
-        self.movecells(0, y, sys.maxint, sys.maxint, 0, n)
+        self.movecells(0, y, sys.maxsize, sys.maxsize, 0, n)
 
     def deleterows(self, y1, y2):
         if y1 > y2:
             y1, y2 = y2, y1
         self.clearrows(y1, y2)
-        self.movecells(0, y2+1, sys.maxint, sys.maxint, 0, y1-y2-1)
+        self.movecells(0, y2+1, sys.maxsize, sys.maxsize, 0, y1-y2-1)
 
     def insertcolumns(self, x, n):
         assert n > 0
-        self.movecells(x, 0, sys.maxint, sys.maxint, n, 0)
+        self.movecells(x, 0, sys.maxsize, sys.maxsize, n, 0)
 
     def deletecolumns(self, x1, x2):
         if x1 > x2:
             x1, x2 = x2, x1
         self.clearcells(x1, x2)
-        self.movecells(x2+1, 0, sys.maxint, sys.maxint, x1-x2-1, 0)
+        self.movecells(x2+1, 0, sys.maxsize, sys.maxsize, x1-x2-1, 0)
 
     def getsize(self):
         maxx = maxy = 0
@@ -136,13 +136,13 @@ class Sheet:
         return maxx, maxy
 
     def reset(self):
-        for cell in self.cells.values():
+        for cell in list(self.cells.values()):
             if hasattr(cell, 'reset'):
                 cell.reset()
 
     def recalc(self):
         self.reset()
-        for cell in self.cells.values():
+        for cell in list(self.cells.values()):
             if hasattr(cell, 'recalc'):
                 cell.recalc(self.rexec)
 
@@ -160,7 +160,7 @@ class Sheet:
             full[0, y] = text, alignment = str(y), RIGHT
             colwidth[0] = max(colwidth[0], len(text))
         # Add sheet cells in columns with x>0 and y>0
-        for (x, y), cell in self.cells.items():
+        for (x, y), cell in list(self.cells.items()):
             if x <= 0 or y <= 0:
                 continue
             if hasattr(cell, 'recalc'):
@@ -198,7 +198,7 @@ class Sheet:
 
     def xml(self):
         out = ['<spreadsheet>']
-        for (x, y), cell in self.cells.items():
+        for (x, y), cell in list(self.cells.items()):
             if hasattr(cell, 'xml'):
                 cellxml = cell.xml()
             else:
@@ -236,7 +236,7 @@ class SheetParser:
     def startelement(self, tag, attrs):
         method = getattr(self, 'start_'+tag, None)
         if method:
-            for key, value in attrs.items():
+            for key, value in list(attrs.items()):
                 attrs[key] = str(value) # XXX Convert Unicode to 8-bit
             method(attrs)
         self.texts = []
@@ -325,7 +325,7 @@ class BaseCell:
 class NumericCell(BaseCell):
 
     def __init__(self, value, fmt="%s", alignment=RIGHT):
-        assert isinstance(value, (int, int, float, complex))
+        assert isinstance(value, (int, float, complex))
         assert alignment in (LEFT, CENTER, RIGHT)
         self.value = value
         self.fmt = fmt
@@ -366,7 +366,7 @@ class NumericCell(BaseCell):
 class StringCell(BaseCell):
 
     def __init__(self, text, fmt="%s", alignment=LEFT):
-        assert isinstance(text, (str, str))
+        assert isinstance(text, str)
         assert alignment in (LEFT, CENTER, RIGHT)
         self.text = text
         self.fmt = fmt
@@ -485,7 +485,7 @@ def colnum2name(n):
         s = chr(m+ord('A')) + s
     return s
 
-import Tkinter as Tk
+import tkinter as Tk
 
 class SheetGUI:
 
@@ -625,29 +625,29 @@ class SheetGUI:
 
     def selectall(self, event):
         self.setcurrent(1, 1)
-        self.setcorner(sys.maxint, sys.maxint)
+        self.setcorner(sys.maxsize, sys.maxsize)
 
     def selectcolumn(self, event):
         x, y = self.whichxy(event)
         self.setcurrent(x, 1)
-        self.setcorner(x, sys.maxint)
+        self.setcorner(x, sys.maxsize)
 
     def extendcolumn(self, event):
         x, y = self.whichxy(event)
         if x > 0:
             self.setcurrent(self.currentxy[0], 1)
-            self.setcorner(x, sys.maxint)
+            self.setcorner(x, sys.maxsize)
 
     def selectrow(self, event):
         x, y = self.whichxy(event)
         self.setcurrent(1, y)
-        self.setcorner(sys.maxint, y)
+        self.setcorner(sys.maxsize, y)
 
     def extendrow(self, event):
         x, y = self.whichxy(event)
         if y > 0:
             self.setcurrent(1, self.currentxy[1])
-            self.setcorner(sys.maxint, y)
+            self.setcorner(sys.maxsize, y)
 
     def press(self, event):
         x, y = self.whichxy(event)
@@ -699,7 +699,7 @@ class SheetGUI:
             x1, x2 = x2, x1
         if y1 > y2:
             y1, y2 = y2, y1
-        for (x, y), cell in self.gridcells.items():
+        for (x, y), cell in list(self.gridcells.items()):
             if x1 <= x <= x2 and y1 <= y <= y2:
                 cell['bg'] = 'lightBlue'
         gridcell = self.gridcells.get(self.currentxy)
@@ -708,14 +708,14 @@ class SheetGUI:
         self.setbeacon(x1, y1, x2, y2)
 
     def setbeacon(self, x1, y1, x2, y2):
-        if x1 == y1 == 1 and x2 == y2 == sys.maxint:
+        if x1 == y1 == 1 and x2 == y2 == sys.maxsize:
             name = ":"
-        elif (x1, x2) == (1, sys.maxint):
+        elif (x1, x2) == (1, sys.maxsize):
             if y1 == y2:
                 name = "%d" % y1
             else:
                 name = "%d:%d" % (y1, y2)
-        elif (y1, y2) == (1, sys.maxint):
+        elif (y1, y2) == (1, sys.maxsize):
             if x1 == x2:
                 name = "%s" % colnum2name(x1)
             else:
@@ -735,7 +735,7 @@ class SheetGUI:
                 x1, x2 = x2, x1
             if y1 > y2:
                 y1, y2 = y2, y1
-            for (x, y), cell in self.gridcells.items():
+            for (x, y), cell in list(self.gridcells.items()):
                 if x1 <= x <= x2 and y1 <= y <= y2:
                     cell['bg'] = 'white'
 
@@ -794,7 +794,7 @@ class SheetGUI:
     def sync(self):
         "Fill the GUI cells from the sheet cells."
         self.sheet.recalc()
-        for (x, y), gridcell in self.gridcells.items():
+        for (x, y), gridcell in list(self.gridcells.items()):
             if x == 0 or y == 0:
                 continue
             cell = self.sheet.getcell(x, y)

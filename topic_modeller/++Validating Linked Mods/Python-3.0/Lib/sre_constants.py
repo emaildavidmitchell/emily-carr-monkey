@@ -219,7 +219,7 @@ SRE_INFO_CHARSET = 4 # pattern starts with character from given set
 
 if __name__ == "__main__":
     def dump(f, d, prefix):
-        items = d.items()
+        items = list(d.items())
         items.sort(key=lambda a: a[1])
         for k, v in items:
             f.write("#define %s_%s %s\n" % (prefix, k.upper(), v))

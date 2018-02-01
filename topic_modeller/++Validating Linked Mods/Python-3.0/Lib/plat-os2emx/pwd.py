@@ -105,7 +105,7 @@ if os.pathsep:
 # helper routine to identify which separator character is in use
 def __get_field_sep(record):
     fs = None
-    for c in __field_sep.keys():
+    for c in list(__field_sep.keys()):
         # there should be 6 delimiter characters (for 7 fields)
         if record.count(c) == 6:
             fs = c
@@ -201,7 +201,7 @@ def getpwnam(name):
 # return all the passwd database entries
 def getpwall():
     u, n = __read_passwd_file()
-    return n.values()
+    return list(n.values())
 
 # test harness
 if __name__ == '__main__':

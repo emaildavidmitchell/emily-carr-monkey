@@ -117,28 +117,28 @@ def _test():
         def m2(self, y): return self.x + y
         __trace_output__ = sys.stdout
     class D(C):
-        def m2(self, y): print("D.m2(%r)" % (y,)); return C.m2(self, y)
+        def m2(self, y): print(("D.m2(%r)" % (y,))); return C.m2(self, y)
         __trace_output__ = None
     x = C(4321)
     print(x)
-    print(x.x)
-    print(x.m1(100))
-    print(x.m1(10))
-    print(x.m2(33))
-    print(x.m1(5))
-    print(x.m2(4000))
-    print(x.x)
+    print((x.x))
+    print((x.m1(100)))
+    print((x.m1(10)))
+    print((x.m2(33)))
+    print((x.m1(5)))
+    print((x.m2(4000)))
+    print((x.x))
 
-    print(C.__init__)
-    print(C.m2)
-    print(D.__init__)
-    print(D.m2)
+    print((C.__init__))
+    print((C.m2))
+    print((D.__init__))
+    print((D.m2))
 
     y = D()
     print(y)
-    print(y.m1(10))
-    print(y.m2(100))
-    print(y.x)
+    print((y.m1(10)))
+    print((y.m2(100)))
+    print((y.x))
 
 if __name__ == '__main__':
     _test()

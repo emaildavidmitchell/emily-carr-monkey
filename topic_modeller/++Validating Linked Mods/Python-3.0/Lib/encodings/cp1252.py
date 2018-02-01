@@ -173,38 +173,38 @@ decoding_table = (
     '}'        #  0x7D -> RIGHT CURLY BRACKET
     '~'        #  0x7E -> TILDE
     '\x7f'     #  0x7F -> DELETE
-    '\u20ac'   #  0x80 -> EURO SIGN
-    '\ufffe'   #  0x81 -> UNDEFINED
-    '\u201a'   #  0x82 -> SINGLE LOW-9 QUOTATION MARK
-    '\u0192'   #  0x83 -> LATIN SMALL LETTER F WITH HOOK
-    '\u201e'   #  0x84 -> DOUBLE LOW-9 QUOTATION MARK
-    '\u2026'   #  0x85 -> HORIZONTAL ELLIPSIS
-    '\u2020'   #  0x86 -> DAGGER
-    '\u2021'   #  0x87 -> DOUBLE DAGGER
-    '\u02c6'   #  0x88 -> MODIFIER LETTER CIRCUMFLEX ACCENT
-    '\u2030'   #  0x89 -> PER MILLE SIGN
-    '\u0160'   #  0x8A -> LATIN CAPITAL LETTER S WITH CARON
-    '\u2039'   #  0x8B -> SINGLE LEFT-POINTING ANGLE QUOTATION MARK
-    '\u0152'   #  0x8C -> LATIN CAPITAL LIGATURE OE
-    '\ufffe'   #  0x8D -> UNDEFINED
-    '\u017d'   #  0x8E -> LATIN CAPITAL LETTER Z WITH CARON
-    '\ufffe'   #  0x8F -> UNDEFINED
-    '\ufffe'   #  0x90 -> UNDEFINED
-    '\u2018'   #  0x91 -> LEFT SINGLE QUOTATION MARK
-    '\u2019'   #  0x92 -> RIGHT SINGLE QUOTATION MARK
-    '\u201c'   #  0x93 -> LEFT DOUBLE QUOTATION MARK
-    '\u201d'   #  0x94 -> RIGHT DOUBLE QUOTATION MARK
-    '\u2022'   #  0x95 -> BULLET
-    '\u2013'   #  0x96 -> EN DASH
-    '\u2014'   #  0x97 -> EM DASH
-    '\u02dc'   #  0x98 -> SMALL TILDE
-    '\u2122'   #  0x99 -> TRADE MARK SIGN
-    '\u0161'   #  0x9A -> LATIN SMALL LETTER S WITH CARON
-    '\u203a'   #  0x9B -> SINGLE RIGHT-POINTING ANGLE QUOTATION MARK
-    '\u0153'   #  0x9C -> LATIN SMALL LIGATURE OE
-    '\ufffe'   #  0x9D -> UNDEFINED
-    '\u017e'   #  0x9E -> LATIN SMALL LETTER Z WITH CARON
-    '\u0178'   #  0x9F -> LATIN CAPITAL LETTER Y WITH DIAERESIS
+    '\\u20ac'   #  0x80 -> EURO SIGN
+    '\\ufffe'   #  0x81 -> UNDEFINED
+    '\\u201a'   #  0x82 -> SINGLE LOW-9 QUOTATION MARK
+    '\\u0192'   #  0x83 -> LATIN SMALL LETTER F WITH HOOK
+    '\\u201e'   #  0x84 -> DOUBLE LOW-9 QUOTATION MARK
+    '\\u2026'   #  0x85 -> HORIZONTAL ELLIPSIS
+    '\\u2020'   #  0x86 -> DAGGER
+    '\\u2021'   #  0x87 -> DOUBLE DAGGER
+    '\\u02c6'   #  0x88 -> MODIFIER LETTER CIRCUMFLEX ACCENT
+    '\\u2030'   #  0x89 -> PER MILLE SIGN
+    '\\u0160'   #  0x8A -> LATIN CAPITAL LETTER S WITH CARON
+    '\\u2039'   #  0x8B -> SINGLE LEFT-POINTING ANGLE QUOTATION MARK
+    '\\u0152'   #  0x8C -> LATIN CAPITAL LIGATURE OE
+    '\\ufffe'   #  0x8D -> UNDEFINED
+    '\\u017d'   #  0x8E -> LATIN CAPITAL LETTER Z WITH CARON
+    '\\ufffe'   #  0x8F -> UNDEFINED
+    '\\ufffe'   #  0x90 -> UNDEFINED
+    '\\u2018'   #  0x91 -> LEFT SINGLE QUOTATION MARK
+    '\\u2019'   #  0x92 -> RIGHT SINGLE QUOTATION MARK
+    '\\u201c'   #  0x93 -> LEFT DOUBLE QUOTATION MARK
+    '\\u201d'   #  0x94 -> RIGHT DOUBLE QUOTATION MARK
+    '\\u2022'   #  0x95 -> BULLET
+    '\\u2013'   #  0x96 -> EN DASH
+    '\\u2014'   #  0x97 -> EM DASH
+    '\\u02dc'   #  0x98 -> SMALL TILDE
+    '\\u2122'   #  0x99 -> TRADE MARK SIGN
+    '\\u0161'   #  0x9A -> LATIN SMALL LETTER S WITH CARON
+    '\\u203a'   #  0x9B -> SINGLE RIGHT-POINTING ANGLE QUOTATION MARK
+    '\\u0153'   #  0x9C -> LATIN SMALL LIGATURE OE
+    '\\ufffe'   #  0x9D -> UNDEFINED
+    '\\u017e'   #  0x9E -> LATIN SMALL LETTER Z WITH CARON
+    '\\u0178'   #  0x9F -> LATIN CAPITAL LETTER Y WITH DIAERESIS
     '\xa0'     #  0xA0 -> NO-BREAK SPACE
     '\xa1'     #  0xA1 -> INVERTED EXCLAMATION MARK
     '\xa2'     #  0xA2 -> CENT SIGN

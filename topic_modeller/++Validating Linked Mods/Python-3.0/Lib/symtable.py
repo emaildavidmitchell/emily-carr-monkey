@@ -12,7 +12,7 @@ __all__ = ["symtable", "SymbolTable", "Class", "Function", "Symbol"]
 
 def symtable(code, filename, compile_type):
     raw = _symtable.symtable(code, filename, compile_type)
-    for top in raw.values():
+    for top in list(raw.values()):
         if top.name == 'top':
             break
     return _newSymbolTable(top, filename)
@@ -96,7 +96,7 @@ class SymbolTable(object):
         return bool(self._table.optimized & OPT_IMPORT_STAR)
 
     def get_identifiers(self):
-        return self._table.symbols.keys()
+        return list(self._table.symbols.keys())
 
     def lookup(self, name):
         sym = self._symbols.get(name)
@@ -235,4 +235,4 @@ if __name__ == "__main__":
     mod = symtable(src, os.path.split(sys.argv[0])[1], "exec")
     for ident in mod.get_identifiers():
         info = mod.lookup(ident)
-        print(info, info.is_local(), info.is_namespace())
+        print((info, info.is_local(), info.is_namespace()))

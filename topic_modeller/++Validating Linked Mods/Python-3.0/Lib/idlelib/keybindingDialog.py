@@ -167,7 +167,7 @@ class GetKeysDialog(Toplevel):
 
     def GetModifiers(self):
         modList = [variable.get() for variable in self.modifier_vars]
-        return filter(None, modList)
+        return [_f for _f in modList if _f]
 
     def ClearKeySeq(self):
         self.listKeysFinal.select_clear(0,END)
@@ -263,6 +263,6 @@ if __name__ == '__main__':
     def run():
         keySeq=''
         dlg=GetKeysDialog(root,'Get Keys','find-again',[])
-        print(dlg.result)
+        print((dlg.result))
     Button(root,text='Dialog',command=run).pack()
     root.mainloop()

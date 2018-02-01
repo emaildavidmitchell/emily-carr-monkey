@@ -35,20 +35,20 @@ class FixerTestCase(support.TestCase):
         before = support.reformat(before)
         after = support.reformat(after)
         tree = self.refactor.refactor_string(before, self.filename)
-        self.failUnlessEqual(after, str(tree))
+        self.assertEqual(after, str(tree))
         return tree
 
     def check(self, before, after, ignore_warnings=False):
         tree = self._check(before, after)
-        self.failUnless(tree.was_changed)
+        self.assertTrue(tree.was_changed)
         if not ignore_warnings:
-            self.failUnlessEqual(self.fixer_log, [])
+            self.assertEqual(self.fixer_log, [])
 
     def warns(self, before, after, message, unchanged=False):
         tree = self._check(before, after)
-        self.failUnless(message in "".join(self.fixer_log))
+        self.assertTrue(message in "".join(self.fixer_log))
         if not unchanged:
-            self.failUnless(tree.was_changed)
+            self.assertTrue(tree.was_changed)
 
     def warns_unchanged(self, before, message):
         self.warns(before, before, message, unchanged=True)
@@ -56,7 +56,7 @@ class FixerTestCase(support.TestCase):
     def unchanged(self, before, ignore_warnings=False):
         self._check(before, before)
         if not ignore_warnings:
-            self.failUnlessEqual(self.fixer_log, [])
+            self.assertEqual(self.fixer_log, [])
 
     def assert_runs_after(self, *names):
         fixes = [self.fixer]
@@ -1427,7 +1427,7 @@ class Test_imports(FixerTestCase):
     from ..fixes.fix_imports import MAPPING as modules
 
     def test_import_module(self):
-        for old, new in self.modules.items():
+        for old, new in list(self.modules.items()):
             b = "import %s" % old
             a = "import %s" % new
             self.check(b, a)
@@ -1437,7 +1437,7 @@ class Test_imports(FixerTestCase):
             self.check(b, a)
 
     def test_import_from(self):
-        for old, new in self.modules.items():
+        for old, new in list(self.modules.items()):
             b = "from %s import foo" % old
             a = "from %s import foo" % new
             self.check(b, a)
@@ -1451,7 +1451,7 @@ class Test_imports(FixerTestCase):
             self.check(b, a)
 
     def test_import_module_as(self):
-        for old, new in self.modules.items():
+        for old, new in list(self.modules.items()):
             b = "import %s as foo_bar" % old
             a = "import %s as foo_bar" % new
             self.check(b, a)
@@ -1461,19 +1461,19 @@ class Test_imports(FixerTestCase):
             self.check(b, a)
 
     def test_import_from_as(self):
-        for old, new in self.modules.items():
+        for old, new in list(self.modules.items()):
             b = "from %s import foo as bar" % old
             a = "from %s import foo as bar" % new
             self.check(b, a)
 
     def test_star(self):
-        for old, new in self.modules.items():
+        for old, new in list(self.modules.items()):
             b = "from %s import *" % old
             a = "from %s import *" % new
             self.check(b, a)
 
     def test_import_module_usage(self):
-        for old, new in self.modules.items():
+        for old, new in list(self.modules.items()):
             b = """
                 import %s
                 foo(%s.bar)
@@ -1546,13 +1546,13 @@ class Test_urllib(FixerTestCase):
     from ..fixes.fix_urllib import MAPPING as modules
 
     def test_import_module(self):
-        for old, changes in self.modules.items():
+        for old, changes in list(self.modules.items()):
             b = "import %s" % old
             a = "import %s" % ", ".join(map(itemgetter(0), changes))
             self.check(b, a)
 
     def test_import_from(self):
-        for old, changes in self.modules.items():
+        for old, changes in list(self.modules.items()):
             all_members = []
             for new, members in changes:
                 for member in members:
@@ -1583,7 +1583,7 @@ class Test_urllib(FixerTestCase):
             self.warns_unchanged(s, "This module is now multiple modules")
 
     def test_import_from_as(self):
-        for old, changes in self.modules.items():
+        for old, changes in list(self.modules.items()):
             for new, members in changes:
                 for member in members:
                     b = "from %s import %s as foo_bar" % (old, member)
@@ -1596,7 +1596,7 @@ class Test_urllib(FixerTestCase):
             self.warns_unchanged(s, "Cannot handle star imports")
 
     def test_import_module_usage(self):
-        for old, changes in self.modules.items():
+        for old, changes in list(self.modules.items()):
             for new, members in changes:
                 for member in members:
                     b = """

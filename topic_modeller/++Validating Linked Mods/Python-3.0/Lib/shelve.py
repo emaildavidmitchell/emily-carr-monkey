@@ -91,7 +91,7 @@ class Shelf(collections.MutableMapping):
         self.keyencoding = "utf-8"
 
     def __iter__(self):
-        for k in self.dict.keys():
+        for k in list(self.dict.keys()):
             yield k.decode(self.keyencoding)
 
     def __len__(self):
@@ -147,7 +147,7 @@ class Shelf(collections.MutableMapping):
     def sync(self):
         if self.writeback and self.cache:
             self.writeback = False
-            for key, entry in self.cache.items():
+            for key, entry in list(self.cache.items()):
                 self[key] = entry
             self.writeback = True
             self.cache = {}
@@ -177,7 +177,7 @@ class BsdDbShelf(Shelf):
         f = BytesIO(value)
         return (key.decode(self.keyencoding), Unpickler(f).load())
 
-    def next(self):
+    def __next__(self):
         (key, value) = next(self.dict)
         f = BytesIO(value)
         return (key.decode(self.keyencoding), Unpickler(f).load())
@@ -206,8 +206,8 @@ class DbfilenameShelf(Shelf):
     """
 
     def __init__(self, filename, flag='c', protocol=None, writeback=False):
-        import dbm
-        Shelf.__init__(self, dbm.open(filename, flag), protocol, writeback)
+        import dbm.ndbm
+        Shelf.__init__(self, dbm.ndbm.open(filename, flag), protocol, writeback)
 
 
 def open(filename, flag='c', protocol=None, writeback=False):

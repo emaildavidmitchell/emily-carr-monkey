@@ -175,7 +175,7 @@ class NNTP:
         If the response code is 200, posting is allowed;
         if it 201, posting is not allowed."""
 
-        if self.debugging: print('*welcome*', repr(self.welcome))
+        if self.debugging: print(('*welcome*', repr(self.welcome)))
         return self.welcome
 
     def set_debuglevel(self, level):
@@ -190,12 +190,12 @@ class NNTP:
     def putline(self, line):
         """Internal: send one line to the server, appending CRLF."""
         line = line + CRLF
-        if self.debugging > 1: print('*put*', repr(line))
+        if self.debugging > 1: print(('*put*', repr(line)))
         self.sock.sendall(line)
 
     def putcmd(self, line):
         """Internal: send one command to the server (through putline())."""
-        if self.debugging: print('*cmd*', repr(line))
+        if self.debugging: print(('*cmd*', repr(line)))
         line = bytes(line, "ASCII")
         self.putline(line)
 
@@ -204,7 +204,7 @@ class NNTP:
         Raise EOFError if the connection is closed."""
         line = self.file.readline()
         if self.debugging > 1:
-            print('*get*', repr(line))
+            print(('*get*', repr(line)))
         if not line: raise EOFError
         if line[-2:] == CRLF:
             line = line[:-2]
@@ -216,7 +216,7 @@ class NNTP:
         """Internal: get a response from the server.
         Raise various errors if the response indicates an error."""
         resp = self.getline()
-        if self.debugging: print('*resp*', repr(resp))
+        if self.debugging: print(('*resp*', repr(resp)))
         c = resp[:1]
         if c == b'4':
             raise NNTPTemporaryError(resp)
@@ -398,7 +398,7 @@ class NNTP:
 
         return self.statcmd('STAT {0}'.format(id))
 
-    def next(self):
+    def __next__(self):
         """Process a NEXT command.  No arguments.  Return as for STAT."""
         return self.statcmd('NEXT')
 
@@ -608,10 +608,10 @@ if __name__ == '__main__':
     s = NNTP(newshost, readermode=mode)
     resp, count, first, last, name = s.group('comp.lang.python')
     print(resp)
-    print('Group', name, 'has', count, 'articles, range', first, 'to', last)
+    print(('Group', name, 'has', count, 'articles, range', first, 'to', last))
     resp, subs = s.xhdr('subject', '{0}-{1}'.format(first, last))
     print(resp)
     for item in subs:
-        print("%7s %s" % item)
+        print(("%7s %s" % item))
     resp = s.quit()
     print(resp)

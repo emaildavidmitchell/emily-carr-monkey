@@ -1103,10 +1103,10 @@ class IMAP4:
 
         def _dump_ur(self, dict):
             # Dump untagged responses (in `dict').
-            l = dict.items()
+            l = list(dict.items())
             if not l: return
             t = '\n\t\t'
-            l = map(lambda x:'%s: "%s"' % (x[0], x[1][0] and '" "'.join(x[1]) or ''), l)
+            l = ['%s: "%s"' % (x[0], x[1][0] and '" "'.join(x[1]) or '') for x in l]
             self._mesg('untagged responses dump:%s%s' % (t, t.join(l)))
 
         def _log(self, line):
@@ -1468,9 +1468,9 @@ if __name__ == '__main__':
         print('\nTests failed.')
 
         if not Debug:
-            print('''
+            print(('''
 If you would like to see debugging output,
 try: %s -d5
-''' % sys.argv[0])
+''' % sys.argv[0]))
 
         raise

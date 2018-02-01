@@ -27,7 +27,7 @@ from multiprocessing.forking import exit, Popen, assert_spawning, ForkingPickler
 from multiprocessing.util import Finalize, info
 
 try:
-    from cPickle import PicklingError
+    from pickle import PicklingError
 except ImportError:
     from pickle import PicklingError
 

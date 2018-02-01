@@ -104,7 +104,7 @@ class _SimpleBinder:
 # _state_subsets gives for each combination of modifiers, or *state*,
 # a list of the states which are a subset of it. This list is ordered by the
 # number of modifiers is the state - the most specific state comes first.
-_states = range(1 << len(_modifiers))
+_states = list(range(1 << len(_modifiers)))
 _state_names = [''.join(m[0]+'-'
                         for i, m in enumerate(_modifiers)
                         if (1 << i) & s)

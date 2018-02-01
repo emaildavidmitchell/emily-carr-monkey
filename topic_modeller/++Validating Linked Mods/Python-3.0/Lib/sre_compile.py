@@ -505,7 +505,7 @@ def compile(p, flags=0):
     # map in either direction
     groupindex = p.pattern.groupdict
     indexgroup = [None] * p.pattern.groups
-    for k, i in groupindex.items():
+    for k, i in list(groupindex.items()):
         indexgroup[i] = k
 
     return _sre.compile(

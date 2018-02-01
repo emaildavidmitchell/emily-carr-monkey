@@ -82,7 +82,7 @@ class PyPIRCCommandTestCase(support.TempdirManager, unittest.TestCase):
         waited = [('password', 'secret'), ('realm', 'pypi'),
                   ('repository', 'http://pypi.python.org/pypi'),
                   ('server', 'server1'), ('username', 'me')]
-        self.assertEquals(config, waited)
+        self.assertEqual(config, waited)
 
         # old format
         f = open(self.rc, 'w')
@@ -94,7 +94,7 @@ class PyPIRCCommandTestCase(support.TempdirManager, unittest.TestCase):
         waited = [('password', 'secret'), ('realm', 'pypi'),
                   ('repository', 'http://pypi.python.org/pypi'),
                   ('server', 'server-login'), ('username', 'tarek')]
-        self.assertEquals(config, waited)
+        self.assertEqual(config, waited)
 
 def test_suite():
     return unittest.makeSuite(PyPIRCCommandTestCase)

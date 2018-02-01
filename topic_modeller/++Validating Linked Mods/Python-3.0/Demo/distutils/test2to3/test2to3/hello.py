@@ -1,5 +1,5 @@
 def hello():
     try:
-        print "Hello, world"
-    except IOError, e:
-        print e.errno
+        print("Hello, world")
+    except IOError as e:
+        print(e.errno)

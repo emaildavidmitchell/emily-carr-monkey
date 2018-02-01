@@ -72,11 +72,11 @@ class CommandFrameWork:
         """Process the options retrieved by getopt.
         Override this if you have any options."""
         if opts:
-            print("-"*40)
+            print(("-"*40))
             print("Options:")
             for o, a in opts:
-                print('option', o, 'value', repr(a))
-            print("-"*40)
+                print(('option', o, 'value', repr(a)))
+            print(("-"*40))
 
     def ready(self):
         """Called just before calling the subcommand."""
@@ -85,7 +85,7 @@ class CommandFrameWork:
     def usage(self, msg = None):
         """Print usage message.  Return suitable exit code (2)."""
         if msg: print(msg)
-        print(self.UsageMessage % {'name': self.__class__.__name__})
+        print((self.UsageMessage % {'name': self.__class__.__name__}))
         docstrings = {}
         c = self.__class__
         while 1:
@@ -105,9 +105,9 @@ class CommandFrameWork:
         if docstrings:
             print("where subcommand can be:")
             for name in sorted(docstrings.keys()):
-                print(docstrings[name])
+                print((docstrings[name]))
         if self.PostUsageMessage:
-            print(self.PostUsageMessage)
+            print((self.PostUsageMessage))
         return 2
 
     def default(self):
@@ -133,9 +133,9 @@ def test():
             None,
             ]
     for t in tests:
-        print('-'*10, t, '-'*10)
+        print(('-'*10, t, '-'*10))
         sts = x.run(t)
-        print("Exit status:", repr(sts))
+        print(("Exit status:", repr(sts)))
 
 
 if __name__ == '__main__':

@@ -84,14 +84,14 @@ class TextFile:
 
         # set values for all options -- either from client option hash
         # or fallback to default_options
-        for opt in self.default_options.keys():
+        for opt in list(self.default_options.keys()):
             if opt in options:
                 setattr(self, opt, options[opt])
             else:
                 setattr(self, opt, self.default_options[opt])
 
         # sanity check client option hash
-        for opt in options.keys():
+        for opt in list(options.keys()):
             if opt not in self.default_options:
                 raise KeyError("invalid TextFile option '%s'" % opt)
 
@@ -320,9 +320,9 @@ line 3 \\
     def test_input(count, description, file, expected_result):
         result = file.readlines()
         if result == expected_result:
-            print("ok %d (%s)" % (count, description))
+            print(("ok %d (%s)" % (count, description)))
         else:
-            print("not ok %d (%s):" % (count, description))
+            print(("not ok %d (%s):" % (count, description)))
             print("** expected:")
             print(expected_result)
             print("** received:")

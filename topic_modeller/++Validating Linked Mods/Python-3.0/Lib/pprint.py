@@ -267,7 +267,7 @@ def _safe_repr(object, context, maxlevels, level):
         append = components.append
         level += 1
         saferepr = _safe_repr
-        items = object.items()
+        items = list(object.items())
         try:
             items = sorted(items)
         except TypeError:
@@ -337,8 +337,8 @@ def _perfcheck(object=None):
     t2 = time.time()
     p.pformat(object)
     t3 = time.time()
-    print("_safe_repr:", t2 - t1)
-    print("pformat:", t3 - t2)
+    print(("_safe_repr:", t2 - t1))
+    print(("pformat:", t3 - t2))
 
 if __name__ == "__main__":
     _perfcheck()

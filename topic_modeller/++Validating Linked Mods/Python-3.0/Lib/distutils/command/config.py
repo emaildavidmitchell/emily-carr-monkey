@@ -337,7 +337,7 @@ class config(Command):
 
 def dump_file(filename, head=None):
     if head is None:
-        print(filename + ":")
+        print((filename + ":"))
     else:
         print(head)
 

@@ -44,7 +44,7 @@ MAPPING = {'urllib':  [
 
 def build_pattern():
     bare = set()
-    for old_module, changes in MAPPING.items():
+    for old_module, changes in list(MAPPING.items()):
         for change in changes:
             new_module, members = change
             members = alternates(members)

@@ -866,7 +866,7 @@ class DocTestFinder:
         add them to `tests`.
         """
         if self._verbose:
-            print('Finding tests in %s' % name)
+            print(('Finding tests in %s' % name))
 
         # If we've already processed this object, then ignore it.
         if id(obj) in seen:
@@ -880,7 +880,7 @@ class DocTestFinder:
 
         # Look for tests in a module's contained objects.
         if inspect.ismodule(obj) and self._recurse:
-            for valname, val in obj.__dict__.items():
+            for valname, val in list(obj.__dict__.items()):
                 valname = '%s.%s' % (name, valname)
                 # Recurse to functions & classes.
                 if ((inspect.isfunction(val) or inspect.isclass(val)) and
@@ -890,7 +890,7 @@ class DocTestFinder:
 
         # Look for tests in a module's __test__ dictionary.
         if inspect.ismodule(obj) and self._recurse:
-            for valname, val in getattr(obj, '__test__', {}).items():
+            for valname, val in list(getattr(obj, '__test__', {}).items()):
                 if not isinstance(valname, str):
                     raise ValueError("DocTestFinder.find: __test__ keys "
                                      "must be strings: %r" %
@@ -908,7 +908,7 @@ class DocTestFinder:
 
         # Look for tests in a class's contained objects.
         if inspect.isclass(obj) and self._recurse:
-            for valname, val in obj.__dict__.items():
+            for valname, val in list(obj.__dict__.items()):
                 # Special handling for staticmethod/classmethod.
                 if isinstance(val, staticmethod):
                     val = getattr(obj, valname)
@@ -1180,7 +1180,7 @@ class DocTestRunner:
         # to modify them).
         original_optionflags = self.optionflags
 
-        SUCCESS, FAILURE, BOOM = range(3) # `outcome` state
+        SUCCESS, FAILURE, BOOM = list(range(3)) # `outcome` state
 
         check = self._checker.check_output
 
@@ -1195,7 +1195,7 @@ class DocTestRunner:
             # Merge in the example's options.
             self.optionflags = original_optionflags
             if example.options:
-                for (optionflag, val) in example.options.items():
+                for (optionflag, val) in list(example.options.items()):
                     if val:
                         self.optionflags |= optionflag
                     else:
@@ -1383,7 +1383,7 @@ class DocTestRunner:
         passed = []
         failed = []
         totalt = totalf = 0
-        for x in self._name2ft.items():
+        for x in list(self._name2ft.items()):
             name, (f, t) = x
             assert f <= t
             totalt += t
@@ -1396,26 +1396,26 @@ class DocTestRunner:
                 failed.append(x)
         if verbose:
             if notests:
-                print(len(notests), "items had no tests:")
+                print((len(notests), "items had no tests:"))
                 notests.sort()
                 for thing in notests:
-                    print("   ", thing)
+                    print(("   ", thing))
             if passed:
-                print(len(passed), "items passed all tests:")
+                print((len(passed), "items passed all tests:"))
                 passed.sort()
                 for thing, count in passed:
-                    print(" %3d tests in %s" % (count, thing))
+                    print((" %3d tests in %s" % (count, thing)))
         if failed:
-            print(self.DIVIDER)
-            print(len(failed), "items had failures:")
+            print((self.DIVIDER))
+            print((len(failed), "items had failures:"))
             failed.sort()
             for thing, (f, t) in failed:
-                print(" %3d of %3d in %s" % (f, t, thing))
+                print((" %3d of %3d in %s" % (f, t, thing)))
         if verbose:
-            print(totalt, "tests in", len(self._name2ft), "items.")
-            print(totalt - totalf, "passed and", totalf, "failed.")
+            print((totalt, "tests in", len(self._name2ft), "items."))
+            print((totalt - totalf, "passed and", totalf, "failed."))
         if totalf:
-            print("***Test Failed***", totalf, "failures.")
+            print(("***Test Failed***", totalf, "failures."))
         elif verbose:
             print("Test passed.")
         return TestResults(totalf, totalt)
@@ -1425,10 +1425,10 @@ class DocTestRunner:
     #/////////////////////////////////////////////////////////////////
     def merge(self, other):
         d = self._name2ft
-        for name, (f, t) in other._name2ft.items():
+        for name, (f, t) in list(other._name2ft.items()):
             if name in d:
-                print("*** DocTestRunner.merge: '" + name + "' in both" \
-                    " testers; summing outcomes.")
+                print(("*** DocTestRunner.merge: '" + name + "' in both" \
+                    " testers; summing outcomes."))
                 f2, t2 = d[name]
                 f = f + f2
                 t = t + t2
@@ -2467,7 +2467,7 @@ def debug_script(src, pm=False, globs=None):
             try:
                 exec(open(srcfilename).read(), globs, globs)
             except:
-                print(sys.exc_info()[1])
+                print((sys.exc_info()[1]))
                 pdb.post_mortem(sys.exc_info()[2])
         else:
             fp = open(srcfilename)

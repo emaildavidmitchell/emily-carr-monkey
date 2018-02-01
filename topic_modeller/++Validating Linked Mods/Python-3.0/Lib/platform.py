@@ -436,7 +436,7 @@ def _norm_version(version, build=''):
     if build:
         l.append(build)
     try:
-        ints = map(int,l)
+        ints = list(map(int,l))
     except ValueError:
         strings = l
     else:
@@ -1064,7 +1064,7 @@ def uname():
     except AttributeError:
         no_os_uname = 1
 
-    if no_os_uname or not filter(None, (system, node, release, version, machine)):
+    if no_os_uname or not [_f for _f in (system, node, release, version, machine) if _f]:
         # Hmm, no there is either no uname or uname has returned
         #'unknowns'... we'll have to poke around the system then.
         if no_os_uname:
@@ -1509,5 +1509,5 @@ if __name__ == '__main__':
     # Default is to print the aliased verbose platform string
     terse = ('terse' in sys.argv or '--terse' in sys.argv)
     aliased = (not 'nonaliased' in sys.argv and not '--nonaliased' in sys.argv)
-    print(platform(aliased,terse))
+    print((platform(aliased,terse)))
     sys.exit(0)

@@ -12,7 +12,7 @@ def main():
     primes(min, max)
 
 def primes(min, max):
-    if 2 >= min: print(2)
+    if 2 >= min: print((2))
     primes = [2]
     i = 3
     while i <= max:

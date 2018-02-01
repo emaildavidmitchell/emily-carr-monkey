@@ -186,11 +186,11 @@ def test():
     if hasattr(proxy, what):
         attr = getattr(proxy, what)
         if hasattr(attr, '__call__'):
-            print(attr(*sys.argv[2:]))
+            print((attr(*sys.argv[2:])))
         else:
-            print(repr(attr))
+            print((repr(attr)))
     else:
-        print("%s: no such attribute" % what)
+        print(("%s: no such attribute" % what))
         sys.exit(2)
 
 

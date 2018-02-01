@@ -23,7 +23,7 @@ if is_resource_enabled("printing"):
         for item in (("GL", lib_gl),
                      ("GLU", lib_glu),
                      ("gle", lib_gle)):
-            print("\t", item)
+            print(("\t", item))
 
 
 # On some systems, loading the OpenGL libraries needs the RTLD_GLOBAL mode.

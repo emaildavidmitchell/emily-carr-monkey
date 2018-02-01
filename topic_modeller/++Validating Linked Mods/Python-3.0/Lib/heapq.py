@@ -180,7 +180,7 @@ def heapify(x):
     # or i < (n-1)/2.  If n is even = 2*j, this is (2*j-1)/2 = j-1/2 so
     # j-1 is the largest, which is n//2 - 1.  If n is odd = 2*j+1, this is
     # (2*j+1-1)/2 = j so j-1 is the largest, and that's again n//2-1.
-    for i in reversed(range(n//2)):
+    for i in reversed(list(range(n//2))):
         _siftup(x, i)
 
 def nlargest(n, iterable):
@@ -355,8 +355,8 @@ def nsmallest(n, iterable, key=None):
     Equivalent to:  sorted(iterable, key=key)[:n]
     """
     in1, in2 = tee(iterable)
-    keys = in1 if key is None else map(key, in1)
-    it = zip(keys, count(), in2)                           # decorate
+    keys = in1 if key is None else list(map(key, in1))
+    it = list(zip(keys, count(), in2))                           # decorate
     result = _nsmallest(n, it)
     return list(map(itemgetter(2), result))                 # undecorate
 
@@ -367,8 +367,8 @@ def nlargest(n, iterable, key=None):
     Equivalent to:  sorted(iterable, key=key, reverse=True)[:n]
     """
     in1, in2 = tee(iterable)
-    keys = in1 if key is None else map(key, in1)
-    it = zip(keys, map(neg, count()), in2)                 # decorate
+    keys = in1 if key is None else list(map(key, in1))
+    it = list(zip(keys, list(map(neg, count())), in2))                 # decorate
     result = _nlargest(n, it)
     return list(map(itemgetter(2), result))                 # undecorate
 

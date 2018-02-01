@@ -51,8 +51,8 @@ def test_queuespeed(Process, q, c):
 
         p.join()
 
-    print(iterations, 'objects passed through the queue in', elapsed, 'seconds')
-    print('average number/sec:', iterations/elapsed)
+    print((iterations, 'objects passed through the queue in', elapsed, 'seconds'))
+    print(('average number/sec:', iterations/elapsed))
 
 
 #### TEST_PIPESPEED
@@ -93,8 +93,8 @@ def test_pipespeed():
         elapsed = _timer() - t
         p.join()
 
-    print(iterations, 'objects passed through connection in',elapsed,'seconds')
-    print('average number/sec:', iterations/elapsed)
+    print((iterations, 'objects passed through connection in',elapsed,'seconds'))
+    print(('average number/sec:', iterations/elapsed))
 
 
 #### TEST_SEQSPEED
@@ -113,8 +113,8 @@ def test_seqspeed(seq):
 
         elapsed = _timer()-t
 
-    print(iterations, 'iterations in', elapsed, 'seconds')
-    print('average number/sec:', iterations/elapsed)
+    print((iterations, 'iterations in', elapsed, 'seconds'))
+    print(('average number/sec:', iterations/elapsed))
 
 
 #### TEST_LOCK
@@ -134,8 +134,8 @@ def test_lockspeed(l):
 
         elapsed = _timer()-t
 
-    print(iterations, 'iterations in', elapsed, 'seconds')
-    print('average number/sec:', iterations/elapsed)
+    print((iterations, 'iterations in', elapsed, 'seconds'))
+    print(('average number/sec:', iterations/elapsed))
 
 
 #### TEST_CONDITION
@@ -174,8 +174,8 @@ def test_conditionspeed(Process, c):
         c.release()
         p.join()
 
-    print(iterations * 2, 'waits in', elapsed, 'seconds')
-    print('average number/sec:', iterations * 2 / elapsed)
+    print((iterations * 2, 'waits in', elapsed, 'seconds'))
+    print(('average number/sec:', iterations * 2 / elapsed))
 
 ####
 

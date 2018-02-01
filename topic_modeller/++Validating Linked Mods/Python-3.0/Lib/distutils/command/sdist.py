@@ -21,7 +21,7 @@ def show_formats ():
     from distutils.fancy_getopt import FancyGetopt
     from distutils.archive_util import ARCHIVE_FORMATS
     formats=[]
-    for format in ARCHIVE_FORMATS.keys():
+    for format in list(ARCHIVE_FORMATS.keys()):
         formats.append(("formats=" + format, None,
                         ARCHIVE_FORMATS[format][2]))
     formats.sort()
@@ -276,7 +276,7 @@ class sdist (Command):
 
         optional = ['test/test*.py', 'setup.cfg']
         for pattern in optional:
-            files = filter(os.path.isfile, glob(pattern))
+            files = list(filter(os.path.isfile, glob(pattern)))
             if files:
                 self.filelist.extend(files)
 
