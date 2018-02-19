@@ -12,7 +12,7 @@ from configparser import SafeConfigParser as ConfigParser
 from configparser import NoOptionError
 import os.path
 
-from topicexplorer.lib.util import bool_prompt, int_prompt, is_valid_configfile
+from topic_modeller.topicexplorer.lib.util import bool_prompt, int_prompt, is_valid_configfile
 
 
 def build_models(corpus, corpus_filename, model_path, context_type, krange,

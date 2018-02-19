@@ -1,6 +1,6 @@
 var base_fn = function(ticks,i) {
     return ticks.append("svg:image")
-        .attr("xlink:href","/img/link.png")
+        .attr("xlink:href","topicmodeller/img/link.png")
         .attr("width", 18)
         .attr("height",18)
         .attr("x", -margin.left + 5 + (i*20))
@@ -31,14 +31,14 @@ var string_escape = function (string) {
 
 var icon_fns = {"link" : function(ticks, i) {
       base_fn(ticks,i)
-        .attr("xlink:href","/img/link.png")
+        .attr("xlink:href","topicmodeller/img/link.png")
         .attr("class", "linkIcon icon")
         .on("click", function(d) { window.location.href = window.location.origin + window.location.pathname + "?doc=" + encodeURIComponent(d);});
   },
  "fingerprint" : function(ticks, i, docs) {
       base_fn(ticks,i)
         .attr("data-doc-id", function (d) {return d})
-        .attr("xlink:href","/img/icon-fingerprint.png")
+        .attr("xlink:href","/topicmodeller/img/icon-fingerprint.png")
         .attr("class", "fingerprintIcon icon")
         .attr("onclick", function(d) {
           if (d) {      
@@ -67,7 +67,7 @@ var icon_fns = {"link" : function(ticks, i) {
               return d;  
             }; 
           })
-        .attr("xlink:href","/img/icon-book.png")
+        .attr("xlink:href","/topicmodeller/img/icon-book.png")
         .attr("class", "fulltextIcon icon")
         .attr("onclick", function(d) { 
           data = docs.filter(function(doc, i) { return doc.id == d})[0];
@@ -90,14 +90,14 @@ var icon_fns = {"link" : function(ticks, i) {
               return d;  
             }; 
           })
-        .attr("xlink:href","/img/icon-book.png")
+        .attr("xlink:href","/topicmodeller/img/icon-book.png")
         .attr("class", "fulltextIcon icon")
         .attr("onclick", function(d) { return (d) ? "fulltext.popover(this)" : ""; });
   },
  "fulltext" : function(ticks, i,docs) {
       base_fn(ticks,i)
         .attr("data-doc-id", function (d) {return d})
-        .attr("xlink:href","/img/icon-book.png")
+        .attr("xlink:href","/topicmodeller/img/icon-book.png")
         .attr("class", "fulltextIcon icon")
         .on("click", function(d){
           var url = window.location.origin + window.location.pathname + "../fulltext/" + encodeURIComponent(d);
@@ -107,7 +107,7 @@ var icon_fns = {"link" : function(ticks, i) {
  "oldbailey" : function(ticks, i, docs) {
       base_fn(ticks,i)
         .attr("data-doc-id", function (d) {return d})
-        .attr("xlink:href","/img/icon-law.png")
+        .attr("xlink:href","/topicmodeller/img/icon-law.png")
         .attr("class", "oldbaileyIcon icon")
         .on("click", function(d) { 
           data = docs.filter(function(doc, i) { return doc.id == d})[0];
@@ -138,7 +138,7 @@ var icon_fns = {"link" : function(ticks, i) {
   },
  "htrcbook" : function(ticks, i, docs) {
       base_fn(ticks,i)
-        .attr("xlink:href","/img/icon-book.png")
+        .attr("xlink:href","/topicmodeller/img/icon-book.png")
         .attr("class", "htrcbookIcon icon")
         .on("click", function(d) { 
           data = docs.filter(function(doc, i) { return doc.id == d})[0]
@@ -149,7 +149,7 @@ var icon_fns = {"link" : function(ticks, i) {
   },
  "doi" : function(ticks, i, docs) {
       base_fn(ticks,i)
-        .attr("xlink:href","/img/icon-doi.png")
+        .attr("xlink:href","/topicmodeller/img/icon-doi.png")
         .attr("class", "doiIcon icon")
         .on("click", function(d) { 
           data = docs.filter(function(doc, i) { return doc.id == d})[0]
@@ -159,13 +159,13 @@ var icon_fns = {"link" : function(ticks, i) {
   },
  "wos" : function(ticks, i, docs) {
       base_fn(ticks,i)
-        .attr("xlink:href","/img/icon-wos.png")
+        .attr("xlink:href","/topicmodeller/img/icon-wos.png")
         .attr("class", "wosIcon icon")
         .on("click", function(d) { window.open("http://apps.webofknowledge.com/CitedFullRecord.do?product=WOS&search_mode=CitedFullRecord&isickref=" + d, "_blank");});
   },
  "inpho" : function(ticks, i) { 
       base_fn(ticks,i)
-        .attr("xlink:href","/img/inpho.png")
+        .attr("xlink:href","/topicmodeller/img/inpho.png")
         .attr("class", "inphoIcon icon")
         .on("click", function(d) { window.open("https://inpho.cogs.indiana.edu/entity?redirect=True&sep=" + d, "_blank");});
    },

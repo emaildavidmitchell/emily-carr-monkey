@@ -20,9 +20,9 @@ from urllib.parse import unquote
 import webbrowser
 
 from bottle import request, response, route, run, static_file, Bottle
-from lib.color import get_topic_colors, rgb2hex
-from lib.ssl import SSLWSGIRefServer
-from lib.util import (int_prompt, bool_prompt, is_valid_filepath,
+from topic_modeller.topicexplorer.lib.color import get_topic_colors, rgb2hex
+from topic_modeller.topicexplorer.lib.ssl import SSLWSGIRefServer
+from topic_modeller.topicexplorer.lib.util import (int_prompt, bool_prompt, is_valid_filepath,
     is_valid_configfile, get_static_resource_path)
 
 from vsm.corpus import Corpus
@@ -137,6 +137,7 @@ class Application(Bottle):
         @self.route('/<k:int>/doc_topics/<doc_id>')
         @_set_acao_headers
         def doc_topic_csv(k, doc_id):
+            print('CALL FUNCTION doc_topic_csv', flush=True)
             response.content_type = 'text/csv; charset=UTF8'
 
             data = self.v[k].doc_topics(doc_id)
@@ -155,6 +156,7 @@ class Application(Bottle):
         @self.route('/<k:int>/docs/<doc_id>')
         @_set_acao_headers
         def doc_csv(k, doc_id, threshold=0.2):
+            print('CALL FUNCTION doc_csv', flush=True)
             response.content_type = 'text/csv; charset=UTF8'
 
             data = self.v[k].dist_doc_doc(doc_id)
@@ -173,6 +175,7 @@ class Application(Bottle):
         @self.route('/<k:int>/topics/<topic_no:int>.json')
         @_set_acao_headers
         def topic_json(k, topic_no, N=40):
+            print('CALL FUNCTION topic_json', flush=True)
             response.content_type = 'application/json; charset=UTF8'
             try:
                 N = int(request.query.n)
@@ -202,6 +205,7 @@ class Application(Bottle):
         @self.route('/<k:int>/docs_topics/<doc_id:path>.json')
         @_set_acao_headers
         def doc_topics(k, doc_id, N=40):
+            print('CALL FUNCTION doc_topics', flush=True)
             try:
                 N = int(request.query.n)
             except:
@@ -232,6 +236,7 @@ class Application(Bottle):
         @self.route('/<k:int>/word_docs.json')
         @_set_acao_headers
         def word_docs(k, N=40):
+            print('CALL FUNCTION word_docs', flush=True)
             import numpy as np
             try:
                 N = int(request.query.n)
@@ -282,7 +287,8 @@ class Application(Bottle):
         @self.route('/<k:int>/topics.json')
         @_set_acao_headers
         def topics(k):
-            from lib.color import rgb2hex
+            print('CALL FUNCTION topics', flush=True)
+            from topic_modeller.topicexplorer.lib.color import rgb2hex
 
             response.content_type = 'application/json; charset=UTF8'
             response.set_header('Expires', _cache_date())
@@ -308,6 +314,7 @@ class Application(Bottle):
         @self.route('/topics.json')
         @_set_acao_headers
         def word_topic_distance():
+            print('CALL FUNCTION word_topic_distance', flush=True)
             import numpy as np
             response.content_type = 'application/json; charset=UTF8'
 
@@ -363,18 +370,21 @@ class Application(Bottle):
         @self.route('/topics')
         @_set_acao_headers
         def view_clusters():
+            print('CALL FUNCTION view_clusters', flush=True)
             with open(get_static_resource_path('www/master.mustache.html'),
                       encoding='utf-8') as tmpl_file:
                 template = tmpl_file.read()
 
             tmpl_params = {'body' : _render_template('cluster.mustache.html'),
                            'topic_range': self.topic_range}
+            print(tmpl_params)
             return self.renderer.render(template, tmpl_params)
 
 
         @self.route('/docs.json')
         @_set_acao_headers
         def docs(docs=None, q=None, n=None):
+            print('CALL FUNCTION docs', flush=True)
             response.content_type = 'application/json; charset=UTF8'
             response.set_header('Expires', _cache_date())
 
@@ -406,14 +416,16 @@ class Application(Bottle):
 
         @self.route('/icons.js')
         def icons():
+            print('CALL FUNCTION icons', flush=True)
             with open(get_static_resource_path('www/icons.js')) as icons:
                 text = '{0}\n var icons = {1};'\
                     .format(icons.read(), json.dumps(self.icons))
+
             return text
 
         def _render_template(page):
             response.set_header('Expires', _cache_date())
-
+            print('CALL FUNCTION _render_template', flush=True)
             with open(get_static_resource_path('www/' + page),
                       encoding='utf-8') as tmpl_file:
                 template = tmpl_file.read()
@@ -425,34 +437,41 @@ class Application(Bottle):
                            'doc_title_format': kwargs.get('doc_title_format', '{0}'),
                            'doc_url_format': kwargs.get('doc_url_format', ''),
                            'home_link': kwargs.get('home_link', '/')}
+
             return self.renderer.render(template, tmpl_params)
 
         @self.route('/<k:int>/')
         def index(k):
+            print('CALL FUNCTION index', flush=True)
             with open(get_static_resource_path('www/master.mustache.html'),
                       encoding='utf-8') as tmpl_file:
                 template = tmpl_file.read()
 
             tmpl_params = {'body' : _render_template('bars.mustache.html'),
                            'topic_range': self.topic_range}
+
             return self.renderer.render(template, tmpl_params)
 
         @self.route('/cluster.csv')
         @_set_acao_headers
         def cluster_csv(second=False):
+            print('CALL FUNCTION cluster_csv', flush=True)
             filename = kwargs.get('cluster_path')
-            print("Retrieving cluster.csv:", filename)
+            print(filename)
+
             if not filename or not os.path.exists(filename):
-                import topicexplorer.train
-                filename = topicexplorer.train.cluster(10, self.config_file)
+                from topic_modeller.topicexplorer import train
+                filename = train.cluster(10, self.config_file)
                 kwargs['cluster_path'] = filename
 
             root, filename = os.path.split(filename)
+            print(root, filename)
             return static_file(filename, root=root)
         
         @self.route('/description.md')
         @_set_acao_headers
         def description():
+            print('CALL FUNCTION description', flush=True)
             filename = kwargs.get('corpus_desc')
             if not filename:
                 response.status = 404
@@ -464,23 +483,37 @@ class Application(Bottle):
         @self.route('/')
         @_set_acao_headers
         def cluster():
+            print('CALL FUNCTION cluster', flush=True)
             with open(get_static_resource_path('www/master.mustache.html'),
                       encoding='utf-8') as tmpl_file:
                 template = tmpl_file.read()
-
             tmpl_params = {'body' : _render_template('splash.mustache.html'),
                            'topic_range': self.topic_range}
+
             return self.renderer.render(template, tmpl_params)
 
         @self.route('/<filename:path>')
         @_set_acao_headers
         def send_static(filename):
+            print('CALL FUNCTION send_static', flush=True)
+            print('FILENAME IS {}'.format(filename))
+            # filename = filename.replace('/topicmodeller', '')
+            if re.match(r'\d+', filename):  # Strip preceding numbers
+                filename = re.sub('topicmodeller/\d+', '', filename)
+                filename = re.sub('\d+/topicmodeller', '', filename)
+
+            print('NEW FILENAME IS {}'.format(filename))
+
+            print('static path is {}'.format(get_static_resource_path('www/')))
+            f = static_file(filename, root=get_static_resource_path('www/'))
+            print('FILE RETURNED IS {}'.format(f))
             return static_file(filename, root=get_static_resource_path('www/'))
 
     def _serve_fulltext(self, corpus_path):
         @self.route('/fulltext/<doc_id:path>')
         @_set_acao_headers
         def get_doc(doc_id):
+            print('CALL FUNCTION get_doc', flush=True)
             pdf_path = os.path.join(corpus_path, re.sub('txt$', 'pdf', doc_id))
             if os.path.exists(pdf_path.encode('utf-8')):
                 doc_id = re.sub('txt$', 'pdf', doc_id)

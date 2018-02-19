@@ -142,7 +142,7 @@ var fingerprint = {
         }
         return false;
       }
-      d3.json(host + "/topics.json", function(error_top, topics) {
+      d3.json(host + "topicmodeller/topics.json", function(error_top, topics) {
         $('#fingerprintModal #status .bar', '#bar'+k).css('width', '75%').text('Rendering chart...');
         if (error_top) {
            var isError = $('.bar.bar-danger ');
