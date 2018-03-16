@@ -1,24 +1,10 @@
 {% include "header.tpl" %}
 
-	<div class="container">
-		<div class="row">
-		<form class="form" action="/network" method="get" onSubmit="return check()">
-			<div class="form-group">
-				<input class="form-control typeahead" placeholder="Search" name="search" id="search" autocomplete="off">
-			</div>
-			<button type="submit" class="btn btn-default">Submit</button>
-	  	</form>
-	  </div>
+<div class="container">
+  <div class="jumbotron">
+    <h1><img src="/static/img/LinkedModernismHEL.svg"></h1>      
+    <p>Linked Modernisms is a web based visualization and analysis portal for The Routledge Encyclopedia of Modernism.</p>
   </div>
-	<script>
-		var articles = {{ articles|tojson }};
-		$('input.typeahead').typeahead({source: articles});
-		function check() {
-			var search_text = $('#search').val();
-			if (!articles.includes(search_text)) {
-				alert(search_text + " not in database.");
-				return false;
-			}
-		}
-	</script>
+</div>
+
 {% include "footer.tpl" %}

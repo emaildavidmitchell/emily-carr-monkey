@@ -1,56 +1,13 @@
-html, body {
-	height: 100%;
-	min-height: 100%;
+div.col-xs-2 {
+	padding-right: 0px;
 }
 
-
-#btns {
-	right: 20px;
-	top: 50px;
-	position: fixed;
-	visibility: hidden;
-}
-
-#tooltip {
-	height: 325px;
-	width: 200px;
-	right: 10px;
-	top: 100px;
-	border-radius: 5px;
-	padding: 10px;
-	border: 3px solid #777777;
-	color: #000;
-	position: fixed;
-	visibility: hidden;
-	opacity: .8;
-	overflow: scroll;
-	font-size: 12px;
-}
-
-#mediabox {
-	width: 200px;
-	padding: 10px;
-	right: 10px;
-	top: 435px;
-	bottom: 25px;
-	position: fixed;
-	visibility: hidden;
-}
-
-#media {
-	display: block;
-	max-width: 95%;
-	max-height: 95%;
-	margin-left: auto;
-	margin-right: auto;
-	border: 2px solid black;
-	border-radius: 5px;
-
-
-
+div.col-xs-10 {
+	padding-left: 0px;
+	min-height: 90vh;
 }
 
 #graph-container {
-	height: 90%;
-	min-height: 90%;
+	min-height: 90vh;
+	max-height: 90vh;
 }
