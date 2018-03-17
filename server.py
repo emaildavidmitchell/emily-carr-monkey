@@ -84,4 +84,4 @@ def server_static(filepath):
     return static_file(filepath, root='./static/')
 
 
-run(host='0.0.0.0', port=8080, debug=True)
+run(host='0.0.0.0', port=80, debug=True)
