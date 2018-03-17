@@ -15,22 +15,28 @@ def template(name, ctx):
     return t.render(**ctx)
 
 
-with open('./get_data/ak.txt') as f:
+with open('./get_data/ak.txt', encoding='utf-8') as f:
     ak = f.read().splitlines()
     ak = [line.split(":::") for line in ak]
     aid = {item[0]: item[1] for item in ak}
     ida = {item[1]: item[0] for item in ak}
 
-with open('./get_data/art_desc.txt') as f:
+with open('./get_data/art_desc.txt', encoding='utf-8') as f:
     desc = f.read().splitlines()
     desc = [line.split(":::") for line in desc]
     desc = {item[0]: item[1] for item in desc if len(item) == 2}
 
 imgs = {}
 for article in aid.keys():
-    imagefiles = [f for f in listdir('./static/img/articles/' + article) if
-                  isfile(join('./static/img/articles/' + article, f))]
-    imgs[article] = imagefiles
+    try:
+        imagefiles = [f for f in listdir('./static/img/articles/' + article) if
+                      isfile(join('./static/img/articles/' + article, f))]
+        imgs[article] = imagefiles
+    except FileNotFoundError:
+        print('Failed to find image file')
+        continue
+    except NotADirectoryError:
+        print('Invalid filename on windows')
 
 
 def proc_edges(edges):
