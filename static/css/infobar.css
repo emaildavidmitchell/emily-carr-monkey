@@ -1,0 +1,32 @@
+#infobar {
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 91vh;
+    background: #F7EEF5;
+    color: black;
+}
+
+#tooltip {
+	margin-right: 2px;
+	max-height: 600px;
+	padding: 10px;
+	color: #000;
+	opacity: .8;
+	overflow: scroll;
+	font-size: 12px;
+	background-color: #d6e6ff;
+	border-radius: 5px;
+	visibility: hidden;
+}
+
+#mediabox {
+	height: 200px;
+	padding: 10px;
+
+}
+
+#media {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}

@@ -1,0 +1,17 @@
+.navbar-default {
+  background-color: #F8F8F8;
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: black;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+	color: purple;
+}
+
+input#navsearch.form-control:focus {
+	box-shadow: none;
+	border: 1px solid #9361B7;
+	outline: none;
+}

@@ -1,0 +1,18 @@
+#sidebar {
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 91vh;
+    background: #F7EEF5;
+    color: black;
+}
+
+input#navaddnode.form-control {
+    margin-top:10px;
+}
+
+
+input#navaddnode.form-control:focus {
+    box-shadow: none;
+    border: 1px solid #9361B7;
+    outline: none;
+}
